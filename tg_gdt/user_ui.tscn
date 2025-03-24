@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=2 format=3 uid="uid://hwn1hgpjlqm5"]
+
+[ext_resource type="Texture2D" uid="uid://dxgc5eh7u0e0n" path="res://assets/PNG 27_4_5 Game UI Kit/019.png" id="1_jrm8y"]
 
 [node name="userUI" type="Control"]
 layout_mode = 3
@@ -7,3 +9,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="leftMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="leftMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="baseLeftMenu" type="MarginContainer" parent="leftMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+
+[node name="NinePatchRect" type="NinePatchRect" parent="leftMenu/VBoxContainer/baseLeftMenu"]
+custom_minimum_size = Vector2(300, 550)
+layout_mode = 2
+texture = ExtResource("1_jrm8y")
+
+[node name="MarginContainer" type="MarginContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -226.0
+offset_right = 114.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
