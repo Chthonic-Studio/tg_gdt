@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=5 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Texture2D" uid="uid://dxgc5eh7u0e0n" path="res://assets/PNG 27_4_5 Game UI Kit/019.png" id="1_jrm8y"]
+[ext_resource type="Script" uid="uid://t4dpw3626tvy" path="res://scripts/ui/generateCharacter.gd" id="2_dptev"]
+[ext_resource type="Script" uid="uid://hdcxom0jq0fs" path="res://scripts/ui/statMenuController.gd" id="3_u6ol6"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_52g50"]
 
 [node name="userUI" type="Control"]
 layout_mode = 3
@@ -49,13 +52,63 @@ offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
+[node name="DebugButtonContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Button" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+action_mode = 0
+text = "Spawn Character"
+script = ExtResource("2_dptev")
+
+[node name="StatContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("3_u6ol6")
+
+[node name="playerNameContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="playerName" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/playerNameContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 25
+text = "Guildmaster "
+horizontal_alignment = 1
+
+[node name="goldCounter" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 19
+text = "Gold: "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main stats"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reputation"
+
+[node name="HScrollBar" type="HScrollBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" method="_on_pressed"]

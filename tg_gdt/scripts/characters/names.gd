@@ -1,17 +1,40 @@
 extends Node
 
-var male_names = ["Aragorn", "Legolas", "Gimli"]
-var female_names = ["Arwen", "Eowyn", "Galadriel"]
-var non_binary_names = ["Alex", "Jordan", "Taylor"]
+var names = {
+    "Human": {
+        "Male": ["John", "Robert", "Michael"],
+        "Female": ["Mary", "Patricia", "Linda"],
+        "Non-Binary": []
+    },
+    "Elf": {
+        "Male": ["Aragorn", "Legolas", "Elrond"],
+        "Female": ["Arwen", "Galadriel", "Tauriel"],
+        "Non-Binary": ["Finrod", "Melian", "Aredhel"]
+    },
+    "Dwarf": {
+        "Male": ["Thorin", "Balin", "Dwalin"],
+        "Female": ["Dis", "Hilda", "Gimra"],
+        "Non-Binary": []
+    },
+    "Orc": {
+        "Male": ["Gorbag", "Ugluk", "Azog"],
+        "Female": ["Lugdush", "Grishnakh", "Shagrat"],
+        "Non-Binary": []
+    }
+}
 
-func generate_first_name(gender: String) -> String:
-    if gender == "Male":
-        return male_names[randi() % male_names.size()]
-    elif gender == "Female":
-        return female_names[randi() % female_names.size()]
-    else:
-        return non_binary_names[randi() % non_binary_names.size()]
+var last_names = {
+    "Human": ["Smith", "Johnson", "Williams"],
+    "Elf": ["Baggins", "Brandybuck", "Took"],
+    "Dwarf": ["Ironfoot", "Stonehelm", "Oakenshield"],
+    "Orc": ["Bloodfist", "Skullcrusher", "Bonegnasher"]
+}   
 
-func generate_last_name() -> String:
-    var last_names = ["Baggins", "Brandybuck", "Took"]
-    return last_names[randi() % last_names.size()]
+func generate_first_name(race: String, gender: String) -> String:
+    var gender_names = names[race].get(gender, [])
+    if gender == "Non-Binary":
+        gender_names += names[race]["Male"] + names[race]["Female"]
+    return gender_names[randi() % gender_names.size()]
+
+func generate_last_name(race: String) -> String:
+    return last_names[race][randi() % last_names[race].size()]
