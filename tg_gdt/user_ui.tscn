@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=8 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Texture2D" uid="uid://dxgc5eh7u0e0n" path="res://assets/PNG 27_4_5 Game UI Kit/019.png" id="1_jrm8y"]
 [ext_resource type="Script" uid="uid://t4dpw3626tvy" path="res://scripts/ui/generateCharacter.gd" id="2_dptev"]
 [ext_resource type="Script" uid="uid://hdcxom0jq0fs" path="res://scripts/ui/statMenuController.gd" id="3_u6ol6"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_52g50"]
+[ext_resource type="Script" uid="uid://bqy4ul6umfshg" path="res://scripts/ui/ui_main_stats_container.gd" id="5_52g50"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="6_juyng"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="7_1cxlp"]
 
 [node name="userUI" type="Control"]
 layout_mode = 3
@@ -66,10 +69,12 @@ action_mode = 0
 text = "Spawn Character"
 script = ExtResource("2_dptev")
 
+[node name="Button2" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
+layout_mode = 2
+
 [node name="StatContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+theme_override_constants/separation = 1
 script = ExtResource("3_u6ol6")
 
 [node name="playerNameContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
@@ -92,23 +97,106 @@ theme_override_fonts/font = ExtResource("4_52g50")
 theme_override_font_sizes/font_size = 19
 text = "Gold: "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+[node name="mainStatsContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
 layout_mode = 2
+theme_override_constants/separation = 5
+script = ExtResource("5_52g50")
 
-[node name="Label" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer"]
+[node name="mainStatsLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 26
 text = "Main stats"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer"]
+[node name="mainStatsBars" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Reputation"
-
-[node name="HScrollBar" type="HScrollBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/VBoxContainer/HBoxContainer"]
+[node name="mainStatsBarLabels" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars"]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="moraleLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "Morale"
+horizontal_alignment = 1
+
+[node name="reputationLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "Reputation"
+horizontal_alignment = 1
+
+[node name="influenceLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "Influence"
+horizontal_alignment = 1
+
+[node name="supportLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "Support"
+horizontal_alignment = 1
+
+[node name="prestigeLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "Prestige"
+horizontal_alignment = 1
+
+[node name="mainStatsBarContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars"]
+custom_minimum_size = Vector2(130, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="moraleBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+rounded = true
+
+[node name="reputationBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+rounded = true
+
+[node name="influenceBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="supportBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
+layout_mode = 2
+rounded = true
+
+[node name="prestigeBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
+layout_mode = 2
+rounded = true
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" method="_on_pressed"]
