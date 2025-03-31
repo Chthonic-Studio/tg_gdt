@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4v52ohpvieko"]
+[gd_scene load_steps=7 format=3 uid="uid://c4v52ohpvieko"]
 
 [ext_resource type="Texture2D" uid="uid://bkt55j4e5vfw6" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/3 Item Holder/1.png" id="1_6w8qb"]
 [ext_resource type="Texture2D" uid="uid://bcd0lix7p5hkc" path="res://assets/avatars/test_humanavatar.png" id="2_nq8e4"]
 [ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="3_xmpmf"]
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_o10ht"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="5_o3p8a"]
+[ext_resource type="Script" uid="uid://b0r06uxjkovmc" path="res://scripts/ui/char_list_button.gd" id="6_nq8e4"]
 
 [node name="characterListItem" type="NinePatchRect"]
 custom_minimum_size = Vector2(200, 50)
@@ -86,3 +87,13 @@ theme_override_font_sizes/font_size = 20
 text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="charListButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 40.0
+action_mode = 0
+flat = true
+script = ExtResource("6_nq8e4")

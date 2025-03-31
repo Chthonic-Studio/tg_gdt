@@ -2,9 +2,6 @@ extends Node
 
 var CharacterGenerator = preload("res://scripts/characters/characterGenerator.gd").new()
 
-# Reference to the character list UI
-@onready var character_list_ui = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList
-
 # Define player stats
 var gold: int = 0
 var reputation: int = 0

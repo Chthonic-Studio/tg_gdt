@@ -22,7 +22,9 @@ func populate_character_list(characters):
 		var character_list_item = CharacterListItemScene.instantiate()
 
 		# Populate the fields with the character's information
-		character_list_item.get_node("charAvatar").image = character.character_avatar
+		# Load the texture from the character_avatar property
+		var avatar_texture = load(character.character_avatar)
+		character_list_item.get_node("charAvatar").texture = avatar_texture
 		character_list_item.get_node("charName").text = character.character_fullName
 		character_list_item.get_node("charClass").text = character.selected_class["name"]
 		character_list_item.get_node("charMissions").text = str(character.missions_completed)

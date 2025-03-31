@@ -235,12 +235,19 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
+[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuVBox"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bookMenu/bookMenuVBox/MarginContainer"]
+layout_mode = 2
+
 [node name="bookMenuBase" type="MarginContainer" parent="bookMenu/bookMenuVBox"]
 layout_mode = 2
 
 [node name="book9PatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase"]
 custom_minimum_size = Vector2(750, 500)
 layout_mode = 2
+mouse_filter = 1
 texture = ExtResource("9_jo8d0")
 region_rect = Rect2(117.989, 180.979, 661.207, 416.142)
 
@@ -256,6 +263,7 @@ layout_mode = 2
 
 [node name="lp_title" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox"]
 layout_mode = 2
+mouse_filter = 1
 text = "PAGE TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -269,6 +277,8 @@ offset_bottom = 403.0
 [node name="lp_characterList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 layout_mode = 2
 theme = SubResource("Theme_oc1mj")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 script = ExtResource("10_iwd6v")
 
 [node name="characterListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList"]
@@ -278,6 +288,9 @@ size_flags_vertical = 3
 
 [node name="characterListItem" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList/characterListVbox" instance=ExtResource("11_xxcwy")]
 layout_mode = 2
+mouse_filter = 1
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
 layout_mode = 0
@@ -300,16 +313,5 @@ layout_mode = 0
 offset_top = 39.0
 offset_right = 308.0
 offset_bottom = 403.0
-
-[node name="bookMenuTabs" type="HBoxContainer" parent="bookMenu"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuTabs"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuTabs/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
