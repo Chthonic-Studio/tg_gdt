@@ -1,5 +1,10 @@
 extends Node
 
+var CharacterGenerator = preload("res://scripts/characters/characterGenerator.gd").new()
+
+# Reference to the character list UI
+@onready var character_list_ui = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList
+
 # Define player stats
 var gold: int = 0
 var reputation: int = 0
@@ -17,8 +22,38 @@ var security: int = 0
 var noGold: bool = false
 var noResources: bool = false
 
+# List to keep track of all characters
+var characters = []
+var retired_characters = []
+var dead_characters = []
+
 # Define signals
-signal stat_modified
+signal stat_modified # Signals a player's stat was modified
+signal update_character_list # Signals there was an update in the character list
+
+# Function to generate and add a new character
+func _on_spawn_character():
+	print("Generating character")
+	var new_character = CharacterGenerator.generate_character()
+	if new_character:
+		get_tree().current_scene.add_child(new_character)
+		characters.append(new_character)
+		print("Character added to scene: ", new_character.name)
+		# Emit the signal to update the character list
+		emit_signal("update_character_list", characters)
+	else:
+		print("Failed to generate character")
+
+# Function to update the status of a character by ID
+func update_character_status(character_id: String, new_status: int):
+	for character in characters:
+		if character.character_id == character_id:
+			character.character_status = new_status
+			print("Character status updated: ", character.name, " -> ", new_status)
+			# Emit the signal to update the character list
+			emit_signal("update_character_list", characters)
+			return
+	print("Character not found: ", character_id)
 
 # Function to modify gold
 func modify_gold(value: int):

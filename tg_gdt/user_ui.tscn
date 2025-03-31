@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=13 format=3 uid="uid://hwn1hgpjlqm5"]
 
-[ext_resource type="Texture2D" uid="uid://dxgc5eh7u0e0n" path="res://assets/PNG 27_4_5 Game UI Kit/019.png" id="1_jrm8y"]
+[ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
 [ext_resource type="Script" uid="uid://t4dpw3626tvy" path="res://scripts/ui/generateCharacter.gd" id="2_dptev"]
 [ext_resource type="Script" uid="uid://hdcxom0jq0fs" path="res://scripts/ui/statMenuController.gd" id="3_u6ol6"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_52g50"]
 [ext_resource type="Script" uid="uid://bqy4ul6umfshg" path="res://scripts/ui/ui_main_stats_container.gd" id="5_52g50"]
 [ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="6_juyng"]
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="7_1cxlp"]
+[ext_resource type="Script" uid="uid://cwgu2abw6glos" path="res://scripts/ui/book_menu.gd" id="8_w43kd"]
+[ext_resource type="Texture2D" uid="uid://kdlri2ttvuyw" path="res://assets/lightbrownbook/Inventory Book/Book Idle/1.png" id="9_jo8d0"]
+[ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
+[ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
+
+[sub_resource type="Theme" id="Theme_oc1mj"]
 
 [node name="userUI" type="Control"]
 layout_mode = 3
@@ -21,6 +27,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 27.0
+offset_right = -837.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -37,9 +46,9 @@ size_flags_vertical = 4
 theme_override_constants/margin_left = 15
 
 [node name="NinePatchRect" type="NinePatchRect" parent="leftMenu/VBoxContainer/baseLeftMenu"]
-custom_minimum_size = Vector2(300, 550)
+custom_minimum_size = Vector2(300, 600)
 layout_mode = 2
-texture = ExtResource("1_jrm8y")
+texture = ExtResource("1_ux461")
 
 [node name="MarginContainer" type="MarginContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect"]
 layout_mode = 1
@@ -60,20 +69,27 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Button" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
+[node name="debug_spawnCharacter" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+toggle_mode = true
 action_mode = 0
-text = "Spawn Character"
+text = "Spawn"
 script = ExtResource("2_dptev")
 
-[node name="Button2" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
+[node name="debug_addGold" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
 layout_mode = 2
+text = "+Gold"
+
+[node name="debug_addStats" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
+layout_mode = 2
+text = "+Stats"
 
 [node name="StatContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 1
 script = ExtResource("3_u6ol6")
 
@@ -199,4 +215,101 @@ rounded = true
 layout_mode = 2
 rounded = true
 
-[connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/Button" method="_on_pressed"]
+[node name="bookMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -822.0
+offset_top = -315.0
+offset_right = -11.0
+offset_bottom = 315.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("8_w43kd")
+
+[node name="bookMenuVBox" type="VBoxContainer" parent="bookMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="bookMenuBase" type="MarginContainer" parent="bookMenu/bookMenuVBox"]
+layout_mode = 2
+
+[node name="book9PatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase"]
+custom_minimum_size = Vector2(750, 500)
+layout_mode = 2
+texture = ExtResource("9_jo8d0")
+region_rect = Rect2(117.989, 180.979, 661.207, 416.142)
+
+[node name="leftPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 30.0
+offset_right = 343.0
+offset_bottom = 440.0
+
+[node name="lp_vbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage"]
+layout_mode = 2
+
+[node name="lp_title" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox"]
+layout_mode = 2
+text = "PAGE TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 308.0
+offset_bottom = 403.0
+
+[node name="lp_characterList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+layout_mode = 2
+theme = SubResource("Theme_oc1mj")
+script = ExtResource("10_iwd6v")
+
+[node name="characterListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="characterListItem" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList/characterListVbox" instance=ExtResource("11_xxcwy")]
+layout_mode = 2
+
+[node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 30.0
+offset_right = 721.0
+offset_bottom = 440.0
+
+[node name="rp_vbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage"]
+layout_mode = 2
+
+[node name="rp_title" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox"]
+layout_mode = 2
+text = "PAGE TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="rp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title"]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 308.0
+offset_bottom = 403.0
+
+[node name="bookMenuTabs" type="HBoxContainer" parent="bookMenu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuTabs"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuTabs/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]

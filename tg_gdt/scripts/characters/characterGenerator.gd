@@ -8,7 +8,7 @@ var Traits = preload("res://scripts/characters/traits.gd").new()
 var Personality = preload("res://scripts/characters/personality.gd").new()
 var Backstory = preload("res://scripts/characters/backstory.gd").new()
 var Names = preload("res://scripts/characters/names.gd").new()
-var CharacterProfileClass = preload("res://scripts/characters/characterProfile.gd")
+var CharacterProfileScene = preload("res://character.tscn")
 
 # Define base stats
 var base_stats = {
@@ -20,9 +20,9 @@ var base_stats = {
 }
 
 # Function to generate a unique character
-func generate_character() -> Node:
-	var character = CharacterProfileClass.new()
-	get_tree().current_scene.add_child(character)
+func generate_character() -> Node2D:
+	var character = CharacterProfileScene.instantiate() as Node2D
+
 	character.character_gender = Gender.get_random_gender()
 	character.selected_race = Race.get_random_race()
 	character.selected_class = Class.get_random_class()
@@ -41,9 +41,3 @@ func generate_character() -> Node:
 	character.name = character.character_first_name + " " + character.character_last_name + " " + character.character_id
 
 	return character
-
-# Example usage
-func _ready():
-	var new_character = generate_character()
-	add_child(new_character)
-	print(new_character)

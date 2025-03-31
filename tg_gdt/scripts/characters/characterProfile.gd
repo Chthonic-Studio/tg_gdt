@@ -1,16 +1,23 @@
-extends Node
+extends Node2D
 
 # Load the relevant scripts
 var Status = preload("res://scripts/abilities/status.gd").new()
 
+enum CharacterStatus { ACTIVE, RETIRED, DECEASED }
+
 # Character Info
 var character_id = ""
-var character_first_name = ""
-var character_last_name = ""
-var character_gender = ""
-var level = 1
-var experience = 0
-var age = 0
+var character_first_name : String = ""
+var character_last_name : String = ""
+var character_gender : String  = ""
+var level : int = 1
+var experience : int = 0
+var age : int = 0
+var character_status = CharacterStatus.ACTIVE
+var character_fullName : String = ""
+var character_avatar = "res://assets/avatars/test_humanavatar.png"
+var missions_completed : int = 0
+var rank : String = "E"
 
 # Character Variables
 var selected_race = {}
@@ -24,7 +31,7 @@ var character_statuses = []
 
 # Character Inventory
 var character_inventory = []
-var gold = 0
+var gold : int = 0
 
 # Character Main Stats
 var stats = {
@@ -92,6 +99,7 @@ var stats = {
 func _ready():
 	# Set the name of the node
 	self.name = character_first_name + " " + character_last_name + " " + character_id
+	character_fullName = character_first_name + " " + character_last_name
 
 func calculate_stats():
 	# Calculate initial stats
