@@ -18,6 +18,7 @@ var character_fullName : String = ""
 var character_avatar = "res://assets/avatars/test_humanavatar.png"
 var missions_completed : int = 0
 var rank : String = "E"
+var guild_eval : String = "Guild Evaluation"
 
 # Character Variables
 var selected_race = {}
@@ -28,6 +29,9 @@ var selected_backstory = {}
 
 # Character Statuses
 var character_statuses = []
+
+# Character Party
+var party : Globals.Party = null
 
 # Character Inventory
 var character_inventory = []

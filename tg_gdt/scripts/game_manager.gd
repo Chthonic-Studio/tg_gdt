@@ -15,6 +15,8 @@ var adventurer_support: int = 0
 var guild_prestige: int = 0
 var security: int = 0
 
+
+
 # Define global bool variables
 var noGold: bool = false
 var noResources: bool = false
@@ -23,6 +25,9 @@ var noResources: bool = false
 var characters = []
 var retired_characters = []
 var dead_characters = []
+
+# List to keep track of all parties
+var parties = []
 
 # Define signals
 signal stat_modified # Signals a player's stat was modified
@@ -165,3 +170,28 @@ func get_stat(stat_name: String) -> int:
 		_:
 			print("Stat '" + stat_name + "' does not exist.")
 			return -1
+# Function to create a new party
+func create_party(party_name: String) -> Globals.Party:
+	var new_party = Globals.Party.new()
+	new_party.party_id = str(randf())
+	new_party.party_name = party_name
+	parties.append(new_party)
+	return new_party
+
+# Function to add a character to a party
+func add_character_to_party(character, party: Globals.Party):
+	if party not in parties:
+		print("Party not found")
+		return
+	character.party = party
+	party.members.append(character)
+	print("Character added to party: ", character.name, " -> ", party.party_name)
+
+# Function to remove a character from a party
+func remove_character_from_party(character):
+	if character.party == null:
+		print("Character not in any party")
+		return
+	character.party.members.erase(character)
+	character.party = null
+	print("Character removed from party: ", character.name)
