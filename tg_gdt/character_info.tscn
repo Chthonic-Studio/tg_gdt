@@ -1,0 +1,438 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfke1am7o7x8"]
+
+[ext_resource type="Script" uid="uid://dj2co2ctnkr62" path="res://scripts/ui/character_info.gd" id="1_00sj5"]
+[ext_resource type="Texture2D" uid="uid://bcd0lix7p5hkc" path="res://assets/avatars/test_humanavatar.png" id="2_jm0f6"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="3_6o7uk"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_q1iy2"]
+[ext_resource type="Texture2D" uid="uid://dn7hvnoue0aqc" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/4.png" id="5_q0j0v"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="6_ktswq"]
+[ext_resource type="Texture2D" uid="uid://cgwek6crl6twh" path="res://assets/lightbrownbook/Content/5 Holders/3.png" id="7_6oq2u"]
+[ext_resource type="Texture2D" uid="uid://c63gpfukmkra5" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/2.png" id="8_rdnyu"]
+
+[node name="characterInfo" type="VBoxContainer"]
+script = ExtResource("1_00sj5")
+
+[node name="charMainInfo" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 40
+
+[node name="charAvatar" type="TextureRect" parent="charMainInfo"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("2_jm0f6")
+
+[node name="charName" type="Label" parent="charMainInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6o7uk")
+theme_override_font_sizes/font_size = 32
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="charTitle" type="Label" parent="charMainInfo/charName"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 33.0
+offset_right = 163.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_q1iy2")
+theme_override_font_sizes/font_size = 18
+text = "Character Title"
+horizontal_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+texture = ExtResource("5_q0j0v")
+region_rect = Rect2(15.8946, 24.7315, 416.134, 71.3252)
+
+[node name="charClass" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -4.0
+offset_right = 260.0
+offset_bottom = 33.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 25
+text = "Class + Race"
+horizontal_alignment = 1
+
+[node name="adventurerDetails" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="missionsLabel" type="Label" parent="adventurerDetails"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 25
+text = "   Missions Completed"
+
+[node name="missionsNumber" type="Label" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 101.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_6o7uk")
+theme_override_font_sizes/font_size = 35
+text = "99"
+horizontal_alignment = 1
+
+[node name="guildEvaluationLabel" type="Label" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 46.0
+offset_right = 90.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 18
+text = "Guild Evaluation: "
+
+[node name="guildEvaluationValue" type="Label" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 48.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_q1iy2")
+theme_override_font_sizes/font_size = 16
+text = "Analytic Villain"
+
+[node name="partyLabel" type="Label" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 58.0
+offset_right = 90.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 18
+text = "Party: "
+
+[node name="partyValue" type="Label" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 61.0
+offset_right = 161.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_q1iy2")
+theme_override_font_sizes/font_size = 16
+text = "Analytic Villain"
+
+[node name="partyInfoButton" type="Button" parent="adventurerDetails/missionsLabel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 63.0
+offset_right = 157.0
+offset_bottom = 79.0
+toggle_mode = true
+flat = true
+
+[node name="rankHolder" type="TextureRect" parent="adventurerDetails"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7_6oq2u")
+stretch_mode = 2
+
+[node name="charRank" type="Label" parent="adventurerDetails/rankHolder"]
+layout_mode = 0
+offset_right = 81.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("3_6o7uk")
+theme_override_font_sizes/font_size = 60
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stats_status" type="HSplitContainer" parent="."]
+layout_mode = 2
+split_offset = 154
+
+[node name="statTable" type="VBoxContainer" parent="stats_status"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="statTableTitle" type="NinePatchRect" parent="stats_status/statTable"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+texture = ExtResource("8_rdnyu")
+region_rect = Rect2(32.0586, 2.73685, 416.228, 189.559)
+
+[node name="statTableLabel" type="Label" parent="stats_status/statTable/statTableTitle"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 3.0
+offset_right = 84.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_q1iy2")
+theme_override_font_sizes/font_size = 17
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="stats_status/statTable"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="stats_status/statTable/HBoxContainer"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="stats_status/statTable/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = -1
+
+[node name="levelLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Level"
+
+[node name="strengthLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Strength"
+
+[node name="agilityLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Agility"
+
+[node name="constitutionLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Constitution"
+
+[node name="wisdomLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Wisdom"
+
+[node name="intelligenceLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+
+[node name="charismaLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Charisma"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="stats_status/statTable/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="levelStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "18"
+
+[node name="strengthStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "15"
+
+[node name="agilityStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "12"
+
+[node name="constitutionStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "14"
+
+[node name="wisdomStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "10"
+
+[node name="intelligenceStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "9"
+
+[node name="charismaStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "18"
+
+[node name="otherInfo" type="VBoxContainer" parent="stats_status"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="stats_status/otherInfo"]
+layout_mode = 2
+
+[node name="otherInfoContainer" type="MarginContainer" parent="stats_status/otherInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="otherInfoVbox" type="HBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer"]
+layout_mode = 2
+
+[node name="otherInfoLabels" type="VBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
+layout_mode = 2
+
+[node name="ageLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Age: "
+
+[node name="genderLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Gender: "
+
+[node name="personalityLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Personality: "
+
+[node name="backstoryLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Backstory:"
+
+[node name="traitsLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Traits:"
+
+[node name="statusLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Status:"
+
+[node name="testLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Placeholder:"
+
+[node name="otherInfoValues" type="VBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
+layout_mode = 2
+
+[node name="ageValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "25"
+
+[node name="genderValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Male"
+
+[node name="personalityValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Valiant Leader"
+
+[node name="backstoryValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Valiant Leader"
+
+[node name="traitsValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Valiant Leader"
+
+[node name="statusValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Valiant Leader"
+
+[node name="personalityValue7" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 12
+text = "Valiant Leader"
+
+[node name="MarginContainer" type="MarginContainer" parent="stats_status/otherInfo/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OptionButton" type="OptionButton" parent="stats_status/otherInfo/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 15
+item_count = 2
+popup/item_0/text = "See Full Stats"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="stats_status/otherInfo/VBoxContainer/MarginContainer/OptionButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ktswq")
+theme_override_font_sizes/font_size = 20
+text = "Manage"
+horizontal_alignment = 1

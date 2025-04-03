@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=23 format=3 uid="uid://hwn1hgpjlqm5"]
 
+[ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
 [ext_resource type="Script" uid="uid://t4dpw3626tvy" path="res://scripts/ui/generateCharacter.gd" id="2_dptev"]
 [ext_resource type="Script" uid="uid://hdcxom0jq0fs" path="res://scripts/ui/statMenuController.gd" id="3_u6ol6"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_52g50"]
+[ext_resource type="Script" uid="uid://dxeilpofdy0rs" path="res://scripts/ui/debugButtons/debug_add_party.gd" id="4_pqk8a"]
 [ext_resource type="Script" uid="uid://bqy4ul6umfshg" path="res://scripts/ui/ui_main_stats_container.gd" id="5_52g50"]
 [ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="6_juyng"]
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="7_1cxlp"]
@@ -12,11 +14,13 @@
 [ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
 [ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
 [ext_resource type="Script" uid="uid://do2dtilrjs6ky" path="res://scripts/ui/bookMenu_right_page.gd" id="12_paulu"]
-[ext_resource type="Script" uid="uid://dj2co2ctnkr62" path="res://scripts/ui/character_info.gd" id="13_y2akj"]
-[ext_resource type="Texture2D" uid="uid://bcd0lix7p5hkc" path="res://assets/avatars/test_humanavatar.png" id="14_pqk8a"]
-[ext_resource type="Texture2D" uid="uid://dn7hvnoue0aqc" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/4.png" id="15_wr46g"]
-[ext_resource type="Texture2D" uid="uid://cgwek6crl6twh" path="res://assets/lightbrownbook/Content/5 Holders/3.png" id="16_xycxu"]
-[ext_resource type="Texture2D" uid="uid://c63gpfukmkra5" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/2.png" id="17_uda0y"]
+[ext_resource type="PackedScene" uid="uid://bfke1am7o7x8" path="res://character_info.tscn" id="13_xxcwy"]
+[ext_resource type="Script" uid="uid://dcehi7f0xelbb" path="res://scripts/ui/lp_parties_list.gd" id="13_y2akj"]
+[ext_resource type="PackedScene" uid="uid://dofy6t1eb01cl" path="res://parties_list_item.tscn" id="14_pqk8a"]
+[ext_resource type="Script" uid="uid://bua1fuoem2ob6" path="res://scripts/ui/bottomMenuButtons/guild_info_button.gd" id="14_rdgyi"]
+[ext_resource type="Script" uid="uid://dgaooastisx38" path="res://scripts/ui/bottomMenuButtons/adventurers_button.gd" id="15_t15fl"]
+[ext_resource type="PackedScene" uid="uid://bjq33hle5brhg" path="res://party_info.tscn" id="18_xycxu"]
+[ext_resource type="Script" uid="uid://dhu72eblbyede" path="res://scripts/ui/bottomMenuButtons/parties_button.gd" id="20_wr46g"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -27,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t15fl")
 
 [node name="leftMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -80,6 +85,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
 toggle_mode = true
 action_mode = 0
 text = "Spawn"
@@ -87,11 +93,19 @@ script = ExtResource("2_dptev")
 
 [node name="debug_addGold" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "+Gold"
 
 [node name="debug_addStats" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "+Stats"
+
+[node name="debug_addParty" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+New Party"
+script = ExtResource("4_pqk8a")
 
 [node name="StatContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
 layout_mode = 2
@@ -281,6 +295,7 @@ offset_right = 308.0
 offset_bottom = 403.0
 
 [node name="lp_characterList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+visible = false
 layout_mode = 2
 theme = SubResource("Theme_oc1mj")
 horizontal_scroll_mode = 0
@@ -297,6 +312,18 @@ layout_mode = 2
 mouse_filter = 1
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[node name="lp_partiesList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+visible = false
+layout_mode = 2
+script = ExtResource("13_y2akj")
+
+[node name="partiesListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="partiesListItem" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList/partiesListVbox" instance=ExtResource("14_pqk8a")]
+layout_mode = 2
 
 [node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
 layout_mode = 0
@@ -321,434 +348,12 @@ offset_top = 24.0
 offset_right = 308.0
 offset_bottom = 426.0
 
-[node name="characterInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
-layout_mode = 2
-script = ExtResource("13_y2akj")
-
-[node name="charMainInfo" type="HSplitContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo"]
-layout_mode = 2
-split_offset = 40
-
-[node name="charAvatar" type="TextureRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/charMainInfo"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
-texture = ExtResource("14_pqk8a")
-
-[node name="charName" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/charMainInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 40
-text = "Character Name"
-horizontal_alignment = 1
-
-[node name="charTitle" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/charMainInfo/charName"]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 33.0
-offset_right = 163.0
-offset_bottom = 60.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
-text = "Character Title"
-horizontal_alignment = 1
-
-[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo"]
-custom_minimum_size = Vector2(120, 35)
-layout_mode = 2
-texture = ExtResource("15_wr46g")
-region_rect = Rect2(15.8946, 24.7315, 416.134, 71.3252)
-
-[node name="charClass" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/NinePatchRect"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = -4.0
-offset_right = 260.0
-offset_bottom = 33.0
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 25
-text = "Class + Race"
-horizontal_alignment = 1
-
-[node name="adventurerDetails" type="HSplitContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo"]
+[node name="characterInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("13_xxcwy")]
+visible = false
 layout_mode = 2
 
-[node name="missionsLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails"]
+[node name="partyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("18_xycxu")]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 25
-text = "   Missions Completed"
-
-[node name="missionsNumber" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 101.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 35
-text = "99"
-horizontal_alignment = 1
-
-[node name="guildEvaluationLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 46.0
-offset_right = 90.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 18
-text = "Guild Evaluation: "
-
-[node name="guildEvaluationValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = 92.0
-offset_top = 48.0
-offset_right = 174.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 16
-text = "Analytic Villain"
-
-[node name="partyLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 58.0
-offset_right = 90.0
-offset_bottom = 87.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 18
-text = "Party: "
-
-[node name="partyValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 61.0
-offset_right = 161.0
-offset_bottom = 88.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 16
-text = "Analytic Villain"
-
-[node name="partyInfoButton" type="Button" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/missionsLabel"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 63.0
-offset_right = 157.0
-offset_bottom = 79.0
-toggle_mode = true
-flat = true
-
-[node name="TextureRect" type="TextureRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("16_xycxu")
-stretch_mode = 2
-
-[node name="charRank" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/adventurerDetails/TextureRect"]
-layout_mode = 0
-offset_right = 81.0
-offset_bottom = 87.0
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 60
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="stats_status" type="HSplitContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo"]
-layout_mode = 2
-split_offset = 154
-
-[node name="statTable" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="statTableTitle" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable"]
-custom_minimum_size = Vector2(120, 30)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 2
-texture = ExtResource("17_uda0y")
-region_rect = Rect2(32.0586, 2.73685, 416.228, 189.559)
-
-[node name="statTableLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/statTableTitle"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 3.0
-offset_right = 84.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 17
-text = "Stats"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer"]
-custom_minimum_size = Vector2(27, 0)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = -1
-
-[node name="levelLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Level"
-
-[node name="strengthLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Strength"
-
-[node name="agilityLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Agility"
-
-[node name="constitutionLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Constitution"
-
-[node name="wisdomLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Wisdom"
-
-[node name="intelligenceLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Intelligence"
-
-[node name="charismaLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Charisma"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 0
-
-[node name="levelStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "18"
-
-[node name="strengthStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "15"
-
-[node name="agilityStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "12"
-
-[node name="constitutionStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "14"
-
-[node name="wisdomStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "10"
-
-[node name="intelligenceStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "9"
-
-[node name="charismaStat" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/statTable/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "18"
-
-[node name="otherInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo"]
-layout_mode = 2
-
-[node name="otherInfoContainer" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="otherInfoVbox" type="HBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer"]
-layout_mode = 2
-
-[node name="otherInfoLabels" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
-layout_mode = 2
-
-[node name="ageLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Age: "
-
-[node name="genderLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Gender: "
-
-[node name="personalityLabel3" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Personality: "
-
-[node name="backstoryLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Backstory:"
-
-[node name="traitsLabel" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Traits:"
-
-[node name="personalityLabel6" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Status:"
-
-[node name="personalityLabel7" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Placeholder:"
-
-[node name="otherInfoValues" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
-layout_mode = 2
-
-[node name="ageValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "25"
-
-[node name="genderValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Male"
-
-[node name="personalityValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Valiant Leader"
-
-[node name="backstoryValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Valiant Leader"
-
-[node name="traitsValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Valiant Leader"
-
-[node name="statusValue" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Valiant Leader"
-
-[node name="personalityValue7" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 12
-text = "Valiant Leader"
-
-[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="OptionButton" type="OptionButton" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 15
-item_count = 2
-popup/item_0/text = "See Full Stats"
-popup/item_0/id = 0
-popup/item_0/separator = true
-popup/item_1/id = 1
-
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo/stats_status/otherInfo/VBoxContainer/MarginContainer/OptionButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 1.0
-offset_right = -19.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 20
-text = "Manage"
-horizontal_alignment = 1
 
 [node name="bottomMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -771,6 +376,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Guild Info"
+script = ExtResource("14_rdgyi")
 
 [node name="adventurersButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -778,6 +384,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Adventurers"
+script = ExtResource("15_t15fl")
 
 [node name="partiesButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -785,6 +392,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Parties"
+script = ExtResource("20_wr46g")
 
 [node name="economyButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -838,3 +446,4 @@ text = "Settings
 "
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
+[connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_addParty" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/DebugButtonContainer/debug_addParty" method="_on_pressed"]

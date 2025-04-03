@@ -30,6 +30,9 @@ func populate_character_list(characters):
 		character_list_item.get_node("charMissions").text = str(character.missions_completed)
 		character_list_item.get_node("charRank").text = character.rank
 
+		# Assign the character to the button's script
+		character_list_item.get_node("charListButton").character = character
+		
 		# Add the character_list_item to the VBoxContainer
 		character_list_vbox.add_child(character_list_item)
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdx7siksvo71x"]
+
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="1_k0iue"]
+
+[node name="charName" type="Label"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_k0iue")
+theme_override_font_sizes/font_size = 15
+text = "Character Name"
+
+[node name="classRaceValue" type="Label" parent="."]
+offset_left = 136.0
+offset_right = 216.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_k0iue")
+theme_override_font_sizes/font_size = 15
+text = "Class + Race"
+
+[node name="rankValue" type="Label" parent="."]
+offset_left = 241.0
+offset_right = 300.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_k0iue")
+theme_override_font_sizes/font_size = 15
+text = "Rank"

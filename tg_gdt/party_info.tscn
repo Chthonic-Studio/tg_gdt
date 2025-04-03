@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjq33hle5brhg"]
+
+[ext_resource type="Script" uid="uid://cx4t8lr4gctna" path="res://scripts/ui/party_info.gd" id="1_nufp8"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="2_vwnyj"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="3_3o0nv"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_wcu2l"]
+[ext_resource type="PackedScene" uid="uid://bdx7siksvo71x" path="res://partyMembersListItem.tscn" id="5_0cd3d"]
+[ext_resource type="PackedScene" uid="uid://bmxg4xa7fdrh8" path="res://party_adventure_log_entry.tscn" id="6_rjqmo"]
+
+[sub_resource type="Theme" id="Theme_wr46g"]
+
+[node name="partyInfo" type="VBoxContainer"]
+script = ExtResource("1_nufp8")
+
+[node name="partyName" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwnyj")
+theme_override_font_sizes/font_size = 30
+text = "Party Name"
+horizontal_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="missionsLabel" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3o0nv")
+theme_override_font_sizes/font_size = 25
+text = "   Missions Completed"
+horizontal_alignment = 1
+
+[node name="missionsNumber" type="Label" parent="HSplitContainer/missionsLabel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 101.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwnyj")
+theme_override_font_sizes/font_size = 35
+text = "99"
+horizontal_alignment = 1
+
+[node name="guildEvaluationLabel" type="Label" parent="HSplitContainer/missionsLabel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 46.0
+offset_right = 90.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3o0nv")
+theme_override_font_sizes/font_size = 18
+text = "Guild Evaluation: "
+
+[node name="guildEvaluationValue" type="Label" parent="HSplitContainer/missionsLabel"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 48.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcu2l")
+theme_override_font_sizes/font_size = 16
+text = "Murder Hobos"
+
+[node name="rankLabel" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3o0nv")
+theme_override_font_sizes/font_size = 25
+text = "Party Rank"
+horizontal_alignment = 1
+
+[node name="rankValue" type="Label" parent="HSplitContainer/rankLabel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 31.0
+offset_right = 146.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vwnyj")
+theme_override_font_sizes/font_size = 35
+text = "Adamantite"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="partyMembersLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3o0nv")
+theme_override_font_sizes/font_size = 25
+text = "Party Members"
+horizontal_alignment = 1
+
+[node name="partyMembersList" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 2
+theme = SubResource("Theme_wr46g")
+horizontal_scroll_mode = 0
+
+[node name="partyMembersContainer" type="MarginContainer" parent="partyMembersList"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+
+[node name="charName" parent="partyMembersList/partyMembersContainer" instance=ExtResource("5_0cd3d")]
+layout_mode = 2
+
+[node name="partyMembersLabel2" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3o0nv")
+theme_override_font_sizes/font_size = 20
+text = "Adventure Log"
+horizontal_alignment = 1
+
+[node name="adventureLog" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="advLogVBox" type="VBoxContainer" parent="adventureLog"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+
+[node name="adventureLogEntry" parent="adventureLog/advLogVBox" instance=ExtResource("6_rjqmo")]
+layout_mode = 2

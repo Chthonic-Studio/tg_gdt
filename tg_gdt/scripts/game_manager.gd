@@ -1,6 +1,7 @@
 extends Node
 
 var CharacterGenerator = preload("res://scripts/characters/characterGenerator.gd").new()
+var PartyGenerator = preload("res://scripts/guild/parties/partyGenerator.gd").new()
 
 # Define player stats
 var gold: int = 0
@@ -14,8 +15,6 @@ var influence: int = 0
 var adventurer_support: int = 0
 var guild_prestige: int = 0
 var security: int = 0
-
-
 
 # Define global bool variables
 var noGold: bool = false
@@ -32,6 +31,7 @@ var parties = []
 # Define signals
 signal stat_modified # Signals a player's stat was modified
 signal update_character_list # Signals there was an update in the character list
+signal update_party_list # Signals there was an update in the party list
 
 # Function to generate and add a new character
 func _on_spawn_character():
@@ -171,27 +171,55 @@ func get_stat(stat_name: String) -> int:
 			print("Stat '" + stat_name + "' does not exist.")
 			return -1
 # Function to create a new party
-func create_party(party_name: String) -> Globals.Party:
-	var new_party = Globals.Party.new()
-	new_party.party_id = str(randf())
-	new_party.party_name = party_name
-	parties.append(new_party)
-	return new_party
+func create_party(party_name: String):
+	print("Creating party: ", party_name)
+	var new_party = PartyGenerator.generate_party(party_name)
+	if new_party:
+		parties.append(new_party)
+		print("Party created: ", new_party.party_name)
+		# Emit the signal to update the party list
+		emit_signal("update_party_list", parties)
+	else:
+		print("Failed to create party")
 
 # Function to add a character to a party
-func add_character_to_party(character, party: Globals.Party):
-	if party not in parties:
-		print("Party not found")
-		return
-	character.party = party
-	party.members.append(character)
-	print("Character added to party: ", character.name, " -> ", party.party_name)
+func add_character_to_party(character, party_name: String):
+	# Check if character is already in a party
+	if character.party:
+		remove_character_from_party(character)
+	for party in parties:
+		if party.party_name == party_name:
+			party.add_member(character)
+			character.party = party
+			print("Character added to party: ", character.name, " -> ", party_name)
+			# Emit the signal to update the party list
+			emit_signal("update_party_list", parties)
+			return
+	print("Party not found: ", party_name)
 
 # Function to remove a character from a party
 func remove_character_from_party(character):
-	if character.party == null:
-		print("Character not in any party")
+	if character.party:
+		character.party.remove_member(character)
+		character.party = null
+		print("Character removed from party: ", character.name)
+		# Emit the signal to update the party list
+		emit_signal("update_party_list", parties)
+
+# Function to test party creation with 3 random characters
+func test_party_creation():
+	print ("Debug Create Party Function Started")
+	if characters.size() < 3:
+		print("Not enough characters to form a party")
 		return
-	character.party.members.erase(character)
-	character.party = null
-	print("Character removed from party: ", character.name)
+	var random_characters = []
+	while random_characters.size() < 3:
+		var random_index = randi() % characters.size()
+		var random_character = characters[random_index]
+		if random_character not in random_characters:
+			random_characters.append(random_character)
+	var party_name = "Test Party"
+	create_party(party_name)
+	for character in random_characters:
+		add_character_to_party(character, party_name)
+	print("Test party created with characters: ", random_characters)

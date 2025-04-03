@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://dofy6t1eb01cl"]
+
+[ext_resource type="Texture2D" uid="uid://bkt55j4e5vfw6" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/3 Item Holder/1.png" id="1_bfmdv"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="2_da81v"]
+[ext_resource type="Script" uid="uid://tumifniskjj3" path="res://scripts/ui/party_list_button.gd" id="3_da81v"]
+
+[node name="partiesListItem" type="NinePatchRect"]
+custom_minimum_size = Vector2(200, 50)
+texture = ExtResource("1_bfmdv")
+
+[node name="partyName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 14.0
+offset_right = 159.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_da81v")
+theme_override_font_sizes/font_size = 18
+text = "Party Name"
+
+[node name="partyMembers" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 14.0
+offset_right = 228.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_da81v")
+theme_override_font_sizes/font_size = 16
+text = "5 Members"
+
+[node name="partyRank" type="Label" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 12.0
+offset_right = 286.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_da81v")
+theme_override_font_sizes/font_size = 14
+text = "Adamantite"
+horizontal_alignment = 1
+
+[node name="partyMissions" type="Label" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 21.0
+offset_right = 286.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_da81v")
+theme_override_font_sizes/font_size = 14
+text = "15 Missions"
+horizontal_alignment = 1
+
+[node name="partyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 290.0
+offset_bottom = 38.0
+flat = true
+script = ExtResource("3_da81v")

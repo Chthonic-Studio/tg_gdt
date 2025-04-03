@@ -10,6 +10,7 @@ var character_id = ""
 var character_first_name : String = ""
 var character_last_name : String = ""
 var character_gender : String  = ""
+var character_title : String = ""
 var level : int = 1
 var experience : int = 0
 var age : int = 0
@@ -31,7 +32,7 @@ var selected_backstory = {}
 var character_statuses = []
 
 # Character Party
-var party : Globals.Party = null
+var party = null
 
 # Character Inventory
 var character_inventory = []

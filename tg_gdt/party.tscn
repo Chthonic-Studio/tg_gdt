@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da3eclah3gt7y"]
+
+[ext_resource type="Script" uid="uid://cw2b0v473sxxb" path="res://scripts/guild/parties/partyProfile.gd" id="1_4fixh"]
+
+[node name="Party" type="Node2D"]
+script = ExtResource("1_4fixh")
