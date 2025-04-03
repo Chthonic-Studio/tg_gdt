@@ -8,3 +8,4 @@ func _ready():
 
 func _on_button_pressed():
 	print ("Party List Button Pressed for Party:" + str(party))
+	UIManager.select_party(party)

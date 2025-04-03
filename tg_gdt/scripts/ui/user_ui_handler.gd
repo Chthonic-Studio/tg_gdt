@@ -9,7 +9,7 @@ extends Control
 @onready var character_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList
 @onready var character_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo
 @onready var parties_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList
-
+@onready var parties_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/partyInfo
 
 # Bottom menu variables
 
@@ -29,3 +29,4 @@ func toggle_characterList():
 
 func toggle_partiesList():
 	parties_list_left.visible = not parties_list_left.visible
+	parties_list_right.visible = not parties_list_right.visible

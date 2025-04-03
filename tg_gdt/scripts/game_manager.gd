@@ -57,6 +57,13 @@ func update_character_status(character_id: String, new_status: int):
 			return
 	print("Character not found: ", character_id)
 
+# Function to get a character by its ID
+func get_character_by_id(character_id: String):
+	for character in characters:
+		if character.character_id == character_id:
+			return character
+	return null
+
 # Function to modify gold
 func modify_gold(value: int):
 	gold += value
@@ -170,45 +177,63 @@ func get_stat(stat_name: String) -> int:
 		_:
 			print("Stat '" + stat_name + "' does not exist.")
 			return -1
+
 # Function to create a new party
-func create_party(party_name: String):
-	print("Creating party: ", party_name)
-	var new_party = PartyGenerator.generate_party(party_name)
+func create_party(party_name: String) -> String:
+	var unique_party_name = party_name
+	var counter = 1
+	while get_party_by_name(unique_party_name) != null:
+		unique_party_name = party_name + " " + str(counter)
+		counter += 1
+	print("Creating party: ", unique_party_name)
+	var new_party = PartyGenerator.generate_party(unique_party_name)
 	if new_party:
 		parties.append(new_party)
 		print("Party created: ", new_party.party_name)
-		# Emit the signal to update the party list
 		emit_signal("update_party_list", parties)
+		return new_party.party_name
 	else:
 		print("Failed to create party")
+		return ""
 
-# Function to add a character to a party
-func add_character_to_party(character, party_name: String):
-	# Check if character is already in a party
-	if character.party:
-		remove_character_from_party(character)
+func add_character_to_party(character_id: String, party_name: String):
+	print("Adding character with ID:", character_id, "to party:", party_name)
 	for party in parties:
+		print("Checking party: ", party.party_name)
 		if party.party_name == party_name:
-			party.add_member(character)
-			character.party = party
-			print("Character added to party: ", character.name, " -> ", party_name)
-			# Emit the signal to update the party list
+			print("Party found: ", party.party_name)
+			party.add_member(character_id)
+			var character = get_character_by_id(character_id)
+			if character:
+				character.party = party_name
+			print("Character with ID:", character_id, "added to party:", party.party_name)
 			emit_signal("update_party_list", parties)
 			return
 	print("Party not found: ", party_name)
 
-# Function to remove a character from a party
-func remove_character_from_party(character):
-	if character.party:
-		character.party.remove_member(character)
-		character.party = null
-		print("Character removed from party: ", character.name)
-		# Emit the signal to update the party list
-		emit_signal("update_party_list", parties)
+func remove_character_from_party(character_id: String, party_name: String):
+	print("Removing character with ID:", character_id, "from party:", party_name)
+	for party in parties:
+		print("Checking party: ", party.party_name)
+		if party.party_name == party_name:
+			print("Party found: ", party.party_name)
+			party.remove_member(character_id)
+			var character = get_character_by_id(character_id)
+			if character:
+				character.party = "No Party"
+			print("Character with ID:", character_id, "removed from party:", party.party_name)
+			emit_signal("update_party_list", parties)
+			return
+	print("Party not found: ", party_name)
 
-# Function to test party creation with 3 random characters
+func get_party_by_name(party_name: String):
+	for party in parties:
+		if party.party_name == party_name:
+			return party
+	return null
+
 func test_party_creation():
-	print ("Debug Create Party Function Started")
+	print("Debug Create Party Function Started")
 	if characters.size() < 3:
 		print("Not enough characters to form a party")
 		return
@@ -218,8 +243,17 @@ func test_party_creation():
 		var random_character = characters[random_index]
 		if random_character not in random_characters:
 			random_characters.append(random_character)
+			random_character.set_character_id()
 	var party_name = "Test Party"
-	create_party(party_name)
+	party_name = create_party(party_name)
+	if party_name == "":
+		print("Failed to create party")
+		return
 	for character in random_characters:
-		add_character_to_party(character, party_name)
+		add_character_to_party(character.character_id, party_name)
 	print("Test party created with characters: ", random_characters)
+	for character in random_characters:
+		if character.party:
+			print("Character in party:", character.character_fullName, " -> ", character.party)
+		else:
+			print("Character in party:", character.character_fullName, " is not assigned to any party")

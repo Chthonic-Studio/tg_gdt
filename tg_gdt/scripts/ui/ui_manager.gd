@@ -6,8 +6,9 @@ extends Node
 signal toggle_leftMenu
 signal toggle_characterList
 signal toggle_partiesList
-# Signal to notify when a character is selected
+# Signal to notify when en element is selected
 signal character_selected(character)
+signal party_selected(party)
 
 
 func _ready():
@@ -16,6 +17,9 @@ func _ready():
 # Function to select a character
 func select_character(character):
 	emit_signal("character_selected", character)
+	
+func select_party(party):
+	emit_signal("party_selected", party)
 	
 func leftMenu_toggle():
 	emit_signal("toggle_leftMenu")

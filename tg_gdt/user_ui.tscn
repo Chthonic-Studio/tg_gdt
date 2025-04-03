@@ -353,6 +353,7 @@ visible = false
 layout_mode = 2
 
 [node name="partyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("18_xycxu")]
+visible = false
 layout_mode = 2
 
 [node name="bottomMenu" type="MarginContainer" parent="."]

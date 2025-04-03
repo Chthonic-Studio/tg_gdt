@@ -32,7 +32,7 @@ var selected_backstory = {}
 var character_statuses = []
 
 # Character Party
-var party = null
+var party : String = "No Party"
 
 # Character Inventory
 var character_inventory = []
@@ -103,8 +103,12 @@ var stats = {
 
 func _ready():
 	# Set the name of the node
+	set_character_id()
 	self.name = character_first_name + " " + character_last_name + " " + character_id
 	character_fullName = character_first_name + " " + character_last_name
+
+func set_character_id():
+	character_id = str(self.get_instance_id())
 
 func calculate_stats():
 	# Calculate initial stats

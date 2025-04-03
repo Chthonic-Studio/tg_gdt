@@ -108,8 +108,7 @@ layout_mode = 2
 theme = SubResource("Theme_wr46g")
 horizontal_scroll_mode = 0
 
-[node name="partyMembersContainer" type="MarginContainer" parent="partyMembersList"]
-custom_minimum_size = Vector2(300, 25)
+[node name="partyMembersContainer" type="VBoxContainer" parent="partyMembersList"]
 layout_mode = 2
 
 [node name="charName" parent="partyMembersList/partyMembersContainer" instance=ExtResource("5_0cd3d")]

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Party
+
 # Party Info
 var party_name : String = ""
 var party_rank : String = "E"
@@ -16,19 +18,27 @@ func _ready():
 	self.name = party_name
 
 # Add a character to the party
-func add_member(character):
-	if character not in members:
-		members.append(character)
-        member_count += 1
+func add_member(character_id: String):
+	print("Attempting to add member with ID:", character_id)
+	if character_id not in members:
+		members.append(character_id)
+		member_count += 1
+		print("Added member with ID:", character_id, "to party:", self.party_name)
+	else:
+		print("Member already in party with ID:", character_id)
 
 # Remove a character from the party
-func remove_member(character):
-	if character in members:
-		members.erase(character)
-        member_count -= 1
+func remove_member(character_id: String):
+	print("Attempting to remove member with ID:", character_id)
+	if character_id in members:
+		members.erase(character_id)
+		member_count -= 1
+		print("Removed member with ID:", character_id, "from party:", self.party_name)
+	else:
+		print("Member not in party with ID:", character_id)
 
-# Get the list of party members
-func get_members() -> Array:
+# Get the list of party members (by ID)
+func get_member_ids() -> Array:
 	return members
 
 # Log a new entry

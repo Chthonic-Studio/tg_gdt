@@ -32,7 +32,7 @@ func populate_character_info(character):
 	char_class.text = character.selected_class["name"] + " " + character.selected_race["name"]
 	char_missions.text = str(character.missions_completed)
 	char_rank.text = character.rank
-	char_party.text = character.party.party_name if character.party else "No party"
+	char_party.text = character.party
 	guild_eval.text = character.guild_eval
 	level.text = str(character.level)
 	strength.text = str(character.stats["Strength"])
