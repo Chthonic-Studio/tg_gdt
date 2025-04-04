@@ -178,6 +178,7 @@ func get_stat(stat_name: String) -> int:
 			print("Stat '" + stat_name + "' does not exist.")
 			return -1
 
+# PARTY VARIABLES
 # Function to create a new party
 func create_party(party_name: String) -> String:
 	var unique_party_name = party_name
@@ -257,3 +258,32 @@ func test_party_creation():
 			print("Character in party:", character.character_fullName, " -> ", character.party)
 		else:
 			print("Character in party:", character.character_fullName, " is not assigned to any party")
+
+
+# ECONOMY VARIABLES
+# Function to buy an item
+func buy_item(item_id: int, quantity: int) -> bool:
+	var item = Items.items[item_id]
+	var total_price = item.base_price * Items.item_price_modifiers[item.name] * quantity
+	if gold >= total_price:
+		gold -= total_price
+		Items.city_wealth += total_price
+		Inventory.add_item(item_id, quantity)
+		Items.update_item_price(item.name, quantity)
+		emit_signal("stat_modified")
+		return true
+	print("Not enough gold to buy item")
+	return false
+
+# Function to sell an item
+func sell_item(item_id: int, quantity: int) -> bool:
+	if Inventory.remove_item(item_id, quantity):
+		var item = Items.items[item_id]
+		var total_price = item.base_price * Items.item_price_modifiers[item.name] * quantity
+		gold += total_price
+		Items.city_wealth -= total_price
+		Items.update_item_price(item.name, -quantity)
+		emit_signal("stat_modified")
+		return true
+	print("Failed to remove item from inventory")
+	return false

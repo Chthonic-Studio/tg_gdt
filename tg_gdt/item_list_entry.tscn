@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2iop107ox7qh"]
+
+[ext_resource type="Texture2D" uid="uid://es8lsq8jwib4" path="res://assets/lightbrownbook/Content/5 Holders/5.png" id="1_8dp5l"]
+[ext_resource type="Texture2D" uid="uid://dkjyyrdncanlx" path="res://assets/lightbrownbook/Content/5 Holders/7.png" id="2_3u5co"]
+[ext_resource type="Script" uid="uid://c85axhdpq4ho3" path="res://scripts/ui/item_list_entry.gd" id="3_3u5co"]
+[ext_resource type="Texture2D" uid="uid://b37uoai105gem" path="res://assets/item_icons/tile081.png" id="3_8pnpu"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_cx7ho"]
+
+[node name="itemListEntry" type="TextureButton"]
+texture_normal = ExtResource("1_8dp5l")
+texture_hover = ExtResource("2_3u5co")
+script = ExtResource("3_3u5co")
+
+[node name="itemListIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 31.0
+texture = ExtResource("3_8pnpu")
+
+[node name="Control" type="Control" parent="itemListIcon"]
+visible = false
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 174.0
+offset_bottom = 103.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="itemListIcon/Control"]
+layout_mode = 2
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 149.0
+offset_bottom = 77.0
+
+[node name="quantity" type="Label" parent="itemListIcon/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cx7ho")
+theme_override_font_sizes/font_size = 13
+text = "Quantity: 9"
+
+[node name="descriptionBg" type="ColorRect" parent="itemListIcon/Control/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+color = Color(0.00784314, 0.00784314, 0.00784314, 0.419608)
+
+[node name="description" type="Label" parent="itemListIcon/Control/VBoxContainer/descriptionBg"]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 149.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("4_cx7ho")
+theme_override_font_sizes/font_size = 11
+text = "Item Description Description"
+autowrap_mode = 1
