@@ -31,6 +31,7 @@ offset_bottom = 95.0
 texture = ExtResource("3_6ed8x")
 
 [node name="workerName" type="Label" parent="."]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 25.0
 offset_right = 134.0
@@ -60,6 +61,7 @@ popup/item_2/text = "Pay for studies"
 popup/item_2/id = 2
 
 [node name="afinityLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 40.0
 offset_right = 89.0
@@ -71,6 +73,7 @@ text = "Afinity:"
 horizontal_alignment = 1
 
 [node name="afinityValue" type="Label" parent="."]
+layout_mode = 0
 offset_left = 87.0
 offset_top = 40.0
 offset_right = 134.0
@@ -82,6 +85,7 @@ text = "Natural"
 horizontal_alignment = 1
 
 [node name="moodLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 55.0
 offset_right = 89.0
@@ -93,6 +97,7 @@ text = "Mood:"
 horizontal_alignment = 1
 
 [node name="moodValue" type="Label" parent="."]
+layout_mode = 0
 offset_left = 87.0
 offset_top = 55.0
 offset_right = 134.0
@@ -104,7 +109,8 @@ text = "Happy"
 horizontal_alignment = 1
 
 [node name="skillLabel" type="Label" parent="."]
-offset_left = 58.0
+layout_mode = 0
+offset_left = 55.0
 offset_top = 68.0
 offset_right = 90.0
 offset_bottom = 88.0
@@ -115,9 +121,10 @@ text = "Skill Level:"
 horizontal_alignment = 1
 
 [node name="skillValue" type="Label" parent="."]
-offset_left = 90.0
+layout_mode = 0
+offset_left = 92.0
 offset_top = 68.0
-offset_right = 135.0
+offset_right = 136.0
 offset_bottom = 88.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_idhne")
@@ -126,6 +133,7 @@ text = "High"
 horizontal_alignment = 1
 
 [node name="ageLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 58.0
 offset_top = 83.0
 offset_right = 90.0
@@ -137,6 +145,7 @@ text = "Age:"
 horizontal_alignment = 1
 
 [node name="ageValue" type="Label" parent="."]
+layout_mode = 0
 offset_left = 88.0
 offset_top = 83.0
 offset_right = 135.0

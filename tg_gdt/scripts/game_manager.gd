@@ -2,9 +2,11 @@ extends Node
 
 var CharacterGenerator = preload("res://scripts/characters/characterGenerator.gd").new()
 var PartyGenerator = preload("res://scripts/guild/parties/partyGenerator.gd").new()
+var GuildWorkerGenerator = preload("res://scripts/guild/guild_worker_generator.gd").new()
+var GuildWorkerCardScene = preload("res://guild_worker_card.tscn")
 
 # Define player stats
-var gold: int = 0
+var gold: int = 300
 var reputation: int = 0
 var leadership: int = 0
 var wisdom: int = 0
@@ -16,9 +18,39 @@ var adventurer_support: int = 0
 var guild_prestige: int = 0
 var security: int = 0
 
+# Define guild building stats
+var tavern_level: int = 1
+var tavern_status: String = "Rundown"
+var training_grounds_level: int = 1
+var training_grounds_status: String = "Rundown"
+var forge_level: int = 1
+var forge_status: String = "Rundown"
+var apothecary_level: int = 1
+var apothecary_status: String = "Rundown"
+var cartography_level: int = 1
+var cartography_status: String = "Rundown"
+var enchantment_level: int = 1
+var enchantment_status: String = "Rundown"
+var guild_tavern_income: int = 100
+var guild_forge_income: int = 100
+var cartographer_table_income: int = 100
+var training_grounds_income: int = 100
+var apothecary_income: int = 100
+var enchantment_table_income: int = 100
+
+# Define operating costs and workers
+var tavern_workers: int = 2
+var training_grounds_workers: int = 2
+var forge_workers: int = 2
+var apothecary_workers: int = 2
+var cartography_workers: int = 2
+var enchantment_workers: int = 2
+var operating_costs: int = 0
+
 # Define global bool variables
 var noGold: bool = false
 var noResources: bool = false
+var initial_guild_workers_assigned: bool = false
 
 # List to keep track of all characters
 var characters = []
@@ -28,10 +60,28 @@ var dead_characters = []
 # List to keep track of all parties
 var parties = []
 
+# List to keep track of all guild workers
+var guild_workers = []
+
 # Define signals
 signal stat_modified # Signals a player's stat was modified
 signal update_character_list # Signals there was an update in the character list
 signal update_party_list # Signals there was an update in the party list
+signal update_guild_worker_list # Signals there was an update in the guild worker list
+signal gold_spent
+
+func _ready():
+	if not initial_guild_workers_assigned:
+		populate_guild_positions()
+
+# Function to show a popup when the player doesn't have enough gold
+func not_enough_gold():
+	var popup = Popup.new()
+	popup.popup_centered()
+	popup.add_child(Label.new())
+	popup.get_child(0).text = "Not enough gold"
+	add_child(popup)
+	popup.show()
 
 # Function to generate and add a new character
 func _on_spawn_character():
@@ -45,6 +95,158 @@ func _on_spawn_character():
 		emit_signal("update_character_list", characters)
 	else:
 		print("Failed to generate character")
+
+# Function to generate and assign guild workers
+func assign_guild_workers():
+	var positions = ["Blacksmith", "Apothecary", "Trainer", "Mage", "Receptionist", "Scout"]
+	for position in positions:
+		var worker = GuildWorkerGenerator.generate_guild_worker(position)
+		guild_workers.append(worker)
+	emit_signal("update_guild_worker_list", guild_workers)
+
+# Function to get all guild workers
+func get_guild_workers():
+	return guild_workers
+
+func generate_guild_worker(position: String) -> Dictionary:
+	return GuildWorkerGenerator.generate_guild_worker(position)
+
+func populate_guild_positions():
+	if initial_guild_workers_assigned:
+		return
+
+	var positions = ["Blacksmith", "Apothecary", "Trainer", "Mage", "Receptionist", "Scout"]
+	guild_workers.clear()
+	for position in positions:
+		var worker = generate_guild_worker(position)
+		guild_workers.append(worker)
+	
+	initial_guild_workers_assigned = true
+	emit_signal("update_guild_worker_list", guild_workers)
+
+# Function to get guild stats
+func get_guild_stats():
+	return {
+		"tavern_level": tavern_level,
+		"tavern_status": tavern_status,
+		"training_grounds_level": training_grounds_level,
+		"training_grounds_status": training_grounds_status,
+		"forge_level": forge_level,
+		"forge_status": forge_status,
+		"apothecary_level": apothecary_level,
+		"apothecary_status": apothecary_status,
+		"cartography_level": cartography_level,
+		"cartography_status": cartography_status,
+		"enchantment_level": enchantment_level,
+		"enchantment_status": enchantment_status,
+		"guild_tavern_income": guild_tavern_income,
+		"guild_forge_income": guild_forge_income,
+		"cartographer_table_income": cartographer_table_income,
+		"training_grounds_income": training_grounds_income,
+		"apothecary_income": apothecary_income,
+		"enchantment_table_income": enchantment_table_income,
+		"tavern_workers": tavern_workers,
+		"training_grounds_workers": training_grounds_workers,
+		"forge_workers": forge_workers,
+		"apothecary_workers": apothecary_workers,
+		"cartography_workers": cartography_workers,
+		"enchantment_workers": enchantment_workers,
+		"operating_costs": operating_costs
+	}
+
+# Function to upgrade a building
+func upgrade_building(building: String):
+	var upgrade_costs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+	var upgrade_levels = ["Rundown", "Basic", "Functional", "Improved", "Enhanced", "Well-Established", "Superior", "Renowned", "Magnificent", "World's Best"]
+	
+	match building:
+		"tavern":
+			if tavern_level < 10 and gold >= upgrade_costs[tavern_level - 1]:
+				gold -= upgrade_costs[tavern_level - 1]
+				tavern_level += 1
+				tavern_status = upgrade_levels[tavern_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+		"training_grounds":
+			if training_grounds_level < 10 and gold >= upgrade_costs[training_grounds_level - 1]:
+				gold -= upgrade_costs[training_grounds_level - 1]
+				training_grounds_level += 1
+				training_grounds_status = upgrade_levels[training_grounds_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+		"forge":
+			if forge_level < 10 and gold >= upgrade_costs[forge_level - 1]:
+				gold -= upgrade_costs[forge_level - 1]
+				forge_level += 1
+				forge_status = upgrade_levels[forge_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+		"apothecary":
+			if apothecary_level < 10 and gold >= upgrade_costs[apothecary_level - 1]:
+				gold -= upgrade_costs[apothecary_level - 1]
+				apothecary_level += 1
+				apothecary_status = upgrade_levels[apothecary_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+		"cartography":
+			if cartography_level < 10 and gold >= upgrade_costs[cartography_level - 1]:
+				gold -= upgrade_costs[cartography_level - 1]
+				cartography_level += 1
+				cartography_status = upgrade_levels[cartography_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+		"enchantment":
+			if enchantment_level < 10 and gold >= upgrade_costs[enchantment_level - 1]:
+				gold -= upgrade_costs[enchantment_level - 1]
+				enchantment_level += 1
+				enchantment_status = upgrade_levels[enchantment_level - 1]
+				emit_signal("gold_spent")
+			else:
+				not_enough_gold()
+	emit_signal("stat_modified")
+
+# Function to hire workers for a building
+func hire_workers(building: String):
+	var hire_cost = 50
+	
+	if gold >= hire_cost:
+		gold -= hire_cost
+		
+		match building:
+			"tavern":
+				tavern_workers += 1
+				operating_costs += 10
+				guild_tavern_income += 10
+			"training_grounds":
+				training_grounds_workers += 1
+				operating_costs += 10
+				training_grounds_income += 10
+			"forge":
+				forge_workers += 1
+				operating_costs += 10
+				guild_forge_income += 10
+			"apothecary":
+				apothecary_workers += 1
+				operating_costs += 10
+				apothecary_income += 10
+			"cartography":
+				cartography_workers += 1
+				operating_costs += 10
+				cartographer_table_income += 10
+			"enchantment":
+				enchantment_workers += 1
+				operating_costs += 10
+				enchantment_table_income += 10
+		emit_signal("gold_spent")
+	else:
+		not_enough_gold()
+
+	emit_signal("stat_modified")
 
 # Function to update the status of a character by ID
 func update_character_status(character_id: String, new_status: int):
@@ -73,6 +275,7 @@ func modify_gold(value: int):
 	else:
 		noGold = false
 	emit_signal("stat_modified")
+	emit_signal("gold_spent")
 	print("Gold modified. New value: " + str(gold))
 
 # Function to modify reputation

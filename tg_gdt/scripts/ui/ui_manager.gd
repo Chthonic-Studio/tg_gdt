@@ -7,13 +7,19 @@ signal toggle_leftMenu
 signal toggle_characterList
 signal toggle_partiesList
 signal toggle_economyList
+signal toggle_guildList
 # Signal to notify when en element is selected
 signal character_selected(character)
 signal party_selected(party)
 
+# Guild building button connections
+signal initialize_button_handler
+
 
 func _ready():
 	print("UIManager initialized")
+	# Emit the signal to initialize the button handler
+	emit_signal("initialize_button_handler")
 
 # Function to select a character
 func select_character(character):
@@ -33,6 +39,9 @@ func partiesList_toggle():
 	
 func itemList_toggle():
 	emit_signal ("toggle_economyList")
+
+func guildList_toggle():
+	emit_signal ("toggle_guildList")
 	
 # Function to update all item quantities
 func update_all_quantities():

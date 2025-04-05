@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=33 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -23,9 +23,14 @@
 [ext_resource type="Script" uid="uid://2exg0wpcu6sn" path="res://scripts/ui/lp_item_list.gd" id="16_vqyv8"]
 [ext_resource type="PackedScene" uid="uid://b2iop107ox7qh" path="res://item_list_entry.tscn" id="17_66fyi"]
 [ext_resource type="PackedScene" uid="uid://bjq33hle5brhg" path="res://party_info.tscn" id="18_xycxu"]
+[ext_resource type="Script" uid="uid://bq6nknh3slyuq" path="res://scripts/ui/lp_guild_list.gd" id="19_mng51"]
+[ext_resource type="PackedScene" uid="uid://d0q5ts1osrafp" path="res://guild_worker_card.tscn" id="20_t6106"]
 [ext_resource type="Script" uid="uid://dhu72eblbyede" path="res://scripts/ui/bottomMenuButtons/parties_button.gd" id="20_wr46g"]
 [ext_resource type="PackedScene" uid="uid://bg8iebu1v40yi" path="res://economy_info.tscn" id="22_vqyv8"]
+[ext_resource type="PackedScene" uid="uid://chyq064mvijf5" path="res://guild_info.tscn" id="25_pctqs"]
+[ext_resource type="Script" uid="uid://bp5ongbxrtw1q" path="res://scripts/ui/guild_info.gd" id="26_2flxh"]
 [ext_resource type="Script" uid="uid://b37glu0pef5dr" path="res://scripts/ui/bottomMenuButtons/economy_button.gd" id="26_rp8uo"]
+[ext_resource type="Script" uid="uid://dyhqv2iaq8816" path="res://scripts/ui/bottomMenuButtons/guild_button.gd" id="28_2flxh"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -358,6 +363,18 @@ columns = 8
 [node name="itemListEntry" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList/inventoryGrid" instance=ExtResource("17_66fyi")]
 layout_mode = 2
 
+[node name="lp_guildList" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+visible = false
+layout_mode = 2
+script = ExtResource("19_mng51")
+
+[node name="guildWorkersGrid" type="GridContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList"]
+layout_mode = 2
+columns = 2
+
+[node name="guildWorkerCard" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList/guildWorkersGrid" instance=ExtResource("20_t6106")]
+layout_mode = 2
+
 [node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
 layout_mode = 0
 offset_left = 407.0
@@ -376,7 +393,7 @@ vertical_alignment = 1
 
 [node name="rp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title"]
 layout_mode = 0
-offset_top = 24.0
+offset_top = 14.0
 offset_right = 308.0
 offset_bottom = 426.0
 
@@ -391,6 +408,11 @@ layout_mode = 2
 [node name="economyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("22_vqyv8")]
 visible = false
 layout_mode = 2
+
+[node name="guildInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("25_pctqs")]
+visible = false
+layout_mode = 2
+script = ExtResource("26_2flxh")
 
 [node name="bottomMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -422,6 +444,7 @@ theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "The Guild
 "
+script = ExtResource("28_2flxh")
 
 [node name="adventurersButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

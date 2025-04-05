@@ -12,7 +12,8 @@ extends Control
 @onready var parties_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/partyInfo
 @onready var item_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList
 @onready var item_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/economyInfo
-
+@onready var guild_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList
+@onready var guild_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/guildInfo
 
 # Bottom menu variables
 
@@ -23,6 +24,7 @@ func _ready():
 	UIManager.connect ("toggle_characterList", Callable (self, "toggle_characterList"))
 	UIManager.connect ("toggle_partiesList", Callable (self, "toggle_partiesList"))
 	UIManager.connect ("toggle_economyList", Callable (self, "toggle_itemList"))
+	UIManager.connect ("toggle_guildList", Callable (self, "toggle_guildList"))
 		
 func toggle_leftMenu():
 	left_menu.visible = not left_menu.visible
@@ -38,3 +40,7 @@ func toggle_partiesList():
 func toggle_itemList():
 	item_list_left.visible = not item_list_left.visible
 	item_list_right.visible = not item_list_right.visible
+	
+func toggle_guildList():
+	guild_list_left.visible = not guild_list_left.visible
+	guild_list_right.visible = not guild_list_right.visible
