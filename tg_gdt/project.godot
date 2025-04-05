@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TG_GDT"
+config/name="TheGuildmaster"
 run/main_scene="uid://hwn1hgpjlqm5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
