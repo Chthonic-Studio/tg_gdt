@@ -7,6 +7,15 @@ var title: String = ""
 var description: String = ""
 var rank: String = ""
 var rewards: Dictionary = {}
-var time_to_complete: int = 0
 var stages: Array = []
 var status: DungeonStatus = DungeonStatus.LISTED
+
+func init(_dungeon_id: String, _title: String, _description: String, _rank: String, _rewards: Dictionary, _stages: Array, _status: DungeonStatus = DungeonStatus.LISTED):
+	dungeon_id = _dungeon_id
+	title = _title
+	description = _description
+	rank = _rank
+	rewards = _rewards
+	stages = _stages
+	status = _status
+	return self

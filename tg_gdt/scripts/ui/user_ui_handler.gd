@@ -16,8 +16,8 @@ extends Control
 @onready var guild_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/guildInfo
 @onready var mission_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList
 @onready var mission_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo
-@onready var world_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList
-@onready var world_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/worldInfo
+@onready var world_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList
+@onready var world_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo
 
 # Bottom menu variables
 
@@ -30,6 +30,7 @@ func _ready():
 	UIManager.connect ("toggle_economyList", Callable (self, "toggle_itemList"))
 	UIManager.connect ("toggle_guildList", Callable (self, "toggle_guildList"))
 	UIManager.connect ("toggle_missionList", Callable (self, "toggle_missionList"))
+	UIManager.connect ("toggle_dungeonList", Callable (self, "toggle_worldList"))
 		
 func toggle_leftMenu():
 	left_menu.visible = not left_menu.visible
@@ -43,18 +44,22 @@ func toggle_partiesList():
 	parties_list_right.visible = not parties_list_right.visible
 	
 func toggle_itemList():
+	print ("Toggling Item Menu")
 	item_list_left.visible = not item_list_left.visible
 	item_list_right.visible = not item_list_right.visible
 	
 func toggle_guildList():
+	print ("Toggling Guild Menu")
 	guild_list_left.visible = not guild_list_left.visible
 	guild_list_right.visible = not guild_list_right.visible
 	
-func toggle_missionlist():
+func toggle_missionList():
+	print ("Toggling Mission Menu")
 	mission_list_left.visible = not mission_list_left.visible
 	mission_list_right.visible = not mission_list_right.visible	
 	
-func toggle_worldlist():
+func toggle_worldList():
+	print ("Toggling Dungeon Menu")
 	world_list_left.visible = not world_list_left.visible
 	world_list_right.visible = not world_list_right.visible	
 	

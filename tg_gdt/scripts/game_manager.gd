@@ -6,6 +6,7 @@ var GuildWorkerGenerator = preload("res://scripts/guild/guild_worker_generator.g
 var GuildWorkerCardScene = preload("res://guild_worker_card.tscn")
 var MissionGenerator = preload("res://scripts/guild/missionGenerator.gd").new()
 var MissionProfile = preload("res://scripts/guild/missionProfile.gd")
+var DungeonManager = preload("res://scripts/guild/dungeonManager.gd").new()
 
 # Define player stats
 var gold: int = 300
@@ -78,6 +79,7 @@ signal update_guild_worker_list # Signals there was an update in the guild worke
 signal gold_spent
 signal update_mission_list
 signal update_active_mission_list
+signal update_dungeon_list
 
 func _ready():
 	if not initial_guild_workers_assigned:
@@ -536,3 +538,13 @@ func remove_mission(mission_id: String):
 
 # DUNGEON FUNCTIONS
 
+# Function to generate and activate a random dungeon
+func activate_random_dungeon():
+	var dungeon = DungeonManager.activate_random_dungeon()
+	if dungeon:
+		emit_signal("update_dungeon_list", DungeonManager.get_active_dungeons())
+
+# Function to update the status of a dungeon
+func update_dungeon_status(dungeon_id: String, new_status: int):
+	DungeonManager.update_dungeon_status(dungeon_id, new_status)
+	emit_signal("update_dungeon_list", DungeonManager.get_active_dungeons())

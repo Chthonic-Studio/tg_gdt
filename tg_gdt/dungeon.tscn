@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2i4hr74737gm"]
 
 [ext_resource type="Texture2D" uid="uid://cn7yhuuxf6lg7" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/6 Player HUD/1.png" id="1_my81p"]
-[ext_resource type="Script" uid="uid://c6etmsmmf0apj" path="res://scripts/ui/mission_item.gd" id="2_vol8w"]
+[ext_resource type="Script" uid="uid://bhdkhpgecgkbx" path="res://scripts/ui/dungeon_item.gd" id="2_my81p"]
 [ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="3_4f3i4"]
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_q5kms"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="5_tgur7"]
@@ -12,7 +12,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_my81p")
 region_rect = Rect2(15.9717, 15.9227, 224.331, 96.2742)
-script = ExtResource("2_vol8w")
+script = ExtResource("2_my81p")
 
 [node name="dungeonTitle" type="Label" parent="."]
 layout_mode = 1

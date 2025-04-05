@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dksxkcntc76j6"]
+
+[ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="1_13d81"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="2_5h2ww"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="3_d72jl"]
+
+[node name="messageBg" type="NinePatchRect"]
+texture = ExtResource("1_13d81")
+
+[node name="messageText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.179
+anchor_right = 0.5
+anchor_bottom = 0.179
+offset_left = -110.0
+offset_top = -4.65
+offset_right = 117.0
+offset_bottom = 193.35
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5h2ww")
+theme_override_font_sizes/font_size = 15
+text = "This is an example message that the player can receive that can range from multiple possible messages, all tied to the event system coded into the game (Which is quite a pain to manage to be honest, really). Depending on the type of message, certain buttons on the bottom of this container are enabled as well. "
+autowrap_mode = 3
+
+[node name="buttonContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 265.0
+offset_right = 289.0
+offset_bottom = 290.0
+alignment = 1
+
+[node name="acceptButton" type="Button" parent="buttonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d72jl")
+theme_override_font_sizes/font_size = 18
+text = "Accept"
+
+[node name="rejectButton" type="Button" parent="buttonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d72jl")
+theme_override_font_sizes/font_size = 18
+text = "Reject"
+
+[node name="dismissButton" type="Button" parent="buttonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d72jl")
+theme_override_font_sizes/font_size = 18
+text = "Dismiss"

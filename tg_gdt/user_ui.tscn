@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=52 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
 [ext_resource type="Script" uid="uid://coso5gehulga7" path="res://scripts/ui/debugButtons/debug_new_mission.gd" id="11_j5q58"]
 [ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
+[ext_resource type="Script" uid="uid://c64todp4udco7" path="res://scripts/ui/debugButtons/debug_new_dungeon.gd" id="12_hn41t"]
 [ext_resource type="Script" uid="uid://do2dtilrjs6ky" path="res://scripts/ui/bookMenu_right_page.gd" id="12_paulu"]
 [ext_resource type="PackedScene" uid="uid://bfke1am7o7x8" path="res://character_info.tscn" id="13_xxcwy"]
 [ext_resource type="Script" uid="uid://dcehi7f0xelbb" path="res://scripts/ui/lp_parties_list.gd" id="13_y2akj"]
@@ -40,7 +41,15 @@
 [ext_resource type="Script" uid="uid://gm3qveuaox12" path="res://scripts/ui/mission_info.gd" id="32_lq8fq"]
 [ext_resource type="PackedScene" uid="uid://nifr70cxesv7" path="res://active_mission.tscn" id="33_pmtdm"]
 [ext_resource type="PackedScene" uid="uid://dm8c636krttxu" path="res://active_dungeon.tscn" id="35_23b88"]
+[ext_resource type="Script" uid="uid://v5er5k03xhqc" path="res://scripts/ui/active_dungeon_info.gd" id="36_866hc"]
 [ext_resource type="Script" uid="uid://bflf72madmx6j" path="res://scripts/ui/bottomMenuButtons/missions_button.gd" id="39_pmtdm"]
+[ext_resource type="Script" uid="uid://dvvxpw72ffmce" path="res://scripts/ui/bottomMenuButtons/dungeon_button.gd" id="43_866hc"]
+[ext_resource type="Texture2D" uid="uid://dlabovrv8ian" path="res://assets/Speed0.PNG" id="45_wfmre"]
+[ext_resource type="Texture2D" uid="uid://bcxgbtlqr4vsh" path="res://assets/Speed1.PNG" id="46_vd2i2"]
+[ext_resource type="Texture2D" uid="uid://b3juo65co3mgh" path="res://assets/Speed2.PNG" id="47_502x3"]
+[ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="48_h8qsu"]
+[ext_resource type="PackedScene" uid="uid://dgq6m5gs1kr7n" path="res://unread_message.tscn" id="49_jjwi0"]
+[ext_resource type="PackedScene" uid="uid://dksxkcntc76j6" path="res://message.tscn" id="50_ke5x6"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -223,6 +232,48 @@ rounded = true
 layout_mode = 2
 rounded = true
 
+[node name="MarginContainer" type="MarginContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="inboxNotification" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 18
+
+[node name="inboxNotificationValue" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/inboxNotification"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 228.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 18
+text = "There are unopened letters at your desk!"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="chatNotification" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 18
+
+[node name="chatNotificationValue" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/chatNotification"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 228.0
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("4_52g50")
+theme_override_font_sizes/font_size = 17
+text = "There is someone wanting to speak with you!"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -274,7 +325,14 @@ theme_override_font_sizes/font_size = 10
 text = "+Mission"
 script = ExtResource("11_j5q58")
 
+[node name="debug_newDungeon" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+Dungeon"
+script = ExtResource("12_hn41t")
+
 [node name="bookMenu" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -403,6 +461,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="lp_dungeonList" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+visible = false
 layout_mode = 2
 script = ExtResource("24_r8gvf")
 
@@ -525,8 +584,10 @@ size_flags_horizontal = 3
 
 [node name="active_mission" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissionInfo/activeMissionsListVbox" instance=ExtResource("33_pmtdm")]
 layout_mode = 2
+script = null
 
 [node name="dungeonInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
+visible = false
 layout_mode = 2
 
 [node name="sunkenWomb" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo"]
@@ -565,7 +626,7 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(305, 0)
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("32_lq8fq")
+script = ExtResource("36_866hc")
 
 [node name="activeDungeonListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo/activeDungeonInfo"]
 layout_mode = 2
@@ -573,6 +634,7 @@ size_flags_horizontal = 3
 
 [node name="active_dungeon" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo/activeDungeonInfo/activeDungeonListVbox" instance=ExtResource("35_23b88")]
 layout_mode = 2
+script = null
 
 [node name="bottomMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -636,6 +698,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Dungeons"
+script = ExtResource("43_866hc")
 
 [node name="missionsButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -665,21 +728,91 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -181.0
-offset_bottom = 40.0
+offset_left = -139.0
+offset_bottom = 45.0
 grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="gameSpeedMenu"]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
-layout_mode = 2
-
 [node name="TextureButton2" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("45_wfmre")
+
+[node name="TextureButton" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("46_vd2i2")
 
 [node name="TextureButton3" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
 layout_mode = 2
+texture_normal = ExtResource("47_502x3")
+
+[node name="notificationMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.414
+anchor_top = 0.208
+anchor_right = 0.414
+anchor_bottom = 0.208
+offset_left = -156.928
+offset_top = -49.784
+offset_right = 506.072
+offset_bottom = 366.216
+
+[node name="menuMargin" type="MarginContainer" parent="notificationMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="notificationBg" type="NinePatchRect" parent="notificationMenu/menuMargin"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+texture = ExtResource("48_h8qsu")
+
+[node name="notificationList" type="ScrollContainer" parent="notificationMenu/menuMargin/notificationBg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.192
+anchor_right = 0.5
+anchor_bottom = 0.192
+offset_left = -98.0
+offset_top = -19.872
+offset_right = 99.0
+offset_bottom = 277.128
+
+[node name="notificationVBox" type="VBoxContainer" parent="notificationMenu/menuMargin/notificationBg/notificationList"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="unreadMessage" parent="notificationMenu/menuMargin/notificationBg/notificationList/notificationVBox" instance=ExtResource("49_jjwi0")]
+layout_mode = 2
+
+[node name="messageMargin" type="MarginContainer" parent="notificationMenu"]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="messageBg" parent="notificationMenu/messageMargin" instance=ExtResource("50_ke5x6")]
+layout_mode = 2
+
+[node name="inboxAlert" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = -1.0
+offset_right = 690.0
+offset_bottom = 21.0
+
+[node name="Label" type="Label" parent="inboxAlert"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -7.0
+offset_right = 205.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 25
+text = "You have unread messages"
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" method="_on_pressed"]
