@@ -6,6 +6,7 @@ extends Node
 signal toggle_leftMenu
 signal toggle_characterList
 signal toggle_partiesList
+signal toggle_economyList
 # Signal to notify when en element is selected
 signal character_selected(character)
 signal party_selected(party)
@@ -30,3 +31,12 @@ func guildAdventurersButton_toggle():
 func partiesList_toggle():
 	emit_signal ("toggle_partiesList")
 	
+func itemList_toggle():
+	emit_signal ("toggle_economyList")
+	
+# Function to update all item quantities
+func update_all_quantities():
+	for child in get_tree().get_nodes_in_group("item_list_entries"):
+		if child.has_method("update_item_info"):
+			var item_quantity = Inventory.get_item_quantity(child.item.item_id)
+			child.update_item_info(child.item, item_quantity)

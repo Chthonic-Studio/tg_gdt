@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=28 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://b2iop107ox7qh" path="res://item_list_entry.tscn" id="17_66fyi"]
 [ext_resource type="PackedScene" uid="uid://bjq33hle5brhg" path="res://party_info.tscn" id="18_xycxu"]
 [ext_resource type="Script" uid="uid://dhu72eblbyede" path="res://scripts/ui/bottomMenuButtons/parties_button.gd" id="20_wr46g"]
+[ext_resource type="PackedScene" uid="uid://bg8iebu1v40yi" path="res://economy_info.tscn" id="22_vqyv8"]
+[ext_resource type="Script" uid="uid://b37glu0pef5dr" path="res://scripts/ui/bottomMenuButtons/economy_button.gd" id="26_rp8uo"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -300,7 +302,6 @@ layout_mode = 2
 [node name="lp_title" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox"]
 layout_mode = 2
 mouse_filter = 1
-text = "PAGE TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -342,6 +343,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="lp_itemList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+visible = false
 layout_mode = 2
 script = ExtResource("16_vqyv8")
 
@@ -369,7 +371,6 @@ layout_mode = 2
 
 [node name="rp_title" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox"]
 layout_mode = 2
-text = "PAGE TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -384,6 +385,10 @@ visible = false
 layout_mode = 2
 
 [node name="partyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("18_xycxu")]
+visible = false
+layout_mode = 2
+
+[node name="economyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("22_vqyv8")]
 visible = false
 layout_mode = 2
 
@@ -407,8 +412,16 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "Guild Info"
+text = "Guildmaster's Office"
 script = ExtResource("14_rdgyi")
+
+[node name="guildButton" type="Button" parent="bottomMenu/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 20
+text = "The Guild
+"
 
 [node name="adventurersButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -432,28 +445,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Economy"
+script = ExtResource("26_rp8uo")
 
-[node name="worldMapButton" type="Button" parent="bottomMenu/HBoxContainer"]
+[node name="worldButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "World Map"
-
-[node name="guildWorkersButton" type="Button" parent="bottomMenu/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
-text = "Guild Workers
-"
-
-[node name="townInfoButton" type="Button" parent="bottomMenu/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
-text = "Town Info"
+text = "World"
 
 [node name="missionsButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -477,6 +476,28 @@ theme_override_font_sizes/font_size = 20
 text = "Settings
 "
 
+[node name="gameSpeedMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="gameSpeedMenu"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton3" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+layout_mode = 2
+
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" method="_on_pressed"]
+[connection signal="pressed" from="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList/inventoryGrid/itemListEntry" to="." method="_on_item_list_entry_pressed"]

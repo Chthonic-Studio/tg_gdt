@@ -1,0 +1,219 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg8iebu1v40yi"]
+
+[ext_resource type="Script" uid="uid://c48lpptpwr5jt" path="res://scripts/ui/economy_info.gd" id="1_c730w"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="2_u4mv6"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_c730w"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_lqiwc"]
+
+[node name="economyInfo" type="VBoxContainer"]
+script = ExtResource("1_c730w")
+
+[node name="itemInfo" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 20
+text = "Item Info"
+horizontal_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="itemName" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 18
+
+[node name="itemDescription" type="Label" parent="HSplitContainer/itemName"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 188.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/itemName"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 69.0
+offset_right = 186.0
+offset_bottom = 101.0
+alignment = 1
+
+[node name="itemQuantity" type="Label" parent="HSplitContainer/itemName/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 15
+
+[node name="amountBg" type="ColorRect" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity"]
+layout_mode = 0
+offset_left = -77.0
+offset_top = 16.0
+offset_right = 123.0
+offset_bottom = 69.0
+color = Color(0, 0, 0, 0.388235)
+
+[node name="amountLabel" type="Label" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -2.0
+offset_right = 197.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("4_c730w")
+theme_override_font_sizes/font_size = 18
+text = "How many?"
+
+[node name="amount" type="LineEdit" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity"]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 35.0
+offset_right = 104.0
+offset_bottom = 66.0
+placeholder_text = "0"
+max_length = 5
+
+[node name="sellButton" type="Button" parent="HSplitContainer/itemName/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "   Sell   "
+
+[node name="donateButton" type="Button" parent="HSplitContainer/itemName/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = " Donate "
+
+[node name="HSeparator" type="HSeparator" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="economicInfoContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="mainEconomicInfo" type="HSplitContainer" parent="economicInfoContainer"]
+layout_mode = 2
+
+[node name="economicLabels" type="VBoxContainer" parent="economicInfoContainer/mainEconomicInfo"]
+layout_mode = 2
+
+[node name="recentMissionLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "Recent Missions"
+
+[node name="monthlyIncomeLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "Monthly Income"
+
+[node name="monthlyExpensesLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "Monthly Expenses"
+
+[node name="monthylBalanceLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "Monthly Balance"
+
+[node name="economicValues" type="VBoxContainer" parent="economicInfoContainer/mainEconomicInfo"]
+layout_mode = 2
+
+[node name="recentMissionsValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "800"
+
+[node name="monthlyIncomeValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "800"
+
+[node name="monthlyExpensesValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "800"
+
+[node name="monthlyBalanceValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "800"
+
+[node name="guildCommentaryLabel" type="Label" parent="economicInfoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+text = "Guild Commentary"
+
+[node name="guildCommentaryValue" type="Label" parent="economicInfoContainer/guildCommentaryLabel"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 172.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 12
+text = "Guild Commentary"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="economicStatus" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="economicStatusLabel" type="Label" parent="economicStatus"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 22
+text = "Town Economic Status: "
+
+[node name="economicStatusValue" type="Label" parent="economicStatus"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 22
+text = "Flourishing"
+
+[node name="guildStatus" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="guildStatusLabel" type="Label" parent="guildStatus"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 22
+text = "Guild Economic Status: "
+
+[node name="guildStatusValue" type="Label" parent="guildStatus"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 22
+text = "Flourishing"
+
+[connection signal="text_submitted" from="HSplitContainer/itemName/HBoxContainer/itemQuantity/amount" to="." method="_on_amount_text_submitted"]
