@@ -14,6 +14,10 @@ extends Control
 @onready var item_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/economyInfo
 @onready var guild_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList
 @onready var guild_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/guildInfo
+@onready var mission_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList
+@onready var mission_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo
+@onready var world_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList
+@onready var world_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/worldInfo
 
 # Bottom menu variables
 
@@ -25,6 +29,7 @@ func _ready():
 	UIManager.connect ("toggle_partiesList", Callable (self, "toggle_partiesList"))
 	UIManager.connect ("toggle_economyList", Callable (self, "toggle_itemList"))
 	UIManager.connect ("toggle_guildList", Callable (self, "toggle_guildList"))
+	UIManager.connect ("toggle_missionList", Callable (self, "toggle_missionList"))
 		
 func toggle_leftMenu():
 	left_menu.visible = not left_menu.visible
@@ -44,3 +49,12 @@ func toggle_itemList():
 func toggle_guildList():
 	guild_list_left.visible = not guild_list_left.visible
 	guild_list_right.visible = not guild_list_right.visible
+	
+func toggle_missionlist():
+	mission_list_left.visible = not mission_list_left.visible
+	mission_list_right.visible = not mission_list_right.visible	
+	
+func toggle_worldlist():
+	world_list_left.visible = not world_list_left.visible
+	world_list_right.visible = not world_list_right.visible	
+	

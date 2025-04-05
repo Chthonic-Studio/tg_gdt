@@ -4,6 +4,8 @@ var CharacterGenerator = preload("res://scripts/characters/characterGenerator.gd
 var PartyGenerator = preload("res://scripts/guild/parties/partyGenerator.gd").new()
 var GuildWorkerGenerator = preload("res://scripts/guild/guild_worker_generator.gd").new()
 var GuildWorkerCardScene = preload("res://guild_worker_card.tscn")
+var MissionGenerator = preload("res://scripts/guild/missionGenerator.gd").new()
+var MissionProfile = preload("res://scripts/guild/missionProfile.gd")
 
 # Define player stats
 var gold: int = 300
@@ -63,12 +65,19 @@ var parties = []
 # List to keep track of all guild workers
 var guild_workers = []
 
+# List to keep track of missions
+var missions = []
+var active_missions = []
+
+
 # Define signals
 signal stat_modified # Signals a player's stat was modified
 signal update_character_list # Signals there was an update in the character list
 signal update_party_list # Signals there was an update in the party list
 signal update_guild_worker_list # Signals there was an update in the guild worker list
 signal gold_spent
+signal update_mission_list
+signal update_active_mission_list
 
 func _ready():
 	if not initial_guild_workers_assigned:
@@ -490,3 +499,40 @@ func sell_item(item_id: int, quantity: int) -> bool:
 		return true
 	print("Failed to remove item from inventory")
 	return false
+
+
+# MISSION FUNCTIONS
+
+# Function to generate a new mission
+func generate_mission():
+	var mission = MissionGenerator.generate_mission()
+	missions.append(mission)
+	emit_signal("update_mission_list", missions)
+
+# Function to update the status of a mission
+func update_mission_status(mission_id: String, new_status: int):
+	for mission in missions:
+		if mission.mission_id == mission_id:
+			mission.status = new_status
+			if new_status in [MissionProfile.MissionStatus.WAITING_FOR_ADVENTURERS, MissionProfile.MissionStatus.IN_PROGRESS]:
+				missions.erase(mission)
+				active_missions.append(mission)
+				emit_signal("update_mission_list", missions)
+				emit_signal("update_active_mission_list", active_missions)
+			return
+
+# Function to remove a mission
+func remove_mission(mission_id: String):
+	for mission in missions:
+		if mission.mission_id == mission_id:
+			missions.erase(mission)
+			emit_signal("update_mission_list", missions)
+			return
+	for mission in active_missions:
+		if mission.mission_id == mission_id:
+			active_missions.erase(mission)
+			emit_signal("update_active_mission_list", active_missions)
+			return
+
+# DUNGEON FUNCTIONS
+

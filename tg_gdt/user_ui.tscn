@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=43 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://kdlri2ttvuyw" path="res://assets/lightbrownbook/Inventory Book/Book Idle/1.png" id="9_jo8d0"]
 [ext_resource type="Script" uid="uid://b1wt51s45kelf" path="res://scripts/ui/debugButtons/debug_random_items.gd" id="10_a8lwy"]
 [ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
+[ext_resource type="Script" uid="uid://coso5gehulga7" path="res://scripts/ui/debugButtons/debug_new_mission.gd" id="11_j5q58"]
 [ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
 [ext_resource type="Script" uid="uid://do2dtilrjs6ky" path="res://scripts/ui/bookMenu_right_page.gd" id="12_paulu"]
 [ext_resource type="PackedScene" uid="uid://bfke1am7o7x8" path="res://character_info.tscn" id="13_xxcwy"]
@@ -26,13 +27,20 @@
 [ext_resource type="Script" uid="uid://bq6nknh3slyuq" path="res://scripts/ui/lp_guild_list.gd" id="19_mng51"]
 [ext_resource type="PackedScene" uid="uid://d0q5ts1osrafp" path="res://guild_worker_card.tscn" id="20_t6106"]
 [ext_resource type="Script" uid="uid://dhu72eblbyede" path="res://scripts/ui/bottomMenuButtons/parties_button.gd" id="20_wr46g"]
-[ext_resource type="Texture2D" uid="uid://chsf08sl7y2fd" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/9 Rewards/2.png" id="21_tw1xx"]
 [ext_resource type="Texture2D" uid="uid://dn7hvnoue0aqc" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/4.png" id="22_5nspm"]
+[ext_resource type="Script" uid="uid://cq665b7tsv85g" path="res://scripts/ui/lp_missions_list.gd" id="22_i3kmt"]
 [ext_resource type="PackedScene" uid="uid://bg8iebu1v40yi" path="res://economy_info.tscn" id="22_vqyv8"]
+[ext_resource type="PackedScene" uid="uid://co146j3iy1eno" path="res://mission.tscn" id="24_j5q58"]
+[ext_resource type="Script" uid="uid://c4xuu4po15k3n" path="res://scripts/ui/lp_dungeon_list.gd" id="24_r8gvf"]
 [ext_resource type="PackedScene" uid="uid://chyq064mvijf5" path="res://guild_info.tscn" id="25_pctqs"]
 [ext_resource type="Script" uid="uid://bp5ongbxrtw1q" path="res://scripts/ui/guild_info.gd" id="26_2flxh"]
+[ext_resource type="PackedScene" uid="uid://b2i4hr74737gm" path="res://dungeon.tscn" id="26_23b88"]
 [ext_resource type="Script" uid="uid://b37glu0pef5dr" path="res://scripts/ui/bottomMenuButtons/economy_button.gd" id="26_rp8uo"]
 [ext_resource type="Script" uid="uid://dyhqv2iaq8816" path="res://scripts/ui/bottomMenuButtons/guild_button.gd" id="28_2flxh"]
+[ext_resource type="Script" uid="uid://gm3qveuaox12" path="res://scripts/ui/mission_info.gd" id="32_lq8fq"]
+[ext_resource type="PackedScene" uid="uid://nifr70cxesv7" path="res://active_mission.tscn" id="33_pmtdm"]
+[ext_resource type="PackedScene" uid="uid://dm8c636krttxu" path="res://active_dungeon.tscn" id="35_23b88"]
+[ext_resource type="Script" uid="uid://bflf72madmx6j" path="res://scripts/ui/bottomMenuButtons/missions_button.gd" id="39_pmtdm"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -260,6 +268,12 @@ theme_override_font_sizes/font_size = 9
 text = "+Random Items"
 script = ExtResource("10_a8lwy")
 
+[node name="debug_newMission" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "+Mission"
+script = ExtResource("11_j5q58")
+
 [node name="bookMenu" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
@@ -314,7 +328,7 @@ vertical_alignment = 1
 
 [node name="lp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title"]
 layout_mode = 0
-offset_top = 26.0
+offset_top = 14.0
 offset_right = 308.0
 offset_bottom = 403.0
 
@@ -377,75 +391,27 @@ columns = 2
 [node name="guildWorkerCard" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList/guildWorkersGrid" instance=ExtResource("20_t6106")]
 layout_mode = 2
 
-[node name="lp_worldList" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
+[node name="lp_missionsList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 visible = false
 layout_mode = 2
+script = ExtResource("22_i3kmt")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList"]
+[node name="missionsListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList"]
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList/VBoxContainer"]
-custom_minimum_size = Vector2(300, 70)
-layout_mode = 2
-texture = ExtResource("21_tw1xx")
-region_rect = Rect2(12.5329, 15.7859, 389.534, 111.495)
-
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList/VBoxContainer/NinePatchRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.481
-anchor_right = 0.5
-anchor_bottom = 0.481
-offset_left = -115.0
-offset_top = -17.67
-offset_right = 117.0
-offset_bottom = 26.33
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 30
-text = "World Dangers"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="mission" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList/missionsListVbox" instance=ExtResource("24_j5q58")]
 layout_mode = 2
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList/VBoxContainer"]
-custom_minimum_size = Vector2(300, 70)
+[node name="lp_dungeonList" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 layout_mode = 2
-texture = ExtResource("21_tw1xx")
-region_rect = Rect2(13.4659, 15.3194, 388.134, 111.495)
+script = ExtResource("24_r8gvf")
 
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_worldList/VBoxContainer/NinePatchRect2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.481
-anchor_right = 0.5
-anchor_bottom = 0.481
-offset_left = -115.0
-offset_top = -17.67
-offset_right = 117.0
-offset_bottom = 26.33
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 30
-text = "The Sunken Womb"
-horizontal_alignment = 1
-
-[node name="lp_missionsList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList"]
-layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList/VBoxContainer"]
-custom_minimum_size = Vector2(300, 50)
+[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList"]
+custom_minimum_size = Vector2(280, 50)
 layout_mode = 2
 texture = ExtResource("22_5nspm")
 
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList/VBoxContainer/NinePatchRect"]
+[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList/NinePatchRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.482
@@ -459,10 +425,27 @@ offset_bottom = 10.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "Mission List"
+text = "Dungeons"
 horizontal_alignment = 1
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList/VBoxContainer"]
+[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList"]
+custom_minimum_size = Vector2(305, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "A dungeon is different from a simple mission. Each dungeon has 5 phases: Scouting, Exploration, Measurement, Clearing, Boss Room. Each time you clear a phase, the next one must be started soon, or else all progress will be lost. "
+autowrap_mode = 3
+
+[node name="lp_dungeonList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dungeonListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList/lp_dungeonList"]
+layout_mode = 2
+
+[node name="dungeon" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList/lp_dungeonList/dungeonListVbox" instance=ExtResource("26_23b88")]
 layout_mode = 2
 
 [node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
@@ -504,44 +487,16 @@ visible = false
 layout_mode = 2
 script = ExtResource("26_2flxh")
 
-[node name="worldInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
+[node name="missionInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
 visible = false
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/worldInfo"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-texture = ExtResource("22_5nspm")
-
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/worldInfo/NinePatchRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.482
-anchor_top = 0.46
-anchor_right = 0.482
-anchor_bottom = 0.46
-offset_left = -109.456
-offset_top = -13.0
-offset_right = 109.544
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
-text = "City of Emberfall"
-horizontal_alignment = 1
-
-[node name="missionInfo" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo"]
-layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/VBoxContainer"]
+[node name="activeMissions" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 texture = ExtResource("22_5nspm")
 
-[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/VBoxContainer/NinePatchRect"]
+[node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissions"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.482
@@ -555,10 +510,68 @@ offset_bottom = 10.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "Mission List"
+text = "Active Missions"
 horizontal_alignment = 1
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/VBoxContainer"]
+[node name="activeMissionInfo" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo"]
+custom_minimum_size = Vector2(305, 0)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("32_lq8fq")
+
+[node name="activeMissionsListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissionInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="active_mission" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissionInfo/activeMissionsListVbox" instance=ExtResource("33_pmtdm")]
+layout_mode = 2
+
+[node name="dungeonInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
+layout_mode = 2
+
+[node name="sunkenWomb" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+texture = ExtResource("22_5nspm")
+
+[node name="sunkenWombTitle" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo/sunkenWomb"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482
+anchor_top = 0.46
+anchor_right = 0.482
+anchor_bottom = 0.46
+offset_left = -109.456
+offset_top = -13.0
+offset_right = 109.544
+offset_bottom = 10.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 20
+text = "The Sunken Womb"
+horizontal_alignment = 1
+
+[node name="sunkenWombDescription" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo"]
+custom_minimum_size = Vector2(305, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 18
+text = "After the defeat of the ancient god Xartanogg, it's gargantuan body sank into the earth, birthing the corrupted Sunken Womb, a land where monster-filled dungeons appear. If unchecked, these creatures threaten to overrun the surface. Thus, the god's shadow persists, demanding heroes to explore the Sunken Womb."
+autowrap_mode = 3
+
+[node name="activeDungeonInfo" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo"]
+custom_minimum_size = Vector2(305, 0)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("32_lq8fq")
+
+[node name="activeDungeonListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo/activeDungeonInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="active_dungeon" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo/activeDungeonInfo/activeDungeonListVbox" instance=ExtResource("35_23b88")]
 layout_mode = 2
 
 [node name="bottomMenu" type="MarginContainer" parent="."]
@@ -617,12 +630,12 @@ theme_override_font_sizes/font_size = 20
 text = "Economy"
 script = ExtResource("26_rp8uo")
 
-[node name="worldButton" type="Button" parent="bottomMenu/HBoxContainer"]
+[node name="dungeonButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "World"
+text = "Dungeons"
 
 [node name="missionsButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -630,6 +643,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Missions"
+script = ExtResource("39_pmtdm")
 
 [node name="infoLogButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

@@ -1,20 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://co146j3iy1eno"]
+[gd_scene load_steps=6 format=3 uid="uid://b2i4hr74737gm"]
 
-[ext_resource type="Texture2D" uid="uid://cn7yhuuxf6lg7" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/6 Player HUD/1.png" id="1_jaj6c"]
-[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="2_1yjo5"]
-[ext_resource type="Script" uid="uid://c6etmsmmf0apj" path="res://scripts/ui/mission_item.gd" id="2_8776k"]
-[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="3_8776k"]
-[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_gdco1"]
+[ext_resource type="Texture2D" uid="uid://cn7yhuuxf6lg7" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/6 Player HUD/1.png" id="1_my81p"]
+[ext_resource type="Script" uid="uid://c6etmsmmf0apj" path="res://scripts/ui/mission_item.gd" id="2_vol8w"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="3_4f3i4"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_q5kms"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="5_tgur7"]
 
-[node name="mission" type="NinePatchRect"]
+[node name="dungeon" type="NinePatchRect"]
 custom_minimum_size = Vector2(305, 125)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_jaj6c")
+texture = ExtResource("1_my81p")
 region_rect = Rect2(15.9717, 15.9227, 224.331, 96.2742)
-script = ExtResource("2_8776k")
+script = ExtResource("2_vol8w")
 
-[node name="missionTitle" type="Label" parent="."]
+[node name="dungeonTitle" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -26,12 +26,12 @@ offset_top = -30.0
 offset_right = 111.0
 offset_bottom = -6.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_1yjo5")
+theme_override_fonts/font = ExtResource("3_4f3i4")
 theme_override_font_sizes/font_size = 16
-text = "Mission Title"
+text = "Dungeon Title"
 horizontal_alignment = 1
 
-[node name="missionDescription" type="Label" parent="."]
+[node name="dungeonDescription" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -44,7 +44,7 @@ offset_right = 63.0
 offset_bottom = 39.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -10
-theme_override_fonts/font = ExtResource("3_8776k")
+theme_override_fonts/font = ExtResource("4_q5kms")
 theme_override_font_sizes/font_size = 14
 text = "Mission Description that talks about the details of the mission with max 3 lines of text "
 horizontal_alignment = 1
@@ -62,7 +62,7 @@ offset_top = 29.0
 offset_right = -169.6
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_1yjo5")
+theme_override_fonts/font = ExtResource("3_4f3i4")
 theme_override_font_sizes/font_size = 14
 text = "Rewards:"
 horizontal_alignment = 1
@@ -80,7 +80,7 @@ offset_right = 67.0
 offset_bottom = 60.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -10
-theme_override_fonts/font = ExtResource("3_8776k")
+theme_override_fonts/font = ExtResource("4_q5kms")
 theme_override_font_sizes/font_size = 14
 text = "50 Gold, 10 Influence, 5 Prestige"
 autowrap_mode = 3
@@ -97,7 +97,7 @@ offset_top = -14.0
 offset_right = 41.4
 offset_bottom = 7.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_1yjo5")
+theme_override_fonts/font = ExtResource("3_4f3i4")
 theme_override_font_sizes/font_size = 14
 text = "Rank"
 horizontal_alignment = 1
@@ -114,7 +114,7 @@ offset_top = -6.0
 offset_right = 35.4
 offset_bottom = 52.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_1yjo5")
+theme_override_fonts/font = ExtResource("3_4f3i4")
 theme_override_font_sizes/font_size = 40
 text = "A"
 horizontal_alignment = 1
@@ -126,10 +126,10 @@ anchor_left = 0.785
 anchor_top = 0.696
 anchor_right = 0.785
 anchor_bottom = 0.696
-offset_left = -146.5
-offset_top = 7.99999
-offset_right = -93.5
-offset_bottom = 21.0
+offset_left = -112.425
+offset_top = 14.0
+offset_right = -59.425
+offset_bottom = 27.0
 
 [node name="acceptLabel" type="Label" parent="acceptButton"]
 layout_mode = 1
@@ -144,37 +144,7 @@ offset_right = 8.55397
 offset_bottom = 13.008
 theme_override_constants/line_spacing = 1
 theme_override_constants/paragraph_spacing = 1
-theme_override_fonts/font = ExtResource("4_gdco1")
+theme_override_fonts/font = ExtResource("5_tgur7")
 theme_override_font_sizes/font_size = 14
 text = "Accept"
-horizontal_alignment = 1
-
-[node name="declineButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.785
-anchor_top = 0.696
-anchor_right = 0.785
-anchor_bottom = 0.696
-offset_left = -86.5
-offset_top = 7.99999
-offset_right = -33.5
-offset_bottom = 21.0
-
-[node name="declineLabel" type="Label" parent="declineButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.782
-anchor_top = 0.384
-anchor_right = 0.782
-anchor_bottom = 0.384
-offset_left = -38.446
-offset_top = -7.992
-offset_right = 8.55397
-offset_bottom = 13.008
-theme_override_constants/line_spacing = 1
-theme_override_constants/paragraph_spacing = 1
-theme_override_fonts/font = ExtResource("4_gdco1")
-theme_override_font_sizes/font_size = 14
-text = "Declina"
 horizontal_alignment = 1
