@@ -91,6 +91,8 @@ signal unread_message_count_changed
 func _ready():
 	if not initial_guild_workers_assigned:
 		populate_guild_positions()
+	# Connect to the year_passed signal from TimeManager
+	TimeManager.connect("year_passed", Callable(self, "_on_year_passed"))
 
 # Function to show a popup when the player doesn't have enough gold
 func not_enough_gold():
@@ -142,6 +144,12 @@ func populate_guild_positions():
 	initial_guild_workers_assigned = true
 	emit_signal("update_guild_worker_list", guild_workers)
 
+# Function to handle year passing and update the ages of guild workers
+func _on_year_passed(new_year: int):
+	for worker in guild_workers:
+		GuildWorkerGenerator.update_guild_worker_age(worker)
+	emit_signal("update_guild_worker_list", guild_workers)
+	
 # Function to get guild stats
 func get_guild_stats():
 	return {

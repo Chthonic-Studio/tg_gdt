@@ -108,6 +108,9 @@ func _ready():
 	set_character_id()
 	self.name = character_first_name + " " + character_last_name + " " + character_id
 	character_fullName = character_first_name + " " + character_last_name
+	
+	# Connect to the year_passed signal from TimeManager
+	TimeManager.connect("year_passed", Callable(self, "_on_year_passed"))
 
 func set_character_id():
 	character_id = str(self.get_instance_id())
@@ -159,3 +162,7 @@ func simulate_adventurer_support():
 # Function to simulate adventurer updates
 func simulate_adventurer_updates():
 	GameManager.add_message(Message.MessageType.ADVENTURER_UPDATES)
+
+# Function to handle year passing and update the character's age
+func _on_year_passed(new_year: int):
+	age += 1

@@ -37,6 +37,7 @@ func advance_day():
 		if current_date["moon"] > 12:
 			current_date["moon"] = 1
 			current_date["year"] += 1
+			emit_signal("year_passed", current_date["year"])
 	emit_signal("date_updated", current_date)
 
 # Functions to control game speed

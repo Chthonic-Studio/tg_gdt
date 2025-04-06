@@ -1,10 +1,24 @@
 extends Node
 
 var races = {
-    "Human": {"weight": 1.0, "modifiers": {"Constitution": 2}},
-    "Elf": {"weight": 0.8, "modifiers": {"Dexterity": 2, "Constitution": -1}},
-    "Dwarf": {"weight": 0.6, "modifiers": {"Strength": 2, "Dexterity": -1}},
-    "Orc": {"weight": 0.5, "modifiers": {"Strength": 3, "Intelligence": -2}}
+    "Human": 
+        {"weight": 1.0, "modifiers": 
+            {"Constitution": 1, "Charisma": 1}},
+    "Half-Elf": 
+        {"weight": 0.8, "modifiers": 
+            {"Dexterity": 1, "Charisma": 2, "Wisdom": -1}},
+    "Dwarf": 
+        {"weight": 0.8, "modifiers": 
+            {"Strength": 2, "Constitution": 2, "Dexterity": -1}},
+    "Elf": 
+        {"weight": 0.7, "modifiers": 
+            {"Dexterity": 2, "Constitution": -1, "Intelligence": 1}},
+    "Halfling": 
+        {"weight": 0.7, "modifiers": 
+            {"Dexterity": 2, "Strength": -2, "Charisma": 1}},
+    "Half-Orc": 
+        {"weight": 0.6, "modifiers": 
+            {"Strength": 2, "Constitution": 1, "Intelligence": -2}}
 }
 
 func get_random_race() -> Dictionary:

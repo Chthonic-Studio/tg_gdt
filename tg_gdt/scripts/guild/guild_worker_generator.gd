@@ -31,3 +31,7 @@ func generate_guild_worker(position: String) -> Dictionary:
 	worker.skill_level = skill_levels[randi() % skill_levels.size()]
 
 	return worker
+
+# Function to update the age of a guild worker
+func update_guild_worker_age(worker):
+	worker.age += 1
