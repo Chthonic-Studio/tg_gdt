@@ -9,6 +9,7 @@ var timer: Timer = null
 # Signals for updating the date label and game speed changes
 signal date_updated(new_date: Dictionary)
 signal game_speed_changed(new_speed: float)
+signal year_passed
 
 func _ready():
 	start_timer()

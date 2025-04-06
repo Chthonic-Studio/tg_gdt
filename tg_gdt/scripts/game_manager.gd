@@ -57,6 +57,7 @@ var noResources: bool = false
 var initial_guild_workers_assigned: bool = false
 
 # List to keep track of all characters
+var preload_characters = []
 var characters = []
 var retired_characters = []
 var dead_characters = []
@@ -103,18 +104,42 @@ func not_enough_gold():
 	add_child(popup)
 	popup.show()
 
-# Function to generate and add a new character
+# Updated Function: When spawning a new character, add to preload_characters and send an application message.
 func _on_spawn_character():
-	print("Generating character")
+	print("Generating new adventurer application")
 	var new_character = CharacterGenerator.generate_character()
 	if new_character:
-		get_tree().current_scene.add_child(new_character)
-		characters.append(new_character)
-		print("Character added to scene: ", new_character.name)
-		# Emit the signal to update the character list
-		emit_signal("update_character_list", characters)
+		preload_characters.append(new_character)
+		# Instead of only generating the message, add it using add_message:
+		add_message(Message.MessageType.ADVENTURER_APPLIES, {"adventurer": new_character})
+		print("Adventurer application added: ", new_character.name)
 	else:
 		print("Failed to generate character")
+
+# Function called when player accepts an adventurer application.
+func accept_adventurer_application(character):
+	if character in preload_characters:
+		preload_characters.erase(character)
+		characters.append(character)
+		# Add the character node to the current scene.
+		get_tree().current_scene.add_child(character)
+		# Update relationships between the new character and all existing ones.
+		for other in characters:
+			if other != character:
+				if not other.relationships.has(character.character_id):
+					other.relationships[character.character_id] = 0
+				if not character.relationships.has(other.character_id):
+					character.relationships[other.character_id] = 0
+		print("Adventurer accepted: ", character.name)
+		emit_signal("update_character_list", characters)
+
+# Function called when player declines an adventurer application.
+func decline_adventurer_application(character):
+	if character in preload_characters:
+		preload_characters.erase(character)
+		print("Adventurer declined: ", character.name)
+		# Remove the node from the scene and free resources.
+		character.queue_free()
 
 # Function to generate and assign guild workers
 func assign_guild_workers():
@@ -646,3 +671,38 @@ func generate_random_notification():
 	unread_messages.append(message)
 	emit_signal("new_message_received", message)
 	emit_signal("unread_message_count_changed", unread_messages.size())
+
+# NEW: Function to update relationships at the end of each in-game month
+func monthly_update_relationships() -> void:
+	# Loop over every unique pair of active characters.
+	for i in range(characters.size()):
+		var char_a = characters[i]
+		for j in range(i + 1, characters.size()):
+			var char_b = characters[j]
+			
+			# Get the current relationship value (default is 0 if not set)
+			var current_rel = 0.0
+			if char_a.relationships.has(char_b.character_id):
+				current_rel = char_a.relationships[char_b.character_id]
+			
+			# Base random change each month: random float between -5 and 5.
+			var change = randf_range(-5, 5)
+			
+			# If the relationship is above 50, add an extra bonus [0, 1]
+			if current_rel > 50:
+				change += randf_range(0, 1)
+			# If the relationship is below -50, subtract an extra value in [0, 1]
+			elif current_rel < -50:
+				change += randf_range(-1, 0)
+			
+			# If both characters are in a party together, add additional bonus [1, 3]
+			# (Assuming the party String is not "No Party" and is the same for both)
+			if char_a.party != "No Party" and char_a.party == char_b.party:
+				change += randf_range(1, 3)
+			
+			# Update relationship symmetrically for both characters.
+			char_a.adjust_relationship(char_b.character_id, change)
+			char_b.adjust_relationship(char_a.character_id, change)
+			
+			# Optionally, print the updated relationship for debugging.
+			#print("Updated relationship between ", char_a.character_id, " and ", char_b.character_id, ": ", char_a.relationships[char_b.character_id])

@@ -38,9 +38,19 @@ func generate_message(messageType, extra_info = null):
 			message_text = "Updates from our adventurers."
 			preview_text = "Adventurer Updates"
 			sender = "Adventurer's Guild"
-
+		Message.MessageType.ADVENTURER_APPLIES:
+			# extra_info should contain the new adventurer character.
+			var adv = extra_info["adventurer"]
+			message_text = "Hello boss! We just received a new adventurer applying to our guild, it's a rookie " + adv.selected_race["name"] + " " + adv.selected_class["name"] + ", we did our evaluation and we determined it's a " + adv.guild_eval + ", we just need your decision!"
+			preview_text = "Adventurer Application"
+			sender = "Guild Recruitment"
+	# Create the message
 	var message = Message.new()
 	message.initialize(message_text, preview_text, sender, messageType)
+	# For ADVENTURER_APPLIES messages, store the applied adventurer reference.
+	if messageType == Message.MessageType.ADVENTURER_APPLIES:
+		message.applied_adventurer = extra_info["adventurer"]
+		
 	messages.append(message)
 	return message
 

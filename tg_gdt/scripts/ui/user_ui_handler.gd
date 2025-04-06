@@ -23,7 +23,6 @@ var Message = preload("res://scripts/guild/message.gd")
 
 @onready var notification_list = $notificationMenu/menuMargin/notificationBg/notificationList/notificationVBox
 @onready var notification_margin = $notificationMenu
-@onready var message_margin = $notificationMenu/messageMargin
 @onready var message_display = $notificationMenu/messageMargin/messageBg
 @onready var inboxMenu = $leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/inboxNotification
 @onready var inboxNotificationValue = $leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/inboxNotification/inboxNotificationValue
@@ -32,28 +31,25 @@ var Message = preload("res://scripts/guild/message.gd")
 @onready var reject_button = message_display.get_node("buttonContainer/rejectButton")
 @onready var dismiss_button = message_display.get_node("buttonContainer/dismissButton")
 
-
 var current_message = null
-
 
 func _ready():
 	print("UIHandler initialized")
 	# Signal listening
-	UIManager.connect ("toggle_leftMenu", Callable (self, "toggle_leftMenu"))
-	UIManager.connect ("toggle_characterList", Callable (self, "toggle_characterList"))
-	UIManager.connect ("toggle_partiesList", Callable (self, "toggle_partiesList"))
-	UIManager.connect ("toggle_economyList", Callable (self, "toggle_itemList"))
-	UIManager.connect ("toggle_guildList", Callable (self, "toggle_guildList"))
-	UIManager.connect ("toggle_missionList", Callable (self, "toggle_missionList"))
-	UIManager.connect ("toggle_dungeonList", Callable (self, "toggle_worldList"))
+	UIManager.connect("toggle_leftMenu", Callable(self, "toggle_leftMenu"))
+	UIManager.connect("toggle_characterList", Callable(self, "toggle_characterList"))
+	UIManager.connect("toggle_partiesList", Callable(self, "toggle_partiesList"))
+	UIManager.connect("toggle_economyList", Callable(self, "toggle_itemList"))
+	UIManager.connect("toggle_guildList", Callable(self, "toggle_guildList"))
+	UIManager.connect("toggle_missionList", Callable(self, "toggle_missionList"))
+	UIManager.connect("toggle_dungeonList", Callable(self, "toggle_worldList"))
 	
 	# Message system connections
-	GameManager.connect("new_message_received", Callable (self, "_on_new_message_received"))
+	GameManager.connect("new_message_received", Callable(self, "_on_new_message_received"))
 	GameManager.connect("new_message_received", Callable(self, "_update_inbox_notification"))
 	GameManager.connect("unread_message_count_changed", Callable(self, "_update_inbox_notification"))
 	
 	# Button connections 
-	# Connect button signals
 	accept_button.connect("pressed", Callable(self, "_on_accept_button_pressed"))
 	reject_button.connect("pressed", Callable(self, "_on_reject_button_pressed"))
 	dismiss_button.connect("pressed", Callable(self, "_on_dismiss_button_pressed"))
@@ -74,22 +70,22 @@ func toggle_partiesList():
 	parties_list_right.visible = not parties_list_right.visible
 	
 func toggle_itemList():
-	print ("Toggling Item Menu")
+	print("Toggling Item Menu")
 	item_list_left.visible = not item_list_left.visible
 	item_list_right.visible = not item_list_right.visible
 	
 func toggle_guildList():
-	print ("Toggling Guild Menu")
+	print("Toggling Guild Menu")
 	guild_list_left.visible = not guild_list_left.visible
 	guild_list_right.visible = not guild_list_right.visible
 	
 func toggle_missionList():
-	print ("Toggling Mission Menu")
+	print("Toggling Mission Menu")
 	mission_list_left.visible = not mission_list_left.visible
 	mission_list_right.visible = not mission_list_right.visible	
 	
 func toggle_worldList():
-	print ("Toggling Dungeon Menu")
+	print("Toggling Dungeon Menu")
 	world_list_left.visible = not world_list_left.visible
 	world_list_right.visible = not world_list_right.visible	
 
@@ -111,7 +107,7 @@ func update_unread_message_list():
 	var unread_messages = GameManager.get_unread_messages()
 	for message in unread_messages:
 		var unread_message_instance = preload("res://unread_message.tscn").instantiate()
-		var button = unread_message_instance.get_node("unreadMessageButton")  # Ensure this path is correct
+		var button = unread_message_instance.get_node("unreadMessageButton")
 		var label = unread_message_instance.get_node("Label")
 		label.text = message.preview
 		button.connect("pressed", Callable(self, "_on_unread_message_pressed").bind(message))
@@ -119,25 +115,31 @@ func update_unread_message_list():
 	_update_inbox_notification()
 
 func _on_unread_message_pressed(message):
-	GameManager.mark_message_as_read(message)
+	# Do not mark the message as read immediately.
+	# Simply show the message content.
 	show_message_content(message)
-	_update_inbox_notification()  # Update inbox notification after marking a message as read
-
+	_update_inbox_notification()  # Update the inbox notification if necessary
 
 func show_message_content(message):
-	current_message = message  # Store the current message
+	current_message = message
 	var message_text_node = message_display.get_node("messageText")
 	if message_text_node:
 		message_text_node.text = message.text
 		message_display.show()
 		
-		# Show or hide buttons based on the message type
+		# Show or hide buttons based on the message type.
+		# For an adventurer application message, show Accept and Reject and hide Dismiss.
 		match message.messageType:
 			Message.MessageType.NOTIFICATION, Message.MessageType.WORLD_NEWS, Message.MessageType.ADVENTURER_UPDATES:
 				accept_button.hide()
 				reject_button.hide()
 				dismiss_button.show()
 			Message.MessageType.TOWN_SUPPORT_REQUEST, Message.MessageType.ADVENTURER_SUPPORT, Message.MessageType.DUNGEON_NOTIFICATION:
+				accept_button.show()
+				reject_button.show()
+				dismiss_button.hide()
+			# New case for adventurer application:
+			Message.MessageType.ADVENTURER_APPLIES:
 				accept_button.show()
 				reject_button.show()
 				dismiss_button.hide()
@@ -150,13 +152,27 @@ func show_message_content(message):
 
 func _on_accept_button_pressed():
 	print("Accept button pressed")
-	# Perform accept action here
+	if current_message != null:
+		match current_message.messageType:
+			Message.MessageType.ADVENTURER_APPLIES:
+				GameManager.accept_adventurer_application(current_message.applied_adventurer)
+			_:
+				print("Other accept action")
+		# Mark the current message as read only when an action is taken
+		GameManager.mark_message_as_read(current_message)
 	message_display.hide()
 	update_unread_message_list()
 
 func _on_reject_button_pressed():
 	print("Reject button pressed")
-	# Perform reject action here
+	if current_message != null:
+		match current_message.messageType:
+			Message.MessageType.ADVENTURER_APPLIES:
+				GameManager.decline_adventurer_application(current_message.applied_adventurer)
+			_:
+				print("Other reject action")
+		# Mark the current message as read only when an action is taken
+		GameManager.mark_message_as_read(current_message)
 	message_display.hide()
 	update_unread_message_list()
 
@@ -178,9 +194,9 @@ func _on_inbox_notification_pressed():
 func _on_inbox_alert_pressed():
 	left_menu.visible = true
 
-func _update_inbox_notification(unread_message_count = 0):  # Accept an argument but do not use it
+func _update_inbox_notification(unread_message_count = 0):
 	var unread_messages = GameManager.get_unread_messages()
-	print("Unread messages count: ", unread_messages.size())  # Debugging line
+	print("Unread messages count: ", unread_messages.size())
 	if unread_messages.size() > 0:
 		inboxNotificationValue.text = "There are unopened letters at your desk!"
 		inboxAlert.visible = true
