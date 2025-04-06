@@ -7,6 +7,7 @@ var GuildWorkerCardScene = preload("res://guild_worker_card.tscn")
 var MissionGenerator = preload("res://scripts/guild/missionGenerator.gd").new()
 var MissionProfile = preload("res://scripts/guild/missionProfile.gd")
 var DungeonManager = preload("res://scripts/guild/dungeonManager.gd").new()
+var MessageGenerator = preload("res://scripts/guild/messageGenerator.gd").new()
 
 # Define player stats
 var gold: int = 300
@@ -69,6 +70,10 @@ var guild_workers = []
 # List to keep track of missions
 var missions = []
 var active_missions = []
+
+# List to keep track of messages
+var read_messages = []
+var unread_messages = []
 
 
 # Define signals
@@ -548,3 +553,19 @@ func activate_random_dungeon():
 func update_dungeon_status(dungeon_id: String, new_status: int):
 	DungeonManager.update_dungeon_status(dungeon_id, new_status)
 	emit_signal("update_dungeon_list", DungeonManager.get_active_dungeons())
+
+
+# MESSAGE FUNCTIONS
+
+func add_message(messageType):
+	var message = MessageGenerator.generate_message(messageType)
+	unread_messages.append(message)
+	emit_signal("new_message_received", message)
+
+func get_unread_messages():
+	return unread_messages
+
+func mark_message_as_read(message):
+	if message in unread_messages:
+		unread_messages.erase(message)
+		read_messages.append(message)
