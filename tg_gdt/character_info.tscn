@@ -56,7 +56,7 @@ offset_bottom = 33.0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("6_ktswq")
 theme_override_font_sizes/font_size = 25
-text = "Class + Race"
+text = "Race + Class"
 horizontal_alignment = 1
 
 [node name="adventurerDetails" type="HSplitContainer" parent="."]

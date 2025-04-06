@@ -1,7 +1,7 @@
 extends Node
 
 var personalities = {
-    "INTJ": {
+    "Architect": {
         "name": "Architect", 
         "weight": 1.0, 
         "modifiers": {
@@ -12,7 +12,7 @@ var personalities = {
             "Honesty": 20
         }
     },
-    "INTP": {
+    "Logician": {
         "name": "Logician", 
         "weight": 1.0, 
         "modifiers": {
@@ -23,7 +23,7 @@ var personalities = {
             "Resourcefulness": 20
         }
     },
-    "ENTJ": {
+    "Commander": {
         "name": "Commander", 
         "weight": 1.0, 
         "modifiers": {
@@ -35,7 +35,7 @@ var personalities = {
             "Aggression": 10
         }
     },
-    "ENTP": {
+    "Debater": {
         "name": "Debater", 
         "weight": 1.0, 
         "modifiers": {
@@ -49,7 +49,7 @@ var personalities = {
             "Resourcefulness": 20
         }
     },
-    "INFJ": {
+    "Advocate": {
         "name": "Advocate", 
         "weight": 1.0, 
         "modifiers": {
@@ -63,7 +63,7 @@ var personalities = {
             "Diplomacy": 20
         }
     },
-    "INFP": {
+    "Mediator": {
         "name": "Mediator", 
         "weight": 1.0, 
         "modifiers": {
@@ -76,7 +76,7 @@ var personalities = {
             "Diplomacy": 20
         }
     },
-    "ENFJ": {
+    "Protagonist": {
         "name": "Protagonist", 
         "weight": 1.0, 
         "modifiers": {
@@ -89,7 +89,7 @@ var personalities = {
             "Aggression": 10
         }
     },
-    "ENFP": {
+    "Campaigner": {
         "name": "Campaigner", 
         "weight": 1.0, 
         "modifiers": {
@@ -100,7 +100,7 @@ var personalities = {
             "Diplomacy": 20
         }
     },
-    "ISTJ": {
+    "Logistician": {
         "name": "Logistician", 
         "weight": 1.0, 
         "modifiers": {
@@ -109,7 +109,7 @@ var personalities = {
             "Patience": 20
         }
     },
-    "ISFJ": {
+    "Defender": {
         "name": "Defender", 
         "weight": 1.0, 
         "modifiers": {
@@ -124,7 +124,7 @@ var personalities = {
             "Aggression": 10
         }
     },
-    "ESTJ": {
+    "Executive": {
         "name": "Executive", 
         "weight": 1.0, 
         "modifiers": {
@@ -135,7 +135,7 @@ var personalities = {
             "Discipline": 20
         }
     },
-    "ESFJ": {
+    "Consul": {
         "name": "Consul", 
         "weight": 1.0, 
         "modifiers": {
@@ -147,7 +147,7 @@ var personalities = {
             "Persuasion": 30
         }
     },
-    "ISTP": {
+    "Virtuoso": {
         "name": "Virtuoso", 
         "weight": 1.0, 
         "modifiers": {
@@ -158,7 +158,7 @@ var personalities = {
             "Resourcefulness": 20
         }
     },
-    "ISFP": {
+    "Adventurer": {
         "name": "Adventurer", 
         "weight": 1.0, 
         "modifiers": {
@@ -170,7 +170,7 @@ var personalities = {
             "Deception": -20
         }
     },
-    "ESTP": {
+    "Entrepeneur": {
         "name": "Entrepreneur", 
         "weight": 1.0, 
         "modifiers": {
@@ -180,7 +180,7 @@ var personalities = {
             "Resourcefulness": 20
         }
     },
-    "ESFP": {
+    "Entertainer": {
         "name": "Entertainer", 
         "weight": 1.0, 
         "modifiers": {

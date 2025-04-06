@@ -116,10 +116,76 @@ func set_character_id():
 	character_id = str(self.get_instance_id())
 
 func calculate_stats():
-	# Calculate initial stats
+	# Define base values for primary stats; for new stats not listed here, default to 0.
+	# You can adjust these base values as needed.
+	var base_values = {
+	"Health": 0,
+	"Mana": 0,
+	"Strength": 0,
+	"Agility": 0,
+	"Constitution": 0,
+	"Wisdom": 0,
+	"Intelligence": 0,
+	"Charisma": 0,
+	"Adaptability": randi_range(-30, 30),
+	"Tenacity": randi_range(-30, 30),
+	"Loyalty": randi_range(-30, 30),
+	"Ambition": randi_range(-30, 30),
+	"Good": randi_range(-30, 30),
+	"Evil": randi_range(-30, 30),
+	"Leadership": randi_range(-30, 30),
+	"Willpower": randi_range(-30, 30),
+	"Luck": randi_range(-30, 30),
+	"Perception": randi_range(-30, 30),
+	"Morale": randi_range(-30, 30),
+	"FireAffinity": randi_range(-30, 30),
+	"WaterAffinity": randi_range(-30, 30),
+	"EarthAffinity": randi_range(-30, 30),
+	"AirAffinity": randi_range(-30, 30),
+	"LightAffinity": randi_range(-30, 30),
+	"DarkAffinity": randi_range(-30, 30),
+	"ArcaneAffinity": randi_range(-30, 30),
+	"NatureAffinity": randi_range(-30, 30),
+	"PsionicAffinity": randi_range(-30, 30),
+	"LightningAffinity": randi_range(-30, 30),
+	"FireResistance": randi_range(-30, 30),
+	"WaterResistance": randi_range(-30, 30),
+	"EarthResistance": randi_range(-30, 30),
+	"AirResistance": randi_range(-30, 30),
+	"LightResistance": randi_range(-30, 30),
+	"DarkResistance": randi_range(-30, 30),
+	"ArcaneResistance": randi_range(-30, 30),
+	"NatureResistance": randi_range(-30, 30),
+	"LightningResistance": randi_range(-30, 30),
+	"PsionicResistance": randi_range(-30, 30),
+	"Armor": randi_range(-30, 30),
+	"Sociability": randi_range(-30, 30),
+	"Confidence": randi_range(-30, 30),
+	"Empathy": randi_range(-30, 30),
+	"Humor": randi_range(-30, 30),
+	"Curiosity": randi_range(-30, 30),
+	"Creativity": randi_range(-30, 30),
+	"Discipline": randi_range(-30, 30),
+	"Patience": randi_range(-30, 30),
+	"Honesty": randi_range(-30, 30),
+	"Bravery": randi_range(-30, 30),
+	"Persuasion": randi_range(-30, 30),
+	"Intimidation": randi_range(-30, 30),
+	"Deception": randi_range(-30, 30),
+	"Diplomacy": randi_range(-30, 30),
+	"Aggression": randi_range(-30, 30),
+	"Resourcefulness": randi_range(-30, 30),
+	"Cunning": randi_range(-30, 30),
+	"Integrity": randi_range(-30, 30),
+	"Humility": randi_range(-30, 30)
+	}
+	
+	# Loop through all keys in the stats dictionary (including new ones)
 	for stat in stats.keys():
+		var base_value = base_values.get(stat, 0)
 		var race_value = selected_race.get("modifiers", {}).get(stat, 0)
-		var class_value = selected_class.get("modifiers", {}).get(stat, 0)
+		# Use generated class stats instead of raw modifiers
+		var class_value = selected_class.get("generated_stats", {}).get(stat, 0)
 		var trait_value = 0
 		for selected_trait in selected_traits:
 			trait_value += selected_trait.get("modifiers", {}).get(stat, 0)
@@ -130,8 +196,9 @@ func calculate_stats():
 			if status != null:
 				status_value += status.get("modifiers", {}).get(stat, 0)
 				
-		stats[stat] = race_value + class_value + trait_value + personality_value + backstory_value + status_value
+		stats[stat] = base_value + race_value + class_value + trait_value + personality_value + backstory_value + status_value
 
+		
 func add_experience(amount):
 	var new_experience = experience + amount
 	while new_experience >= level * 100:

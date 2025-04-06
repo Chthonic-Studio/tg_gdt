@@ -340,7 +340,6 @@ text = "Message"
 script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

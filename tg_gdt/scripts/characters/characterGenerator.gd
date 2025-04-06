@@ -25,15 +25,14 @@ func generate_character() -> Node2D:
 	character.age = randi_range(18, 30)
 	character.gold = randi_range(10, 100)
 
-	# Generate class stats and assign them to the character
+	# Generate class stats and store them in the selected_class property
 	var class_stats = Class.generate_class_stats(character.selected_class["stat_ranges"])
-	for stat in class_stats.keys():
-		character.stats[stat] = class_stats[stat]
+	character.selected_class["generated_stats"] = class_stats
 
 	# Initialize other stats
 	character.calculate_stats()
 
-	# Set the name of the node
+	# Set the node name
 	character.name = character.character_first_name + " " + character.character_last_name + " " + character.character_id
 
 	return character
