@@ -756,6 +756,7 @@ texture_normal = ExtResource("46_vd2i2")
 [node name="2xButton" type="TextureButton" parent="gameSpeedMenu/speedContainer"]
 layout_mode = 2
 texture_normal = ExtResource("47_502x3")
+stretch_mode = 0
 
 [node name="date" type="Label" parent="gameSpeedMenu"]
 layout_mode = 2
@@ -763,6 +764,21 @@ size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 26
 text = "13th of the 8th Moon, 735"
+
+[node name="speedLabel" type="Label" parent="gameSpeedMenu/date"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.377
+anchor_top = 0.872
+anchor_right = 0.377
+anchor_bottom = 0.872
+offset_left = -20.023
+offset_top = -6.008
+offset_right = 19.977
+offset_bottom = 16.992
+theme_override_fonts/font = ExtResource("7_1cxlp")
+theme_override_font_sizes/font_size = 15
+text = "Game Speed"
 
 [node name="notificationMenu" type="MarginContainer" parent="."]
 visible = false

@@ -4,6 +4,7 @@ extends Node
 var game_speed: float = 1.0
 var current_date: Dictionary = {"day": 13, "moon": 8, "year": 735}
 var day_duration: float = 12.0 # 12 real life seconds
+var timer: Timer = null
 
 # Signals for updating the date label and game speed changes
 signal date_updated(new_date: Dictionary)
@@ -14,7 +15,9 @@ func _ready():
 
 # Function to start the game timer
 func start_timer():
-	var timer = Timer.new()
+	if timer:
+		timer.queue_free()
+	timer = Timer.new()
 	timer.set_wait_time(day_duration / game_speed)
 	timer.connect("timeout", Callable (self, "_on_day_passed"))
 	add_child(timer)
@@ -38,13 +41,17 @@ func advance_day():
 
 # Functions to control game speed
 func pause_game():
+	if timer:
+		timer.stop()
 	game_speed = 0.0
 	emit_signal("game_speed_changed", game_speed)
 
 func normal_speed():
 	game_speed = 1.0
+	start_timer()
 	emit_signal("game_speed_changed", game_speed)
 
 func double_speed():
 	game_speed = 2.0
+	start_timer()
 	emit_signal("game_speed_changed", game_speed)
