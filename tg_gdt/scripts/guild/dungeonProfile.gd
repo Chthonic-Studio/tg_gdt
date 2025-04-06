@@ -1,5 +1,7 @@
 extends Node
 
+var Message = preload("res://scripts/guild/message.gd")
+
 enum DungeonStatus { LISTED, DUNGEON_BREAK, WAITING_FOR_ADVENTURERS, SCOUTING, EXPLORATION, MEASUREMENT, CLEARING, BOSS_ROOM }
 
 var dungeon_id: String = ""
@@ -19,3 +21,6 @@ func init(_dungeon_id: String, _title: String, _description: String, _rank: Stri
 	stages = _stages
 	status = _status
 	return self
+
+func _simulate_dungeon_notification():
+	GameManager.add_message(Message.MessageType.DUNGEON_NOTIFICATION)

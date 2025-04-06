@@ -6,8 +6,8 @@ var GuildWorkerGenerator = preload("res://scripts/guild/guild_worker_generator.g
 var GuildWorkerCardScene = preload("res://guild_worker_card.tscn")
 var MissionGenerator = preload("res://scripts/guild/missionGenerator.gd").new()
 var MissionProfile = preload("res://scripts/guild/missionProfile.gd")
-var DungeonManager = preload("res://scripts/guild/dungeonManager.gd").new()
 var MessageGenerator = preload("res://scripts/guild/messageGenerator.gd").new()
+var Message = preload("res://scripts/guild/message.gd")
 
 # Define player stats
 var gold: int = 300
@@ -85,6 +85,8 @@ signal gold_spent
 signal update_mission_list
 signal update_active_mission_list
 signal update_dungeon_list
+signal new_message_received
+signal unread_message_count_changed
 
 func _ready():
 	if not initial_guild_workers_assigned:
@@ -557,10 +559,12 @@ func update_dungeon_status(dungeon_id: String, new_status: int):
 
 # MESSAGE FUNCTIONS
 
-func add_message(messageType):
-	var message = MessageGenerator.generate_message(messageType)
+# Function to generate and add a new message
+func add_message(messageType, extra_info = {}):
+	var message = MessageGenerator.generate_message(messageType, extra_info)
 	unread_messages.append(message)
 	emit_signal("new_message_received", message)
+	emit_signal("unread_message_count_changed", unread_messages.size())
 
 func get_unread_messages():
 	return unread_messages
@@ -569,3 +573,68 @@ func mark_message_as_read(message):
 	if message in unread_messages:
 		unread_messages.erase(message)
 		read_messages.append(message)
+		emit_signal("unread_message_count_changed", unread_messages.size())
+
+# Function to handle Town Support Request
+func handle_town_support_request(accept: bool, requested_item: String):
+	if accept:
+		if requested_item == "gold":
+			modify_gold(-100)
+		elif requested_item == "prestige":
+			guild_prestige -= 10
+		else:
+			# Handle the guild building request
+			# Example: reducing the income of a building
+			pass
+		modify_reputation(10)
+	else:
+		modify_reputation(-10)
+		modify_influence(-10)
+
+# Function to handle Adventurer Support
+func handle_adventurer_support(accept: bool, adventurer_name: String, requested_item: String):
+	var adventurer = get_character_by_name(adventurer_name)
+	if accept:
+		if requested_item == "gold":
+			modify_gold(-50)
+		else:
+			# Handle the guild building request
+			# Example: reducing the income of a building
+			pass
+		adventurer.modify_guild_trust(10)
+		modify_adventurer_support(10)
+	else:
+		adventurer.modify_guild_trust(-10)
+
+# Function to handle Dungeon Notification
+func handle_dungeon_notification():
+	var highest_rank_party = get_highest_rank_party()
+	if highest_rank_party:
+		send_party_to_dungeon(highest_rank_party)
+
+func get_highest_rank_party():
+	var highest_rank = -1
+	var highest_rank_party = null
+	for party in parties:
+		if party.rank > highest_rank:
+			highest_rank = party.rank
+			highest_rank_party = party
+	return highest_rank_party
+
+func send_party_to_dungeon(party):
+	# Logic to send the party to the dungeon
+	pass
+
+# Function to get a character by its name
+func get_character_by_name(character_name: String):
+	for character in characters:
+		if character.character_fullName == character_name:
+			return character
+	return null
+
+# Function to generate a random notification for debugging purposes
+func generate_random_notification():
+	var message = MessageGenerator.generate_random_notification()
+	unread_messages.append(message)
+	emit_signal("new_message_received", message)
+	emit_signal("unread_message_count_changed", unread_messages.size())

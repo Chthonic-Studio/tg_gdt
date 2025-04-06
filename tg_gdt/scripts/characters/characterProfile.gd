@@ -2,6 +2,7 @@ extends Node2D
 
 # Load the relevant scripts
 var Status = preload("res://scripts/abilities/status.gd").new()
+var Message = preload("res://scripts/guild/message.gd")
 
 enum CharacterStatus { ACTIVE, RETIRED, DECEASED }
 
@@ -20,6 +21,7 @@ var character_avatar = "res://assets/avatars/test_humanavatar.png"
 var missions_completed : int = 0
 var rank : String = "E"
 var guild_eval : String = "Guild Evaluation"
+var guild_trust : int = 0
 
 # Character Variables
 var selected_race = {}
@@ -147,3 +149,13 @@ func remove_item_from_inventory(item):
 
 func get_inventory_items():
 	return character_inventory
+
+# Signaling functions
+# Function to simulate adventurer support request
+func simulate_adventurer_support():
+	var requested_item = "gold"
+	GameManager.add_message(Message.MessageType.ADVENTURER_SUPPORT, {"adventurer_name": character_fullName, "requested_item": requested_item})
+
+# Function to simulate adventurer updates
+func simulate_adventurer_updates():
+	GameManager.add_message(Message.MessageType.ADVENTURER_UPDATES)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=53 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
 [ext_resource type="Script" uid="uid://c64todp4udco7" path="res://scripts/ui/debugButtons/debug_new_dungeon.gd" id="12_hn41t"]
 [ext_resource type="Script" uid="uid://do2dtilrjs6ky" path="res://scripts/ui/bookMenu_right_page.gd" id="12_paulu"]
+[ext_resource type="Script" uid="uid://gce1jd847ixi" path="res://scripts/ui/debugButtons/debug_message.gd" id="13_vd2i2"]
 [ext_resource type="PackedScene" uid="uid://bfke1am7o7x8" path="res://character_info.tscn" id="13_xxcwy"]
 [ext_resource type="Script" uid="uid://dcehi7f0xelbb" path="res://scripts/ui/lp_parties_list.gd" id="13_y2akj"]
 [ext_resource type="PackedScene" uid="uid://dofy6t1eb01cl" path="res://parties_list_item.tscn" id="14_pqk8a"]
@@ -307,7 +308,7 @@ text = "+Stats"
 [node name="debug_addParty" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "+New Party"
+text = "+N.Party"
 script = ExtResource("4_pqk8a")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer"]
@@ -316,7 +317,7 @@ layout_mode = 2
 [node name="debug_randomItems" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 9
-text = "+Random Items"
+text = "+R.Items"
 script = ExtResource("10_a8lwy")
 
 [node name="debug_newMission" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -330,6 +331,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "+Dungeon"
 script = ExtResource("12_hn41t")
+
+[node name="debug_message" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Message"
+script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
 visible = false
