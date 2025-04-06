@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=54 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -46,6 +46,7 @@
 [ext_resource type="Script" uid="uid://bflf72madmx6j" path="res://scripts/ui/bottomMenuButtons/missions_button.gd" id="39_pmtdm"]
 [ext_resource type="Script" uid="uid://dvvxpw72ffmce" path="res://scripts/ui/bottomMenuButtons/dungeon_button.gd" id="43_866hc"]
 [ext_resource type="Texture2D" uid="uid://dlabovrv8ian" path="res://assets/Speed0.PNG" id="45_wfmre"]
+[ext_resource type="Script" uid="uid://c2lnqbq4y6hec" path="res://scripts/ui/game_speed_menu.gd" id="46_502x3"]
 [ext_resource type="Texture2D" uid="uid://bcxgbtlqr4vsh" path="res://assets/Speed1.PNG" id="46_vd2i2"]
 [ext_resource type="Texture2D" uid="uid://b3juo65co3mgh" path="res://assets/Speed2.PNG" id="47_502x3"]
 [ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="48_h8qsu"]
@@ -738,20 +739,21 @@ anchor_right = 1.0
 offset_left = -358.0
 offset_bottom = 45.0
 grow_horizontal = 0
+script = ExtResource("46_502x3")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="gameSpeedMenu"]
+[node name="speedContainer" type="HBoxContainer" parent="gameSpeedMenu"]
 layout_mode = 2
 alignment = 2
 
-[node name="TextureButton2" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+[node name="pauseButton" type="TextureButton" parent="gameSpeedMenu/speedContainer"]
 layout_mode = 2
 texture_normal = ExtResource("45_wfmre")
 
-[node name="TextureButton" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+[node name="1xButton" type="TextureButton" parent="gameSpeedMenu/speedContainer"]
 layout_mode = 2
 texture_normal = ExtResource("46_vd2i2")
 
-[node name="TextureButton3" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
+[node name="2xButton" type="TextureButton" parent="gameSpeedMenu/speedContainer"]
 layout_mode = 2
 texture_normal = ExtResource("47_502x3")
 
@@ -763,6 +765,7 @@ theme_override_font_sizes/font_size = 26
 text = "13th of the 8th Moon, 735"
 
 [node name="notificationMenu" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.414

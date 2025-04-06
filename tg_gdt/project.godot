@@ -23,6 +23,7 @@ UIManager="*res://scripts/ui/ui_manager.gd"
 Items="*res://scripts/items.gd"
 Inventory="*res://scripts/inventory.gd"
 DungeonManager="*res://scripts/guild/dungeonManager.gd"
+TimeManager="*res://scripts/timeManager.gd"
 
 [display]
 
