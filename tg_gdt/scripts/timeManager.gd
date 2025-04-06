@@ -3,7 +3,7 @@ extends Node
 # Time control variables
 var game_speed: float = 1.0
 var current_date: Dictionary = {"day": 13, "moon": 8, "year": 735}
-var day_duration: float = 12.0 # 12 real life seconds
+var day_duration: float = 3.0 # 12 real life seconds
 var timer: Timer = null
 
 # Signals for updating the date label and game speed changes
@@ -20,7 +20,7 @@ func start_timer():
 		timer.queue_free()
 	timer = Timer.new()
 	timer.set_wait_time(day_duration / game_speed)
-	timer.connect("timeout", Callable (self, "_on_day_passed"))
+	timer.connect("timeout", Callable(self, "_on_day_passed"))
 	add_child(timer)
 	timer.start()
 
@@ -40,6 +40,11 @@ func advance_day():
 			current_date["year"] += 1
 			emit_signal("year_passed", current_date["year"])
 	emit_signal("date_updated", current_date)
+	
+	# Trigger AI daily actions for each active character.
+	# Since GameManager and AIBehavior are autoloads, we can reference them directly.
+	for character in GameManager.characters:
+		CharBehavior.simulate_daily_action(character, GameManager.characters, current_date["day"])
 
 # Functions to control game speed
 func pause_game():

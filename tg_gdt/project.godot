@@ -24,6 +24,7 @@ Items="*res://scripts/items.gd"
 Inventory="*res://scripts/inventory.gd"
 DungeonManager="*res://scripts/guild/dungeonManager.gd"
 TimeManager="*res://scripts/timeManager.gd"
+CharBehavior="*res://scripts/characters/ai_behavior.gd"
 
 [display]
 

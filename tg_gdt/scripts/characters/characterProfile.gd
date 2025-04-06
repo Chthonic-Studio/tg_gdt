@@ -42,6 +42,9 @@ var gold : int = 0
 
 # Character relationships
 var relationships = {}
+# New property to track if the character is coupled.
+# This will store the couple's character_id once a couple is formed.
+var couple = null
 
 # Character Main Stats
 var stats = {

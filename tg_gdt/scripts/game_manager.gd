@@ -299,6 +299,32 @@ func hire_workers(building: String):
 
 	emit_signal("stat_modified")
 
+func calculate_monthly_income() -> int:
+	# Sum the incomes from all buildings
+	var total_income = guild_tavern_income + guild_forge_income + cartographer_table_income + training_grounds_income + apothecary_income + enchantment_table_income
+	return total_income
+
+func apply_monthly_income():
+	var income = calculate_monthly_income()
+	modify_gold(income)
+	print("Applied monthly income: " + str(income) + " gold.")
+
+func apply_building_cost_reduction(building: String, cost_reduction: int):
+	# Implement logic to reduce building cost for the specified building
+	match building:
+		"tavern":
+			guild_tavern_income -= cost_reduction
+		"training_grounds":
+			training_grounds_income -= cost_reduction
+		"forge":
+			guild_forge_income -= cost_reduction
+		"apothecary":
+			apothecary_income -= cost_reduction
+		"cartography":
+			cartographer_table_income -= cost_reduction
+		"enchantment":
+			enchantment_table_income -= cost_reduction
+
 # Function to update the status of a character by ID
 func update_character_status(character_id: String, new_status: int):
 	for character in characters:
@@ -608,17 +634,18 @@ func mark_message_as_read(message):
 		read_messages.append(message)
 		emit_signal("unread_message_count_changed", unread_messages.size())
 
-# Function to handle Town Support Request
 func handle_town_support_request(accept: bool, requested_item: String):
 	if accept:
-		if requested_item == "gold":
-			modify_gold(-100)
-		elif requested_item == "prestige":
-			guild_prestige -= 10
-		else:
-			# Handle the guild building request
-			# Example: reducing the income of a building
-			pass
+		if requested_item.begins_with("Gold"):
+			var gold_amount = int(requested_item.split(" ")[1])
+			modify_gold(-gold_amount)
+		elif requested_item.begins_with("Guild building"):
+			# Extract building and cost reduction details
+			var details = requested_item.substr(16)  # Skip "Guild building: "
+			var building = details.split(" with cost reduction of ")[0]
+			var cost_reduction = int(details.split("with cost reduction of ")[1].split(" ")[0])
+			# Apply cost reduction logic for 3 months
+			apply_building_cost_reduction(building, cost_reduction)
 		modify_reputation(10)
 	else:
 		modify_reputation(-10)
@@ -626,18 +653,21 @@ func handle_town_support_request(accept: bool, requested_item: String):
 
 # Function to handle Adventurer Support
 func handle_adventurer_support(accept: bool, adventurer_name: String, requested_item: String):
-	var adventurer = get_character_by_name(adventurer_name)
 	if accept:
-		if requested_item == "gold":
-			modify_gold(-50)
-		else:
-			# Handle the guild building request
-			# Example: reducing the income of a building
-			pass
-		adventurer.modify_guild_trust(10)
-		modify_adventurer_support(10)
+		if requested_item.begins_with("Gold"):
+			var gold_amount = int(requested_item.split(" ")[1])
+			modify_gold(-gold_amount)
+		elif requested_item.begins_with("Guild building"):
+			# Extract building and cost reduction details
+			var details = requested_item.substr(16)  # Skip "Guild building: "
+			var building = details.split(" with cost reduction of ")[0]
+			var cost_reduction = int(details.split("with cost reduction of ")[1].split(" ")[0])
+			# Apply cost reduction logic for 3 months
+			apply_building_cost_reduction(building, cost_reduction)
+		modify_reputation(10)
 	else:
-		adventurer.modify_guild_trust(-10)
+		modify_reputation(-10)
+		modify_influence(-10)
 
 # Function to handle Dungeon Notification
 func handle_dungeon_notification():
