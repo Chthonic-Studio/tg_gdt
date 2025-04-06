@@ -735,12 +735,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -139.0
+offset_left = -358.0
 offset_bottom = 45.0
 grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="gameSpeedMenu"]
 layout_mode = 2
+alignment = 2
 
 [node name="TextureButton2" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
 layout_mode = 2
@@ -753,6 +754,13 @@ texture_normal = ExtResource("46_vd2i2")
 [node name="TextureButton3" type="TextureButton" parent="gameSpeedMenu/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("47_502x3")
+
+[node name="date" type="Label" parent="gameSpeedMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 26
+text = "13th of the 8th Moon, 735"
 
 [node name="notificationMenu" type="MarginContainer" parent="."]
 layout_mode = 1
