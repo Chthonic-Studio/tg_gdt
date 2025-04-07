@@ -93,7 +93,7 @@ func _start_mission(mission, participant, global_day: int) -> void:
 	GameManager.emit_signal("update_mission_list", GameManager.missions)
 	GameManager.emit_signal("update_active_mission_list", GameManager.active_missions)
 	print("DEBUG: Mission ", mission.mission_id, " started by ", participant.name, " on global day ", global_day, " and participant will be busy until global day ", busy_until)
-	LogManager.add_log(participant.name + " have accepted the mission '" + mission.title + "' and departed to complete it!")
+	LogManager.add_log(participant.character_fullName + " have accepted the mission '" + mission.title + "' and departed to complete it!")
 
 # Resolve missions that have reached or passed their resolution day.
 func _resolve_due_missions(global_day: int) -> void:

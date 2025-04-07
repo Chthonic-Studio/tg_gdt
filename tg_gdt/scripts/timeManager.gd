@@ -43,26 +43,21 @@ func advance_day():
 			current_date["moon"] = 1
 			current_date["year"] += 1
 			emit_signal("year_passed", current_date["year"])
-			LogManager.add_log("Happy new year!")
 	emit_signal("date_updated", current_date)
 	
-	# Trigger AI daily actions for each active character.
-	# Since GameManager and AIBehavior are autoloads, we can reference them directly.
 	for character in GameManager.characters:
 		CharBehavior.simulate_daily_action(character, current_date["day"])
 	
-	# Convert the current date to a continuous global day count for mission processing.
 	var global_day = convert_date_to_global_day(current_date)
-	# Call MissionController's simulate_daily_missions with the global day.
 	MissionController.simulate_daily_missions(global_day)
+	
+	# Call the autonomous daily update function in GameManager.
+	GameManager.autonomous_daily_update(global_day)
 
 # Helper function to convert a date dictionary into a continuous global day count.
 func convert_date_to_global_day(date: Dictionary) -> int:
-	# Assuming date contains keys "year", "moon", and "day"
-	# Global day = (year * 360) + ((moon - 1) * 30) + day
 	return (date["year"] * MONTHS_PER_YEAR * DAYS_PER_MONTH) + ((date["moon"] - 1) * DAYS_PER_MONTH) + date["day"]
 
-# Functions to control game speed
 func pause_game():
 	if timer:
 		timer.stop()

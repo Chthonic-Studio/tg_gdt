@@ -76,7 +76,6 @@ var active_missions = []
 var read_messages = []
 var unread_messages = []
 
-
 # Define signals
 signal stat_modified # Signals a player's stat was modified
 signal update_character_list # Signals there was an update in the character list
@@ -94,21 +93,15 @@ func _ready():
 		populate_guild_positions()
 	# Connect to the year_passed signal from TimeManager
 	TimeManager.connect("year_passed", Callable(self, "_on_year_passed"))
-	
+	# Initialize game with starter characters and parties
+
+func _on_scene_loaded():
+	init_starter_game()
+
 func game_start():
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
-	gameStart_on_spawn_character()
+	# If you still need to run the original game_start (debug spawn), leave this as-is.
+	for i in range(13):
+		gameStart_on_spawn_character()
 	
 func gameStart_on_spawn_character():
 	var new_character = CharacterGenerator.generate_character()
@@ -117,7 +110,118 @@ func gameStart_on_spawn_character():
 	else:
 		print("Failed to generate character")
 
-# Function to show a popup when the player doesn't have enough gold
+func init_starter_game():
+	# 1) Create each character, then immediately call functions to set the ID, calculate stats, and initialize meta.
+	
+	# --- 1 character: level 7, rank B, missions_completed 20 ---
+	var char = CharacterGenerator.generate_character()
+	if char:
+		# Ensure the character is fully initialized
+		char.set_character_id()  # This normally runs in _ready, so call it explicitly too.
+		char.calculate_stats()
+		char.set_meta("last_action_day", 0)
+		char.level = 7
+		char.rank = "B"
+		char.missions_completed = 20
+		char.character_title = "The Wolfhound"
+		# Add as child to trigger _ready() if needed
+		get_tree().current_scene.add_child(char)
+		characters.append(char)
+		
+	# --- 2 characters: level 5, rank C, missions_completed 15 ---
+	for i in range(2):
+		char = CharacterGenerator.generate_character()
+		if char:
+			char.set_character_id()
+			char.calculate_stats()
+			char.set_meta("last_action_day", 0)
+			char.level = 5
+			char.rank = "C"
+			char.missions_completed = 15
+			get_tree().current_scene.add_child(char)
+			characters.append(char)
+			
+	# --- 3 characters: level 3, rank D, missions_completed 7 ---
+	for i in range(3):
+		char = CharacterGenerator.generate_character()
+		if char:
+			char.set_character_id()
+			char.calculate_stats()
+			char.set_meta("last_action_day", 0)
+			char.level = 3
+			char.rank = "D"
+			char.missions_completed = 7
+			get_tree().current_scene.add_child(char)
+			characters.append(char)
+			
+	# --- 4 characters: default stats ---
+	for i in range(4):
+		char = CharacterGenerator.generate_character()
+		if char:
+			char.set_character_id()
+			char.calculate_stats()
+			char.set_meta("last_action_day", 0)
+			get_tree().current_scene.add_child(char)
+			characters.append(char)
+			
+	emit_signal("update_character_list", characters)
+	
+	# Now create your starter parties
+	var partyName1 = create_party("Starter Party 1")
+	if partyName1 != "":
+		var party1 = get_party_by_name(partyName1)
+		if party1:
+			party1.party_rank = "D"
+			party1.missions_completed = 6
+			_assign_characters_to_party(partyName1, 3)
+	var partyName2 = create_party("Starter Party 2")
+	if partyName2 != "":
+		_assign_characters_to_party(partyName2, 3)
+		
+func _assign_characters_to_party(party_name: String, count: int):
+	# Find characters without a party.
+	var unassigned = []
+	for char in characters:
+		if is_instance_valid(char) and char.party == "No Party":
+			unassigned.append(char)
+	for i in range(min(count, unassigned.size())):
+		var rand_index = randi() % unassigned.size()
+		add_character_to_party(unassigned[rand_index].character_id, party_name)
+		unassigned.remove_at(rand_index)
+		
+# Autonomous daily update called from TimeManager passing the global day.
+func autonomous_daily_update(global_day: int) -> void:
+	# Every 15 days, with 50% chance, spawn a new adventurer application.
+	if global_day % 15 == 0:
+		if randf() < 0.5:
+			print("Autonomous check: generating new adventurer application.")
+			_on_spawn_character()
+			
+	# Every 30 days, with 33% chance, check for party creation.
+	if global_day % 30 == 0:
+		if randf() < 0.33:
+			# Count characters without a party.
+			var unassigned = []
+			for char in characters:
+				if is_instance_valid(char) and char.party == "No Party":
+					unassigned.append(char)
+			if unassigned.size() > 5:
+				var party_name = "Auto Party " + str(parties.size() + 1)
+				var created = create_party(party_name)
+				if created != "":
+					# Randomly assign 3 to 5 characters.
+					var assign_count = min(unassigned.size(), (randi() % 3) + 3)
+					for i in range(assign_count):
+						var index = randi() % unassigned.size()
+						add_character_to_party(unassigned[index].character_id, party_name)
+						unassigned.remove(index)
+						
+	# Every 10 days, with 50% chance, generate a mission.
+	if global_day % 10 == 0:
+		if randf() < 0.5:
+			print("Autonomous check: generating new mission.")
+			generate_mission()
+
 func not_enough_gold():
 	var popup = Popup.new()
 	popup.popup_centered()
@@ -126,42 +230,35 @@ func not_enough_gold():
 	add_child(popup)
 	popup.show()
 
-# Updated Function: When spawning a new character, add to preload_characters and send an application message.
 func _on_spawn_character():
 	print("Generating new adventurer application")
 	var new_character = CharacterGenerator.generate_character()
 	if new_character:
 		preload_characters.append(new_character)
-		# Instead of only generating the message, add it using add_message:
 		add_message(Message.MessageType.ADVENTURER_APPLIES, {"adventurer": new_character})
 		print("Adventurer application added: ", new_character.name)
 	else:
 		print("Failed to generate character")
 
-# Function called when player accepts an adventurer application.
 func accept_adventurer_application(character):
 	if character in preload_characters:
 		preload_characters.erase(character)
 		characters.append(character)
-		# Add the character node to the current scene.
 		get_tree().current_scene.add_child(character)
-		# Update relationships between the new character and all existing ones.
 		for other in characters:
-			if other != character:
+			# Ensure 'other' is still valid before accessing its properties
+			if other != character and is_instance_valid(other):
 				if not other.relationships.has(character.character_id):
 					other.relationships[character.character_id] = 0
 				if not character.relationships.has(other.character_id):
 					character.relationships[other.character_id] = 0
 		print("Adventurer accepted: ", character.name)
-		LogManager.add_log("A new adventurer joins the guild! " + character.character_fullName + "is ready to become a hero")
 		emit_signal("update_character_list", characters)
 
-# Function called when player declines an adventurer application.
 func decline_adventurer_application(character):
 	if character in preload_characters:
 		preload_characters.erase(character)
 		print("Adventurer declined: ", character.name)
-		# Remove the node from the scene and free resources.
 		character.queue_free()
 
 # Function to generate and assign guild workers

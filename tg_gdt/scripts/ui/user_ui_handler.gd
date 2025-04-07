@@ -38,6 +38,8 @@ var Message = preload("res://scripts/guild/message.gd")
 
 var current_message = null
 
+signal scene_loaded
+
 func _ready():
 	print("UIHandler initialized")
 	# Signal listening for menu toggling
@@ -63,6 +65,11 @@ func _ready():
 	inboxAlert.connect("pressed", Callable(self, "_on_inbox_alert_pressed"))
 		
 	_update_inbox_notification()
+	
+	call_deferred("sceneLoaded")
+	
+func sceneLoaded():
+	GameManager.init_starter_game()
 	
 # Helper function: hide all book menu submenus.
 func hide_book_menu_submenus() -> void:

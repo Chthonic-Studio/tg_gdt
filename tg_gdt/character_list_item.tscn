@@ -65,7 +65,6 @@ offset_bottom = 44.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_o3p8a")
 theme_override_font_sizes/font_size = 11
-text = "Character Title"
 horizontal_alignment = 1
 
 [node name="charMissions" type="Label" parent="."]

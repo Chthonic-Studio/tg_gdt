@@ -18,6 +18,10 @@ func populate_character_list(characters):
 
 	# Iterate through the list of characters
 	for character in characters:
+		# Skip if the character has been freed
+		if not is_instance_valid(character):
+			continue
+		
 		# Instantiate a new character_list_item
 		var character_list_item = CharacterListItemScene.instantiate()
 

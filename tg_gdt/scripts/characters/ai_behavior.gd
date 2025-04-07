@@ -7,6 +7,10 @@ var Message = preload("res://scripts/guild/message.gd")
 var last_action_day = 0  # Optional: used for debugging; per-character metadata is stored on the character.
 
 func simulate_daily_action(character, current_day):
+	# Check if character is still a valid instance.
+	if character == null or not is_instance_valid(character):
+		return
+	
 	var totalDays = 30
 	var last_day = 0
 	if character.has_meta("last_action_day"):
@@ -137,7 +141,7 @@ func _adjust_single_relationship(character, active_characters):
 	var selected_other = others[randi() % others.size()]
 	var delta = randf_range(0, 3) * (character.stats.get("Empathy", 50) / 50.0)
 	character.adjust_relationship(selected_other.character_id, delta)
-	print(character.name, "improved their relationship with", selected_other.name)
+	print(character.character_fullName, "improved their relationship with", selected_other.character_fullName)
 
 func _simulate_fight(character, active_characters):
 	var potential_opponents = []
