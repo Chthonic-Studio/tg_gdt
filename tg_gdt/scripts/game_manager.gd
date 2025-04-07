@@ -661,6 +661,7 @@ func handle_town_support_request(accept: bool, requested_item: String):
 		if requested_item.begins_with("Gold"):
 			var gold_amount = int(requested_item.split(" ")[1])
 			modify_gold(-gold_amount)
+			emit_signal("gold_spent")
 		elif requested_item.begins_with("Guild building"):
 			# Extract building and cost reduction details
 			var details = requested_item.substr(16)  # Skip "Guild building: "
@@ -685,6 +686,7 @@ func handle_adventurer_support(accept: bool, adventurer_name: String, requested_
 				modify_influence(-10)
 				return
 			modify_gold(-gold_amount)
+			emit_signal("gold_spent")
 		elif requested_item.begins_with("Guild building"):
 			# Extract building and cost reduction details
 			var details = requested_item.substr(16)  # Skip "Guild building: "

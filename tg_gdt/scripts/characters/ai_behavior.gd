@@ -206,7 +206,7 @@ func _request_guild_support(character):
 			chosen_type = support_types[randi() % 2 + 1]  # picks index 1 or 2
 	
 	if chosen_type == "gold":
-		var gold_amount = randi() % 51 + 50  # amount between 50 and 100.
+		var gold_amount = -randi() % 51 - 50  # amount between -50 and -100.
 		details = "Gold: " + str(gold_amount) + " gold"
 	
 	if chosen_type == "guild_building":

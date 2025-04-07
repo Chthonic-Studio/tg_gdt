@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4nwkk3jgr3ld"]
+
+[ext_resource type="Script" uid="uid://ldf2p2jv2gd0" path="res://scripts/ui/main_menu.gd" id="1_8qtwp"]
+[ext_resource type="Texture2D" uid="uid://vtqy3rm387cj" path="res://assets/lightbrownbook/Book Desk/1.png" id="2_dy7ct"]
+[ext_resource type="Texture2D" uid="uid://d0brr8xvdar7l" path="res://assets/lightbrownbook/Inventory Book/Book Open and Close/Style 1/Cover 1/Close/5.png" id="3_0o4t1"]
+[ext_resource type="Texture2D" uid="uid://dn7hvnoue0aqc" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/4.png" id="4_0k4wn"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="5_j5v2v"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="6_iotk1"]
+[ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="7_w44g7"]
+[ext_resource type="AudioStream" uid="uid://mbltx677nn8s" path="res://audio/Aristocracy Theme Final omg.wav" id="8_cm266"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8qtwp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_dy7ct")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -360.0
+offset_right = 448.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_0o4t1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.496
+anchor_top = 0.294
+anchor_right = 0.496
+anchor_bottom = 0.294
+offset_left = -125.416
+offset_top = -25.68
+offset_right = 123.584
+offset_bottom = 79.32
+texture = ExtResource("4_0k4wn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 25.0
+offset_right = 226.0
+offset_bottom = 77.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_j5v2v")
+theme_override_font_sizes/normal_font_size = 35
+text = "The Guildmaster"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 142.0
+offset_right = 213.0
+offset_bottom = 327.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="playButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_iotk1")
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="instructionsButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_iotk1")
+theme_override_font_sizes/font_size = 30
+text = "Instructions"
+
+[node name="quitButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_iotk1")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="instructions" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.418
+anchor_right = 0.5
+anchor_bottom = 0.418
+offset_left = 160.0
+offset_top = -88.96
+offset_right = 485.0
+offset_bottom = 236.04
+texture = ExtResource("7_w44g7")
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/instructions"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 83.0
+offset_right = 274.0
+offset_bottom = 278.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("6_iotk1")
+text = "Congratulations! You are the new Guildmaster of the Adventurer's Guild! You are now in charge of managing the guild, its workers, members and missions. 
+
+The game is largely barebones, with only the key mechanics implemented but without the intented [DEPTH] of gameplay, but it should still be enjoyable if you like simulation management games such as Crusader Kings or Rimworld, or just enjoy looking at procedurally generated D&D characters. 
+
+Have fun!"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/instructions"]
+offset_left = 54.0
+offset_top = 42.0
+offset_right = 274.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_j5v2v")
+theme_override_font_sizes/font_size = 30
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_cm266")
+volume_db = -13.867
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer/instructionsButton" to="." method="instructions"]

@@ -11,6 +11,9 @@ enum MissionStatus { LISTED, WAITING_FOR_ADVENTURERS, IN_PROGRESS }
 @export var stages: Array = []
 @export var status: MissionStatus = MissionStatus.LISTED
 
+# Add the item_rewards property to store an array of item reward dictionaries
+@export var item_rewards: Array = []
+
 # New member variables for mission management
 @export var start_day: int = 0
 @export var resolution_day: int = 0

@@ -174,6 +174,13 @@ func _mission_success(mission) -> void:
 		GameManager.add_message(Message.MessageType.NOTIFICATION, {"text": "Party " + participant.party_name + " succeeded in mission " + mission.title})
 	if participant.has_method("add_log_entry"):
 		participant.add_log_entry("Mission " + mission.title + " succeeded on global day " + str(mission.resolution_day))
+	
+	# ADDED CODE: Award reward items to player's inventory.
+	# Ensure that the Inventory node path is correct.
+	for reward in mission.item_rewards:
+		# Each reward is a dictionary with "item_id" and "quantity" keys.
+		Inventory.add_item(reward["item_id"], reward["quantity"])
+	print("DEBUG: Rewards added to inventory: ", mission.item_rewards)
 
 # Process mission failure: each participant rolls a 50% chance of dying.
 func _mission_failure(mission) -> void:

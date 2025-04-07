@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=58 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -50,9 +50,12 @@
 [ext_resource type="Script" uid="uid://c2lnqbq4y6hec" path="res://scripts/ui/game_speed_menu.gd" id="46_502x3"]
 [ext_resource type="Texture2D" uid="uid://bcxgbtlqr4vsh" path="res://assets/Speed1.PNG" id="46_vd2i2"]
 [ext_resource type="Texture2D" uid="uid://b3juo65co3mgh" path="res://assets/Speed2.PNG" id="47_502x3"]
+[ext_resource type="Script" uid="uid://dso88gkri684k" path="res://scripts/ui/bottomMenuButtons/settings_button.gd" id="47_tkuw1"]
 [ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="48_h8qsu"]
 [ext_resource type="PackedScene" uid="uid://dgq6m5gs1kr7n" path="res://unread_message.tscn" id="49_jjwi0"]
 [ext_resource type="PackedScene" uid="uid://dksxkcntc76j6" path="res://message.tscn" id="50_ke5x6"]
+[ext_resource type="AudioStream" uid="uid://dr38pd2uheasw" path="res://audio/Battle Theme [Casual].wav" id="54_jjwi0"]
+[ext_resource type="PackedScene" uid="uid://cvq86owimj0f4" path="res://log_entry.tscn" id="56_tj51j"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -342,19 +345,17 @@ text = "Message"
 script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -822.0
-offset_top = -315.0
-offset_right = -11.0
-offset_bottom = 315.0
+anchors_preset = -1
+anchor_left = 0.286458
+anchor_top = 0.0138889
+anchor_right = 0.990451
+anchor_bottom = 0.986111
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("8_w43kd")
+metadata/_edit_use_anchors_ = true
 
 [node name="bookMenuVBox" type="VBoxContainer" parent="bookMenu"]
 layout_mode = 2
@@ -702,6 +703,7 @@ text = "Economy"
 script = ExtResource("26_rp8uo")
 
 [node name="dungeonButton" type="Button" parent="bottomMenu/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
@@ -729,8 +731,9 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
-text = "Settings
+text = "Quit Game
 "
+script = ExtResource("47_tkuw1")
 
 [node name="gameSpeedMenu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -849,8 +852,60 @@ theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 25
 text = "You have unread messages"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("54_jjwi0")
+volume_db = -33.712
+autoplay = true
+
+[node name="logMenu" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 484.0
+offset_top = 63.0
+offset_right = 1024.0
+offset_bottom = 603.0
+texture = ExtResource("48_h8qsu")
+
+[node name="guildmasterLogs" type="Label" parent="logMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.158
+anchor_right = 0.5
+anchor_bottom = 0.158
+offset_left = -137.0
+offset_top = -35.32
+offset_right = 138.0
+offset_bottom = 22.68
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_juyng")
+theme_override_font_sizes/font_size = 40
+text = "Guildmaster Logs"
+horizontal_alignment = 1
+
+[node name="logContainer" type="ScrollContainer" parent="logMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.292
+anchor_right = 0.5
+anchor_bottom = 0.292
+offset_left = -191.0
+offset_top = -56.68
+offset_right = 195.0
+offset_bottom = 299.32
+
+[node name="logVBox" type="VBoxContainer" parent="logMenu/logContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="logEntry" parent="logMenu/logContainer/logVBox" instance=ExtResource("56_tj51j")]
+layout_mode = 2
+
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" method="_on_pressed"]
 [connection signal="pressed" from="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList/inventoryGrid/itemListEntry" to="." method="_on_item_list_entry_pressed"]
+[connection signal="pressed" from="bottomMenu/HBoxContainer/settingsButton" to="bottomMenu/HBoxContainer/settingsButton" method="_on_pressed"]
