@@ -7,12 +7,14 @@ var Message = preload("res://scripts/guild/message.gd")
 var last_action_day = 0  # Optional: used for debugging; per-character metadata is stored on the character.
 
 func simulate_daily_action(character, current_day):
-	# Assume character has a meta field "last_action_day" indicating the last day an action was taken.
+	var totalDays = 30
 	var last_day = 0
 	if character.has_meta("last_action_day"):
 		last_day = character.get_meta("last_action_day")
 	
 	var day_diff = current_day - last_day
+	if day_diff < 0:
+		day_diff += totalDays
 	
 	# If character is still within the cooldown period, do nothing.
 	if day_diff < 10:
@@ -23,21 +25,44 @@ func simulate_daily_action(character, current_day):
 		if randi() % 10 != 0:
 			return  # Chance failed, do nothing.
 	else:
-		# If 30 or more days have passed, force an immediate roll.
-		# You may choose to set up a guaranteed chance by for example "forcing" the roll,
-		# or you might just proceed regardless of the outcome check.
-		# In this example, we simply bypass the chance check so that an action occurs.
-		# Alternatively, you could roll normally and if it fails, trigger the action anyway.
-		pass  # No chance check; go ahead with the action.
+		# If 30 or more days have passed, force an immediate roll (i.e. bypass chance check).
+		pass
 	
-	# If the roll is successful or forced, update the last action day and simulate the action.
+	# If the roll is successful or forced, update the last action day and perform an action.
 	character.set_meta("last_action_day", current_day)
-	# Perform the character's action.
 	perform_character_action(character)
-	
+
 func perform_character_action(character):
-	# Implementation of the character action simulation. For example:
-	print("Character " + character.name + " takes an action on day " + str(character.get_meta("last_action_day")))
+	# Build a list of available weighted actions for the character.
+	var weighted_actions = _build_dynamic_weighted_actions(character)
+	if weighted_actions.size() == 0:
+		print("No available actions for ", character.name)
+		return
+	# Choose one action from the weighted list.
+	var chosen_action = _choose_weighted_action(weighted_actions)
+	
+	# Execute the chosen action.
+	match chosen_action:
+		"adjust_single_relationship":
+			_adjust_single_relationship(character, GameManager.characters)
+		"simulate_fight":
+			_simulate_fight(character, GameManager.characters)
+		"try_couple":
+			_try_couple(character, GameManager.characters)
+		"send_mission_solo_message":
+			_send_mission_solo_message(character)
+		"train_character":
+			_train_character(character)
+		"commit_crime":
+			_commit_crime(character)
+		"request_guild_support":
+			_request_guild_support(character)
+		"donate_to_guild":
+			_donate_to_guild(character)
+		"increase_rank":
+			_increase_rank(character)
+		_:
+			print("Unknown action: ", chosen_action)
 
 func _build_dynamic_weighted_actions(character) -> Array:
 	var actions = [
@@ -157,7 +182,7 @@ func _train_character(character):
 	var stat_keys = character.stats.keys()
 	if stat_keys.size() > 0:
 		var chosen_stat = stat_keys[randi() % stat_keys.size()]
-		var improvement = randf_range(0.5, 2.0)
+		var improvement = randf_range(0.1, 0.5)
 		character.stats[chosen_stat] += improvement
 		print(character.name, "improved", chosen_stat, "by", improvement)
 
@@ -199,18 +224,15 @@ func _request_guild_support(character):
 	
 func _donate_to_guild(character):
 	print(character.name, "donated to the guild!")
-	# Since gold is defined on every character, we can simply check if they have any.
 	if character.gold > 0:
 		var donation = min(character.gold, int(randf_range(10, 50)))
 		character.gold -= donation
+		GameManager.modify_gold(donation)
 		print(character.name, "donated", donation, "gold.")
 
 func _increase_rank(character):
 	# Assuming a "rank" property exists.
-	# You might want to convert rank from a string to a numeric value for increasing rank properly.
-	# For this example, we simply assign a new rank.
 	if character.rank != null:
-		# Increase rank (for simplicity, just appending a "+" here)
 		character.rank += "+"
 	else:
 		character.rank = "E+"

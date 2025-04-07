@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=55 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="6_juyng"]
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="7_1cxlp"]
 [ext_resource type="Script" uid="uid://cwgu2abw6glos" path="res://scripts/ui/book_menu.gd" id="8_w43kd"]
+[ext_resource type="Script" uid="uid://dt25r32ys0uhp" path="res://scripts/ui/debugButtons/debug_add_10_char.gd" id="9_h8qsu"]
 [ext_resource type="Texture2D" uid="uid://kdlri2ttvuyw" path="res://assets/lightbrownbook/Inventory Book/Book Idle/1.png" id="9_jo8d0"]
 [ext_resource type="Script" uid="uid://b1wt51s45kelf" path="res://scripts/ui/debugButtons/debug_random_items.gd" id="10_a8lwy"]
 [ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
@@ -296,10 +297,11 @@ action_mode = 0
 text = "Spawn"
 script = ExtResource("2_dptev")
 
-[node name="debug_addGold" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer"]
+[node name="debug_add10Char" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "+Gold"
+text = "+10 Char"
+script = ExtResource("9_h8qsu")
 
 [node name="debug_addStats" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer"]
 layout_mode = 2
@@ -848,6 +850,7 @@ theme_override_font_sizes/font_size = 25
 text = "You have unread messages"
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
+[connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_addParty" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/debug_randomItems" method="_on_pressed"]
 [connection signal="pressed" from="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList/inventoryGrid/itemListEntry" to="." method="_on_item_list_entry_pressed"]

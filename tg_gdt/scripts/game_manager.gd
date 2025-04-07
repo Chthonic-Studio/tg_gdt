@@ -94,6 +94,28 @@ func _ready():
 		populate_guild_positions()
 	# Connect to the year_passed signal from TimeManager
 	TimeManager.connect("year_passed", Callable(self, "_on_year_passed"))
+	
+func game_start():
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	gameStart_on_spawn_character()
+	
+func gameStart_on_spawn_character():
+	var new_character = CharacterGenerator.generate_character()
+	if new_character:
+		characters.append(new_character)
+	else:
+		print("Failed to generate character")
 
 # Function to show a popup when the player doesn't have enough gold
 func not_enough_gold():
@@ -656,6 +678,12 @@ func handle_adventurer_support(accept: bool, adventurer_name: String, requested_
 	if accept:
 		if requested_item.begins_with("Gold"):
 			var gold_amount = int(requested_item.split(" ")[1])
+			# Check if there is enough gold; if not, call not_enough_gold() and treat as a decline.
+			if gold < gold_amount:
+				not_enough_gold()
+				modify_reputation(-10)
+				modify_influence(-10)
+				return
 			modify_gold(-gold_amount)
 		elif requested_item.begins_with("Guild building"):
 			# Extract building and cost reduction details
