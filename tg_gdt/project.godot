@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="TheGuildmaster"
-run/main_scene="uid://hwn1hgpjlqm5"
+config/description="Guildmaster Simulator game about managing an adventurers' guild in a medieval fantasy world"
+config/version="0.01 (LDJam)"
+run/main_scene="uid://c4nwkk3jgr3ld"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://o4epin13hk6y"
 
 [autoload]
 
@@ -26,6 +28,7 @@ DungeonManager="*res://scripts/guild/dungeonManager.gd"
 TimeManager="*res://scripts/timeManager.gd"
 CharBehavior="*res://scripts/characters/ai_behavior.gd"
 MissionController="*res://scripts/missionController.gd"
+LogManager="*res://scripts/logManager.gd"
 
 [display]
 

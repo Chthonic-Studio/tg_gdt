@@ -93,6 +93,7 @@ func _start_mission(mission, participant, global_day: int) -> void:
 	GameManager.emit_signal("update_mission_list", GameManager.missions)
 	GameManager.emit_signal("update_active_mission_list", GameManager.active_missions)
 	print("DEBUG: Mission ", mission.mission_id, " started by ", participant.name, " on global day ", global_day, " and participant will be busy until global day ", busy_until)
+	LogManager.add_log(participant.name + " have accepted the mission '" + mission.title + "' and departed to complete it!")
 
 # Resolve missions that have reached or passed their resolution day.
 func _resolve_due_missions(global_day: int) -> void:
@@ -181,6 +182,7 @@ func _mission_success(mission) -> void:
 		# Each reward is a dictionary with "item_id" and "quantity" keys.
 		Inventory.add_item(reward["item_id"], reward["quantity"])
 	print("DEBUG: Rewards added to inventory: ", mission.item_rewards)
+	LogManager.add_log(participant + " has returned successful! They cleared the mission '" + mission.title + "'")
 
 # Process mission failure: each participant rolls a 50% chance of dying.
 func _mission_failure(mission) -> void:
@@ -199,10 +201,12 @@ func _mission_failure(mission) -> void:
 		GameManager.add_message(Message.MessageType.NOTIFICATION, {"text": "Party " + participant.party_name + " failed mission " + mission.title})
 	if participant.has_method("add_log_entry"):
 		participant.add_log_entry("Mission " + mission.title + " failed on global day " + str(mission.resolution_day))
+	LogManager.add_log(participant + "has returned defeated... They failed to clear the mission '" + mission.title + "'")
 
 # Mark a character as dead.
 func _kill_character(character) -> void:
 	print("DEBUG: Character ", character.character_fullName, " has died.")
+	LogManager.add_log("We are sorry to let you know that " + character.character_fullName + " has sadly perished")
 	GameManager.characters.erase(character)
 	GameManager.dead_characters.append(character)
 

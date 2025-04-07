@@ -1,26 +1,31 @@
 extends Control
 
 var Message = preload("res://scripts/guild/message.gd")
-# Left menu variables
-
+# Menus variables
 @onready var left_menu = $leftMenu
+@onready var book_menu = $bookMenu
+@onready var log_list = $logMenu
 
-# Book menu variables 
+# Book menu submenus (paired left/right panels)
 @onready var character_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList
 @onready var character_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/characterInfo
+
 @onready var parties_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList
 @onready var parties_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/partyInfo
+
 @onready var item_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_itemList
 @onready var item_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/economyInfo
+
 @onready var guild_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_guildList
 @onready var guild_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/guildInfo
+
 @onready var mission_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList
 @onready var mission_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo
+
 @onready var world_list_left = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_dungeonList
 @onready var world_list_right = $bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/dungeonInfo
 
 # Message menu variables
-
 @onready var notification_list = $notificationMenu/menuMargin/notificationBg/notificationList/notificationVBox
 @onready var notification_margin = $notificationMenu
 @onready var message_display = $notificationMenu/messageMargin/messageBg
@@ -35,7 +40,7 @@ var current_message = null
 
 func _ready():
 	print("UIHandler initialized")
-	# Signal listening
+	# Signal listening for menu toggling
 	UIManager.connect("toggle_leftMenu", Callable(self, "toggle_leftMenu"))
 	UIManager.connect("toggle_characterList", Callable(self, "toggle_characterList"))
 	UIManager.connect("toggle_partiesList", Callable(self, "toggle_partiesList"))
@@ -43,6 +48,7 @@ func _ready():
 	UIManager.connect("toggle_guildList", Callable(self, "toggle_guildList"))
 	UIManager.connect("toggle_missionList", Callable(self, "toggle_missionList"))
 	UIManager.connect("toggle_dungeonList", Callable(self, "toggle_worldList"))
+	UIManager.connect("toggle_logList", Callable(self, "toggle_logList"))
 	
 	# Message system connections
 	GameManager.connect("new_message_received", Callable(self, "_on_new_message_received"))
@@ -57,70 +63,123 @@ func _ready():
 	inboxAlert.connect("pressed", Callable(self, "_on_inbox_alert_pressed"))
 		
 	_update_inbox_notification()
-		
-func toggle_leftMenu():
+	
+# Helper function: hide all book menu submenus.
+func hide_book_menu_submenus() -> void:
+	character_list_left.visible = false
+	character_list_right.visible = false
+	parties_list_left.visible = false
+	parties_list_right.visible = false
+	item_list_left.visible = false
+	item_list_right.visible = false
+	guild_list_left.visible = false
+	guild_list_right.visible = false
+	mission_list_left.visible = false
+	mission_list_right.visible = false
+	world_list_left.visible = false
+	world_list_right.visible = false
+
+# Book menu toggle functions:
+func toggle_characterList() -> void:
+	if character_list_left.visible: 
+		# If already open, close the submenu and the book menu.
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		# Hide any other open submenu, show the book menu and then show this submenu.
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		character_list_left.visible = true
+		character_list_right.visible = true
+
+func toggle_partiesList() -> void:
+	if parties_list_left.visible: 
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		parties_list_left.visible = true
+		parties_list_right.visible = true
+
+func toggle_itemList() -> void:
+	if item_list_left.visible: 
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		item_list_left.visible = true
+		item_list_right.visible = true
+
+func toggle_guildList() -> void:
+	if guild_list_left.visible: 
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		guild_list_left.visible = true
+		guild_list_right.visible = true
+
+func toggle_missionList() -> void:
+	if mission_list_left.visible: 
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		mission_list_left.visible = true
+		mission_list_right.visible = true
+
+func toggle_worldList() -> void:
+	if world_list_left.visible: 
+		hide_book_menu_submenus()
+		book_menu.visible = false
+	else:
+		hide_book_menu_submenus()
+		book_menu.visible = true
+		world_list_left.visible = true
+		world_list_right.visible = true
+
+# Other independent menus:
+func toggle_leftMenu() -> void:
 	left_menu.visible = not left_menu.visible
 
-func toggle_characterList():
-	character_list_left.visible = not character_list_left.visible
-	character_list_right.visible = not character_list_right.visible
-
-func toggle_partiesList():
-	parties_list_left.visible = not parties_list_left.visible
-	parties_list_right.visible = not parties_list_right.visible
-	
-func toggle_itemList():
-	print("Toggling Item Menu")
-	item_list_left.visible = not item_list_left.visible
-	item_list_right.visible = not item_list_right.visible
-	
-func toggle_guildList():
-	print("Toggling Guild Menu")
-	guild_list_left.visible = not guild_list_left.visible
-	guild_list_right.visible = not guild_list_right.visible
-	
-func toggle_missionList():
-	print("Toggling Mission Menu")
-	mission_list_left.visible = not mission_list_left.visible
-	mission_list_right.visible = not mission_list_right.visible	
-	
-func toggle_worldList():
-	print("Toggling Dungeon Menu")
-	world_list_left.visible = not world_list_left.visible
-	world_list_right.visible = not world_list_right.visible	
-
-func toggle_messageList():
+func toggle_messageList() -> void:
 	notification_margin.visible = not notification_margin.visible
 	message_display.visible = not message_display.visible
-	
-	
+
+func toggle_logList() -> void:
+	log_list.visible = not log_list.visible
+
+
 # Message System Functions
 
-func _on_new_message_received(message):
+func _on_new_message_received(message): 
 	update_unread_message_list()
 
-func update_unread_message_list():
-	# Clear the VBoxContainer by removing all its children
+func update_unread_message_list() -> void:
+	# Clear the VBoxContainer by removing all its children.
 	for child in notification_list.get_children():
 		child.queue_free()
 		
 	var unread_messages = GameManager.get_unread_messages()
-	for message in unread_messages:
+	for msg in unread_messages:
 		var unread_message_instance = preload("res://unread_message.tscn").instantiate()
 		var button = unread_message_instance.get_node("unreadMessageButton")
 		var label = unread_message_instance.get_node("Label")
-		label.text = message.preview
-		button.connect("pressed", Callable(self, "_on_unread_message_pressed").bind(message))
+		label.text = msg.preview
+		button.connect("pressed", Callable(self, "_on_unread_message_pressed").bind(msg))
 		notification_list.add_child(unread_message_instance)
 	_update_inbox_notification()
 
-func _on_unread_message_pressed(message):
-	# Do not mark the message as read immediately.
-	# Simply show the message content.
+func _on_unread_message_pressed(message) -> void:
+	# Simply show the message content without marking it read immediately.
 	show_message_content(message)
 	_update_inbox_notification()  # Update the inbox notification if necessary
 
-func show_message_content(message):
+func show_message_content(message) -> void:
 	current_message = message
 	var message_text_node = message_display.get_node("messageText")
 	if message_text_node:
@@ -128,7 +187,6 @@ func show_message_content(message):
 		message_display.show()
 		
 		# Show or hide buttons based on the message type.
-		# For an adventurer application message, show Accept and Reject and hide Dismiss.
 		match message.messageType:
 			Message.MessageType.NOTIFICATION, Message.MessageType.WORLD_NEWS, Message.MessageType.ADVENTURER_UPDATES:
 				accept_button.hide()
@@ -138,7 +196,6 @@ func show_message_content(message):
 				accept_button.show()
 				reject_button.show()
 				dismiss_button.hide()
-			# New case for adventurer application:
 			Message.MessageType.ADVENTURER_APPLIES:
 				accept_button.show()
 				reject_button.show()
@@ -150,7 +207,7 @@ func show_message_content(message):
 	else:
 		print("Error: Node 'messageText' not found in 'message_display'")
 
-func _on_accept_button_pressed():
+func _on_accept_button_pressed() -> void:
 	print("Accept button pressed")
 	if current_message != null:
 		match current_message.messageType:
@@ -158,12 +215,11 @@ func _on_accept_button_pressed():
 				GameManager.accept_adventurer_application(current_message.applied_adventurer)
 			_:
 				print("Other accept action")
-		# Mark the current message as read only when an action is taken
 		GameManager.mark_message_as_read(current_message)
 	message_display.hide()
 	update_unread_message_list()
 
-func _on_reject_button_pressed():
+func _on_reject_button_pressed() -> void:
 	print("Reject button pressed")
 	if current_message != null:
 		match current_message.messageType:
@@ -171,12 +227,11 @@ func _on_reject_button_pressed():
 				GameManager.decline_adventurer_application(current_message.applied_adventurer)
 			_:
 				print("Other reject action")
-		# Mark the current message as read only when an action is taken
 		GameManager.mark_message_as_read(current_message)
 	message_display.hide()
 	update_unread_message_list()
 
-func _on_dismiss_button_pressed():
+func _on_dismiss_button_pressed() -> void:
 	print("Dismiss button pressed")
 	if current_message and (current_message.messageType in [
 		Message.MessageType.NOTIFICATION,
@@ -188,13 +243,13 @@ func _on_dismiss_button_pressed():
 	_update_inbox_notification()
 	update_unread_message_list()
 
-func _on_inbox_notification_pressed():
+func _on_inbox_notification_pressed() -> void:
 	toggle_messageList()
 
-func _on_inbox_alert_pressed():
+func _on_inbox_alert_pressed() -> void:
 	left_menu.visible = true
 
-func _update_inbox_notification(unread_message_count = 0):
+func _update_inbox_notification(unread_message_count = 0) -> void:
 	var unread_messages = GameManager.get_unread_messages()
 	print("Unread messages count: ", unread_messages.size())
 	if unread_messages.size() > 0:

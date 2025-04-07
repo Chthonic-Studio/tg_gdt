@@ -85,10 +85,10 @@ func _build_dynamic_weighted_actions(character) -> Array:
 
 func get_dynamic_weight(action: String, character) -> float:
 	var empathy = character.stats.get("Empathy", 50)
-	var aggression = character.stats.get("Aggression", 50)
+	var aggression = character.stats.get("Aggression", 30)
 	var confidence = character.stats.get("Confidence", 50)
 	var discipline = character.stats.get("Discipline", 50)
-	var evil = character.stats.get("Evil", 50)
+	var evil = character.stats.get("Evil", 30)
 	match action:
 		"adjust_single_relationship":
 			return 20.0 * clamp(empathy / 50.0, 0.5, 2.0)
@@ -157,6 +157,7 @@ func _simulate_fight(character, active_characters):
 			character.adjust_relationship(opponent.character_id, -5)
 			opponent.adjust_relationship(character.character_id, 5)
 		print(character.name, "fought with", opponent.name)
+		LogManager.add_log("We received news that " + character.character_fullName + " had a fight with " + opponent.character_fullName + ", this will sour their relationship")
 
 func _try_couple(character, active_characters):
 	# Assuming a "couple" property exists and is set to null if single.
@@ -173,6 +174,7 @@ func _try_couple(character, active_characters):
 				character.couple = other.character_id
 				other.couple = character.character_id
 				print(character.name, "and", other.name, "became a couple!")
+				LogManager.add_log("Someone told us that " + character.character_fullName + " and " + other.character_fullName + "are now a couple. Let's wish them the best!")
 				break
 
 func _send_mission_solo_message(character):
@@ -185,6 +187,7 @@ func _train_character(character):
 		var improvement = randf_range(0.1, 0.5)
 		character.stats[chosen_stat] += improvement
 		print(character.name, "improved", chosen_stat, "by", improvement)
+		LogManager.add_log("We have seen that " + character.character_fullName + " has been training really hard recently")
 
 func _commit_crime(character):
 	print(character.name, "committed a crime in secret!")
@@ -229,6 +232,7 @@ func _donate_to_guild(character):
 		character.gold -= donation
 		GameManager.modify_gold(donation)
 		print(character.name, "donated", donation, "gold.")
+		LogManager.add_log("We just received a donation from " + character.character_fullName + " of " + str(donation) + " gold!")
 
 func _increase_rank(character):
 	# Assuming a "rank" property exists.
@@ -237,3 +241,4 @@ func _increase_rank(character):
 	else:
 		character.rank = "E+"
 	print(character.name, "increased their rank!")
+	LogManager.add_log("We are happy to announce that " + character.character_fullName + " has been promoted to rank " + character.rank + "!")

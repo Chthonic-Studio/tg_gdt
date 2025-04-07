@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=54 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -15,13 +15,11 @@
 [ext_resource type="Script" uid="uid://b1wt51s45kelf" path="res://scripts/ui/debugButtons/debug_random_items.gd" id="10_a8lwy"]
 [ext_resource type="Script" uid="uid://brnbdmyj4ae2h" path="res://scripts/ui/UI_character_list.gd" id="10_iwd6v"]
 [ext_resource type="Script" uid="uid://coso5gehulga7" path="res://scripts/ui/debugButtons/debug_new_mission.gd" id="11_j5q58"]
-[ext_resource type="PackedScene" uid="uid://c4v52ohpvieko" path="res://character_list_item.tscn" id="11_xxcwy"]
 [ext_resource type="Script" uid="uid://c64todp4udco7" path="res://scripts/ui/debugButtons/debug_new_dungeon.gd" id="12_hn41t"]
 [ext_resource type="Script" uid="uid://do2dtilrjs6ky" path="res://scripts/ui/bookMenu_right_page.gd" id="12_paulu"]
 [ext_resource type="Script" uid="uid://gce1jd847ixi" path="res://scripts/ui/debugButtons/debug_message.gd" id="13_vd2i2"]
 [ext_resource type="PackedScene" uid="uid://bfke1am7o7x8" path="res://character_info.tscn" id="13_xxcwy"]
 [ext_resource type="Script" uid="uid://dcehi7f0xelbb" path="res://scripts/ui/lp_parties_list.gd" id="13_y2akj"]
-[ext_resource type="PackedScene" uid="uid://dofy6t1eb01cl" path="res://parties_list_item.tscn" id="14_pqk8a"]
 [ext_resource type="Script" uid="uid://bua1fuoem2ob6" path="res://scripts/ui/bottomMenuButtons/guild_info_button.gd" id="14_rdgyi"]
 [ext_resource type="Script" uid="uid://dgaooastisx38" path="res://scripts/ui/bottomMenuButtons/adventurers_button.gd" id="15_t15fl"]
 [ext_resource type="Script" uid="uid://2exg0wpcu6sn" path="res://scripts/ui/lp_item_list.gd" id="16_vqyv8"]
@@ -33,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://dn7hvnoue0aqc" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/4.png" id="22_5nspm"]
 [ext_resource type="Script" uid="uid://cq665b7tsv85g" path="res://scripts/ui/lp_missions_list.gd" id="22_i3kmt"]
 [ext_resource type="PackedScene" uid="uid://bg8iebu1v40yi" path="res://economy_info.tscn" id="22_vqyv8"]
-[ext_resource type="PackedScene" uid="uid://co146j3iy1eno" path="res://mission.tscn" id="24_j5q58"]
 [ext_resource type="Script" uid="uid://c4xuu4po15k3n" path="res://scripts/ui/lp_dungeon_list.gd" id="24_r8gvf"]
 [ext_resource type="PackedScene" uid="uid://chyq064mvijf5" path="res://guild_info.tscn" id="25_pctqs"]
 [ext_resource type="Script" uid="uid://bp5ongbxrtw1q" path="res://scripts/ui/guild_info.gd" id="26_2flxh"]
@@ -41,21 +38,20 @@
 [ext_resource type="Script" uid="uid://b37glu0pef5dr" path="res://scripts/ui/bottomMenuButtons/economy_button.gd" id="26_rp8uo"]
 [ext_resource type="Script" uid="uid://dyhqv2iaq8816" path="res://scripts/ui/bottomMenuButtons/guild_button.gd" id="28_2flxh"]
 [ext_resource type="Script" uid="uid://gm3qveuaox12" path="res://scripts/ui/mission_info.gd" id="32_lq8fq"]
-[ext_resource type="PackedScene" uid="uid://nifr70cxesv7" path="res://active_mission.tscn" id="33_pmtdm"]
 [ext_resource type="PackedScene" uid="uid://dm8c636krttxu" path="res://active_dungeon.tscn" id="35_23b88"]
 [ext_resource type="Script" uid="uid://v5er5k03xhqc" path="res://scripts/ui/active_dungeon_info.gd" id="36_866hc"]
 [ext_resource type="Script" uid="uid://bflf72madmx6j" path="res://scripts/ui/bottomMenuButtons/missions_button.gd" id="39_pmtdm"]
 [ext_resource type="Script" uid="uid://dvvxpw72ffmce" path="res://scripts/ui/bottomMenuButtons/dungeon_button.gd" id="43_866hc"]
+[ext_resource type="Script" uid="uid://c1yx6m0bleo8p" path="res://scripts/ui/bottomMenuButtons/info_log_button.gd" id="43_vd2i2"]
 [ext_resource type="Texture2D" uid="uid://dlabovrv8ian" path="res://assets/Speed0.PNG" id="45_wfmre"]
 [ext_resource type="Script" uid="uid://c2lnqbq4y6hec" path="res://scripts/ui/game_speed_menu.gd" id="46_502x3"]
 [ext_resource type="Texture2D" uid="uid://bcxgbtlqr4vsh" path="res://assets/Speed1.PNG" id="46_vd2i2"]
 [ext_resource type="Texture2D" uid="uid://b3juo65co3mgh" path="res://assets/Speed2.PNG" id="47_502x3"]
 [ext_resource type="Script" uid="uid://dso88gkri684k" path="res://scripts/ui/bottomMenuButtons/settings_button.gd" id="47_tkuw1"]
 [ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="48_h8qsu"]
-[ext_resource type="PackedScene" uid="uid://dgq6m5gs1kr7n" path="res://unread_message.tscn" id="49_jjwi0"]
 [ext_resource type="PackedScene" uid="uid://dksxkcntc76j6" path="res://message.tscn" id="50_ke5x6"]
+[ext_resource type="Script" uid="uid://c1cdbpnme1uw8" path="res://scripts/log_menu.gd" id="51_502x3"]
 [ext_resource type="AudioStream" uid="uid://dr38pd2uheasw" path="res://audio/Battle Theme [Casual].wav" id="54_jjwi0"]
-[ext_resource type="PackedScene" uid="uid://cvq86owimj0f4" path="res://log_entry.tscn" id="56_tj51j"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
 
@@ -345,7 +341,6 @@ text = "Message"
 script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.286458
@@ -413,12 +408,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="characterListItem" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_characterList/characterListVbox" instance=ExtResource("11_xxcwy")]
-layout_mode = 2
-mouse_filter = 1
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
 [node name="lp_partiesList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 visible = false
 layout_mode = 2
@@ -427,9 +416,6 @@ script = ExtResource("13_y2akj")
 [node name="partiesListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="partiesListItem" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_partiesList/partiesListVbox" instance=ExtResource("14_pqk8a")]
-layout_mode = 2
 
 [node name="lp_itemList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 visible = false
@@ -465,9 +451,6 @@ layout_mode = 2
 script = ExtResource("22_i3kmt")
 
 [node name="missionsListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList"]
-layout_mode = 2
-
-[node name="mission" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content/lp_missionsList/missionsListVbox" instance=ExtResource("24_j5q58")]
 layout_mode = 2
 
 [node name="lp_dungeonList" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
@@ -591,10 +574,6 @@ script = ExtResource("32_lq8fq")
 [node name="activeMissionsListVbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissionInfo"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="active_mission" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissionInfo/activeMissionsListVbox" instance=ExtResource("33_pmtdm")]
-layout_mode = 2
-script = null
 
 [node name="dungeonInfo" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content"]
 visible = false
@@ -725,6 +704,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
 theme_override_font_sizes/font_size = 20
 text = "Info Log"
+script = ExtResource("43_vd2i2")
+
+[node name="MarginContainer" type="MarginContainer" parent="bottomMenu/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
 
 [node name="settingsButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -823,9 +807,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="unreadMessage" parent="notificationMenu/menuMargin/notificationBg/notificationList/notificationVBox" instance=ExtResource("49_jjwi0")]
-layout_mode = 2
-
 [node name="messageMargin" type="MarginContainer" parent="notificationMenu"]
 custom_minimum_size = Vector2(350, 350)
 layout_mode = 2
@@ -894,14 +875,12 @@ offset_left = -191.0
 offset_top = -56.68
 offset_right = 195.0
 offset_bottom = 299.32
+script = ExtResource("51_502x3")
 
 [node name="logVBox" type="VBoxContainer" parent="logMenu/logContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="logEntry" parent="logMenu/logContainer/logVBox" instance=ExtResource("56_tj51j")]
-layout_mode = 2
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" method="_on_pressed"]

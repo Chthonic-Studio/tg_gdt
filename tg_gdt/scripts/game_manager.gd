@@ -153,6 +153,7 @@ func accept_adventurer_application(character):
 				if not character.relationships.has(other.character_id):
 					character.relationships[other.character_id] = 0
 		print("Adventurer accepted: ", character.name)
+		LogManager.add_log("A new adventurer joins the guild! " + character.character_fullName + "is ready to become a hero")
 		emit_signal("update_character_list", characters)
 
 # Function called when player declines an adventurer application.
@@ -238,6 +239,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[tavern_level - 1]
 				tavern_level += 1
 				tavern_status = upgrade_levels[tavern_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Tavern to " + str(tavern_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -246,6 +248,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[training_grounds_level - 1]
 				training_grounds_level += 1
 				training_grounds_status = upgrade_levels[training_grounds_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Training Grounds to " + str(training_grounds_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -254,6 +257,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[forge_level - 1]
 				forge_level += 1
 				forge_status = upgrade_levels[forge_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Forge to " + str(forge_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -262,6 +266,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[apothecary_level - 1]
 				apothecary_level += 1
 				apothecary_status = upgrade_levels[apothecary_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Apothecary to " + str(apothecary_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -270,6 +275,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[cartography_level - 1]
 				cartography_level += 1
 				cartography_status = upgrade_levels[cartography_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Cartography Table to " + str(cartography_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -278,6 +284,7 @@ func upgrade_building(building: String):
 				gold -= upgrade_costs[enchantment_level - 1]
 				enchantment_level += 1
 				enchantment_status = upgrade_levels[enchantment_level - 1]
+				LogManager.add_log("You have upgraded the Guild's Enchantment Store to " + str(enchantment_level))
 				emit_signal("gold_spent")
 			else:
 				not_enough_gold()
@@ -295,26 +302,32 @@ func hire_workers(building: String):
 				tavern_workers += 1
 				operating_costs += 10
 				guild_tavern_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Tavern")
 			"training_grounds":
 				training_grounds_workers += 1
 				operating_costs += 10
 				training_grounds_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Training Grounds")
 			"forge":
 				forge_workers += 1
 				operating_costs += 10
 				guild_forge_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Forge")
 			"apothecary":
 				apothecary_workers += 1
 				operating_costs += 10
 				apothecary_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Apothecary")
 			"cartography":
 				cartography_workers += 1
 				operating_costs += 10
 				cartographer_table_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Cartography Table")
 			"enchantment":
 				enchantment_workers += 1
 				operating_costs += 10
 				enchantment_table_income += 10
+				LogManager.add_log("You have hired new staff for the Guild's Enchantment Store")
 		emit_signal("gold_spent")
 	else:
 		not_enough_gold()
@@ -494,6 +507,7 @@ func create_party(party_name: String) -> String:
 		parties.append(new_party)
 		print("Party created: ", new_party.party_name)
 		emit_signal("update_party_list", parties)
+		LogManager.add_log("A new party has been formed! " + new_party.party_name + "will now take missions as a group")
 		return new_party.party_name
 	else:
 		print("Failed to create party")
@@ -598,6 +612,7 @@ func generate_mission():
 	var mission = MissionGenerator.generate_mission()
 	missions.append(mission)
 	emit_signal("update_mission_list", missions)
+	LogManager.add_log("We have received a new mission request!")
 
 # Function to update the status of a mission
 func update_mission_status(mission_id: String, new_status: int):

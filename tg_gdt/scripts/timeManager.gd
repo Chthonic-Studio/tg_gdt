@@ -43,6 +43,7 @@ func advance_day():
 			current_date["moon"] = 1
 			current_date["year"] += 1
 			emit_signal("year_passed", current_date["year"])
+			LogManager.add_log("Happy new year!")
 	emit_signal("date_updated", current_date)
 	
 	# Trigger AI daily actions for each active character.

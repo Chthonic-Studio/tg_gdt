@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvq86owimj0f4"]
+[gd_scene load_steps=4 format=3 uid="uid://cvq86owimj0f4"]
 
 [ext_resource type="Texture2D" uid="uid://bkt55j4e5vfw6" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/3 Item Holder/1.png" id="1_0f8jq"]
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="2_kmev6"]
+[ext_resource type="Script" uid="uid://bb2mj1pd02dqp" path="res://scripts/ui/log_entry.gd" id="2_op0lu"]
 
 [node name="logEntry" type="NinePatchRect"]
 custom_minimum_size = Vector2(200, 60)
 texture = ExtResource("1_0f8jq")
+script = ExtResource("2_op0lu")
 
 [node name="logText" type="Label" parent="."]
 layout_mode = 1
@@ -23,3 +25,4 @@ theme_override_constants/line_spacing = -10
 theme_override_fonts/font = ExtResource("2_kmev6")
 theme_override_font_sizes/font_size = 20
 text = "Log Text"
+autowrap_mode = 3

@@ -10,7 +10,10 @@ func play():
 	get_tree().change_scene_to_file("res://user_ui.tscn")
 
 func instructions_toggle():
-	instructions.visible = not instructions.visible
+	if instructions.visible:
+		instructions.visible = false
+	else:
+		instructions.visible = true
 
 func quit():
 	get_tree().quit()

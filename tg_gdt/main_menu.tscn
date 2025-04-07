@@ -103,6 +103,7 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="instructions" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -132,6 +133,7 @@ Have fun!"
 autowrap_mode = 3
 
 [node name="Label2" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/instructions"]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 42.0
 offset_right = 274.0
@@ -148,4 +150,4 @@ volume_db = -13.867
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer/instructionsButton" to="." method="instructions"]
+[connection signal="pressed" from="MarginContainer/NinePatchRect/MarginContainer/NinePatchRect/NinePatchRect/MarginContainer/VBoxContainer/instructionsButton" to="." method="instructions_toggle"]
