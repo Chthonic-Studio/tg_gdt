@@ -8,7 +8,7 @@ extends VBoxContainer
 
 @onready var amount_bg = $HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg
 @onready var amount_label = $HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg/amountLabel
-@onready var amount_line_edit = $HSplitContainer/itemName/HBoxContainer/itemQuantity/amount
+@onready var amount_line_edit = $HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg/amount
 
 @onready var sell_button = $HSplitContainer/itemName/HBoxContainer/sellButton
 @onready var donate_button = $HSplitContainer/itemName/HBoxContainer/donateButton

@@ -7,19 +7,23 @@
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="4_cx7ho"]
 
 [node name="itemListEntry" type="TextureButton"]
+custom_minimum_size = Vector2(64, 64)
 texture_normal = ExtResource("1_8dp5l")
 texture_hover = ExtResource("2_3u5co")
 stretch_mode = 0
 script = ExtResource("3_3u5co")
 
 [node name="itemListIcon" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 31.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_8pnpu")
+metadata/_edit_use_anchors_ = true
 
 [node name="onHoverPopUp" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_left = 3.0
 offset_top = 25.0
@@ -27,25 +31,26 @@ offset_right = 116.0
 offset_bottom = 121.0
 
 [node name="descriptionBg" type="ColorRect" parent="onHoverPopUp"]
+visible = false
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 offset_left = -1.0
 offset_top = 5.0
 offset_right = 99.0
-offset_bottom = 85.0
-color = Color(0.00784314, 0.00784314, 0.00784314, 0.419608)
+offset_bottom = 109.0
+color = Color(0.00784314, 0.00784314, 0.00784314, 0.666667)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="onHoverPopUp/descriptionBg"]
 layout_mode = 2
 offset_top = -2.0
 offset_right = 101.0
-offset_bottom = 111.0
+offset_bottom = 106.0
 
 [node name="name" type="Label" parent="onHoverPopUp/descriptionBg/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.99558, 0.99558, 0.99558, 1)
 theme_override_fonts/font = ExtResource("4_cx7ho")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "Item Name"
 horizontal_alignment = 1
 
@@ -53,13 +58,14 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.99558, 0.99558, 0.99558, 1)
 theme_override_fonts/font = ExtResource("4_cx7ho")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "Quantity: 9"
 
 [node name="description" type="Label" parent="onHoverPopUp/descriptionBg/VBoxContainer"]
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(80, 50)
 layout_mode = 2
+theme_override_constants/line_spacing = -15
 theme_override_fonts/font = ExtResource("4_cx7ho")
-theme_override_font_sizes/font_size = 11
-text = "Item Description Description"
-autowrap_mode = 1
+theme_override_font_sizes/font_size = 15
+text = "Item Description Description Description Description Description This is it"
+autowrap_mode = 3

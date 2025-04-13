@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_lqiwc"]
 
 [node name="economyInfo" type="VBoxContainer"]
+offset_right = 514.0
+offset_bottom = 649.0
 script = ExtResource("1_c730w")
 
 [node name="itemInfo" type="Label" parent="."]
@@ -20,7 +22,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="HSplitContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="itemName" type="Label" parent="HSplitContainer"]
@@ -29,24 +31,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_u4mv6")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 25
 
 [node name="itemDescription" type="Label" parent="HSplitContainer/itemName"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 32.0
-offset_right = 188.0
-offset_bottom = 70.0
+offset_right = 354.0
+offset_bottom = 115.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -15
 theme_override_fonts/font = ExtResource("4_lqiwc")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/itemName"]
 layout_mode = 0
 offset_left = -4.0
-offset_top = 69.0
-offset_right = 186.0
-offset_bottom = 101.0
+offset_top = 135.0
+offset_right = 342.0
+offset_bottom = 172.0
 alignment = 1
 
 [node name="itemQuantity" type="Label" parent="HSplitContainer/itemName/HBoxContainer"]
@@ -56,40 +59,43 @@ theme_override_fonts/font = ExtResource("4_lqiwc")
 theme_override_font_sizes/font_size = 15
 
 [node name="amountBg" type="ColorRect" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity"]
+visible = false
 layout_mode = 0
-offset_left = -77.0
-offset_top = 16.0
-offset_right = 123.0
-offset_bottom = 69.0
+offset_left = 3.0
+offset_top = 37.0
+offset_right = 180.0
+offset_bottom = 102.0
 color = Color(0, 0, 0, 0.388235)
 
 [node name="amountLabel" type="Label" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = -2.0
-offset_right = 197.0
-offset_bottom = 27.0
+offset_left = 7.0
+offset_top = -1.0
+offset_right = 172.0
+offset_bottom = 50.0
 theme_override_fonts/font = ExtResource("4_c730w")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 25
 text = "How many?"
 
-[node name="amount" type="LineEdit" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity"]
+[node name="amount" type="LineEdit" parent="HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg"]
 layout_mode = 0
-offset_left = -64.0
-offset_top = 35.0
-offset_right = 104.0
-offset_bottom = 66.0
+offset_left = 12.0
+offset_top = 27.0
+offset_right = 163.0
+offset_bottom = 58.0
 placeholder_text = "0"
 max_length = 5
 
 [node name="sellButton" type="Button" parent="HSplitContainer/itemName/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 20
 text = "   Sell   "
 
 [node name="donateButton" type="Button" parent="HSplitContainer/itemName/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 20
 text = " Donate "
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -98,36 +104,48 @@ layout_mode = 2
 
 [node name="economicInfoContainer" type="HSplitContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 55
 
 [node name="mainEconomicInfo" type="HSplitContainer" parent="economicInfoContainer"]
 layout_mode = 2
 
 [node name="economicLabels" type="VBoxContainer" parent="economicInfoContainer/mainEconomicInfo"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+alignment = 1
 
 [node name="recentMissionLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 22
 text = "Recent Missions"
+horizontal_alignment = 1
 
 [node name="monthlyIncomeLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 22
 text = "Monthly Income"
+horizontal_alignment = 1
 
 [node name="monthlyExpensesLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 22
 text = "Monthly Expenses"
+horizontal_alignment = 1
 
 [node name="monthylBalanceLabel" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 22
 text = "Monthly Balance"
+horizontal_alignment = 1
 
 [node name="economicValues" type="VBoxContainer" parent="economicInfoContainer/mainEconomicInfo"]
 layout_mode = 2
@@ -137,6 +155,7 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 25
 text = "800"
 
 [node name="monthlyIncomeValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
@@ -144,6 +163,7 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 25
 text = "800"
 
 [node name="monthlyExpensesValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
@@ -151,6 +171,7 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 25
 text = "800"
 
 [node name="monthlyBalanceValue" type="Label" parent="economicInfoContainer/mainEconomicInfo/economicValues"]
@@ -158,62 +179,71 @@ custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_font_sizes/font_size = 25
 text = "800"
 
 [node name="guildCommentaryLabel" type="Label" parent="economicInfoContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_lqiwc")
+theme_override_fonts/font = ExtResource("2_u4mv6")
+theme_override_font_sizes/font_size = 30
 text = "Guild Commentary"
+horizontal_alignment = 1
 
 [node name="guildCommentaryValue" type="Label" parent="economicInfoContainer/guildCommentaryLabel"]
 layout_mode = 0
-offset_top = 24.0
-offset_right = 172.0
-offset_bottom = 68.0
+offset_left = -23.0
+offset_top = 27.0
+offset_right = 265.0
+offset_bottom = 109.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -15
 theme_override_fonts/font = ExtResource("4_lqiwc")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Guild Commentary"
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+size_flags_vertical = 2
 
 [node name="economicStatus" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 2
 alignment = 1
 
 [node name="economicStatusLabel" type="Label" parent="economicStatus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_u4mv6")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 text = "Town Economic Status: "
 
 [node name="economicStatusValue" type="Label" parent="economicStatus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_u4mv6")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 text = "Flourishing"
 
 [node name="guildStatus" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
 [node name="guildStatusLabel" type="Label" parent="guildStatus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_u4mv6")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 text = "Guild Economic Status: "
 
 [node name="guildStatusValue" type="Label" parent="guildStatus"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_u4mv6")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 28
 text = "Flourishing"
 
-[connection signal="text_submitted" from="HSplitContainer/itemName/HBoxContainer/itemQuantity/amount" to="." method="_on_amount_text_submitted"]
+[connection signal="text_submitted" from="HSplitContainer/itemName/HBoxContainer/itemQuantity/amountBg/amount" to="." method="_on_amount_text_submitted"]

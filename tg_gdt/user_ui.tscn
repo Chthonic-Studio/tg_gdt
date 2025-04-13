@@ -62,6 +62,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_t15fl")
 
 [node name="leftMenu" type="MarginContainer" parent="."]
@@ -69,26 +71,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_right = -837.0
-offset_bottom = -46.0
+offset_top = 91.0
+offset_right = -592.0
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="leftMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
 theme_override_constants/separation = 30
 
 [node name="baseLeftMenu" type="MarginContainer" parent="leftMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 6
 theme_override_constants/margin_left = 15
 
 [node name="NinePatchRect" type="NinePatchRect" parent="leftMenu/VBoxContainer/baseLeftMenu"]
-custom_minimum_size = Vector2(300, 600)
+custom_minimum_size = Vector2(450, 900)
 layout_mode = 2
 texture = ExtResource("1_ux461")
 
@@ -99,10 +100,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -226.0
-offset_right = 114.0
-offset_bottom = 226.0
+offset_left = -180.0
+offset_top = -341.0
+offset_right = 180.0
+offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -121,7 +122,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 40
 text = "Guildmaster "
 horizontal_alignment = 1
 
@@ -129,7 +130,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 35
 text = "Gold: "
 
 [node name="mainStatsContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
@@ -141,7 +142,7 @@ script = ExtResource("5_52g50")
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "Main stats"
 
 [node name="mainStatsBars" type="HBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer"]
@@ -150,7 +151,7 @@ layout_mode = 2
 [node name="mainStatsBarLabels" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 4
 
@@ -159,18 +160,20 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 31
 text = "Morale"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="reputationLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 31
 text = "Reputation"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="influenceLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
 custom_minimum_size = Vector2(0, 25)
@@ -178,9 +181,10 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 31
 text = "Influence"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="supportLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
 custom_minimum_size = Vector2(0, 25)
@@ -188,9 +192,10 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 31
 text = "Support"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="prestigeLabel" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarLabels"]
 custom_minimum_size = Vector2(0, 25)
@@ -198,40 +203,43 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 31
 text = "Prestige"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="mainStatsBarContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars"]
-custom_minimum_size = Vector2(130, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
+theme_override_constants/separation = 22
 
 [node name="moraleBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_vertical = 6
 rounded = true
 
 [node name="reputationBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_vertical = 6
 rounded = true
 
 [node name="influenceBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 rounded = true
 
 [node name="supportBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 rounded = true
 
 [node name="prestigeBar" type="ProgressBar" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/mainStatsContainer/mainStatsBars/mainStatsBarContainer"]
 layout_mode = 2
+size_flags_vertical = 2
 rounded = true
 
 [node name="MarginContainer" type="MarginContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
@@ -239,19 +247,19 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="inboxNotification" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_52g50")
 theme_override_font_sizes/font_size = 18
 
 [node name="inboxNotificationValue" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/inboxNotification"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -3.0
-offset_right = 228.0
-offset_bottom = 24.0
+offset_left = 3.0
+offset_top = -7.0
+offset_right = 359.0
+offset_bottom = 34.0
 theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 28
 text = "There are unopened letters at your desk!"
 horizontal_alignment = 1
 
@@ -260,20 +268,19 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="chatNotification" type="Button" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_52g50")
 theme_override_font_sizes/font_size = 18
 
 [node name="chatNotificationValue" type="Label" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/StatContainer/chatNotification"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -2.0
-offset_right = 228.0
-offset_bottom = 25.0
+offset_top = -7.0
+offset_right = 364.0
+offset_bottom = 34.0
 theme_override_fonts/font = ExtResource("4_52g50")
-theme_override_font_sizes/font_size = 17
-text = "There is someone wanting to speak with you!"
+theme_override_font_sizes/font_size = 28
+text = "Someone wants to speak with you!"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer"]
@@ -341,6 +348,7 @@ text = "Message"
 script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.286458
@@ -367,7 +375,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="book9PatchRect" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase"]
-custom_minimum_size = Vector2(750, 500)
+custom_minimum_size = Vector2(1200, 800)
 layout_mode = 2
 mouse_filter = 1
 texture = ExtResource("9_jo8d0")
@@ -391,9 +399,10 @@ vertical_alignment = 1
 
 [node name="lp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title"]
 layout_mode = 0
-offset_top = 14.0
-offset_right = 308.0
-offset_bottom = 403.0
+offset_left = 9.0
+offset_top = 33.0
+offset_right = 523.0
+offset_bottom = 665.0
 
 [node name="lp_characterList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
 visible = false
@@ -502,10 +511,10 @@ layout_mode = 2
 
 [node name="rightPage" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect"]
 layout_mode = 0
-offset_left = 407.0
-offset_top = 30.0
-offset_right = 721.0
-offset_bottom = 440.0
+offset_left = 655.0
+offset_top = 58.0
+offset_right = 1156.0
+offset_bottom = 707.0
 script = ExtResource("12_paulu")
 
 [node name="rp_vbox" type="VBoxContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage"]
@@ -517,10 +526,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="rp_content" type="MarginContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title"]
-layout_mode = 0
-offset_top = 14.0
-offset_right = 308.0
-offset_bottom = 426.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00598802
+anchor_right = 0.994012
+anchor_bottom = 28.2174
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="characterInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("13_xxcwy")]
 visible = false
@@ -544,24 +556,26 @@ visible = false
 layout_mode = 2
 
 [node name="activeMissions" type="NinePatchRect" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo"]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 texture = ExtResource("22_5nspm")
 
 [node name="Label" type="Label" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content/missionInfo/activeMissions"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.482
-anchor_top = 0.46
-anchor_right = 0.482
-anchor_bottom = 0.46
-offset_left = -109.456
-offset_top = -13.0
-offset_right = 109.544
-offset_bottom = 10.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.499
+offset_top = -28.0
+offset_right = 111.501
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 40
 text = "Active Missions"
 horizontal_alignment = 1
 
@@ -631,20 +645,20 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -34.0
+offset_top = -61.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bottomMenu"]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="guildInfoButton" type="Button" parent="bottomMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Guildmaster's Office"
 script = ExtResource("14_rdgyi")
 
@@ -652,7 +666,7 @@ script = ExtResource("14_rdgyi")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "The Guild
 "
 script = ExtResource("28_2flxh")
@@ -661,7 +675,7 @@ script = ExtResource("28_2flxh")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Adventurers"
 script = ExtResource("15_t15fl")
 
@@ -669,7 +683,7 @@ script = ExtResource("15_t15fl")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Parties"
 script = ExtResource("20_wr46g")
 
@@ -677,16 +691,15 @@ script = ExtResource("20_wr46g")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Economy"
 script = ExtResource("26_rp8uo")
 
 [node name="dungeonButton" type="Button" parent="bottomMenu/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Dungeons"
 script = ExtResource("43_866hc")
 
@@ -694,7 +707,7 @@ script = ExtResource("43_866hc")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Missions"
 script = ExtResource("39_pmtdm")
 
@@ -702,7 +715,7 @@ script = ExtResource("39_pmtdm")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Info Log"
 script = ExtResource("43_vd2i2")
 
@@ -714,7 +727,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Quit Game
 "
 script = ExtResource("47_tkuw1")
@@ -724,8 +737,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -358.0
-offset_bottom = 45.0
+offset_left = -462.0
+offset_bottom = 54.0
 grow_horizontal = 0
 script = ExtResource("46_502x3")
 
@@ -744,13 +757,12 @@ texture_normal = ExtResource("46_vd2i2")
 [node name="2xButton" type="TextureButton" parent="gameSpeedMenu/speedContainer"]
 layout_mode = 2
 texture_normal = ExtResource("47_502x3")
-stretch_mode = 0
 
 [node name="date" type="Label" parent="gameSpeedMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "13th of the 8th Moon, 735"
 
 [node name="speedLabel" type="Label" parent="gameSpeedMenu/date"]
@@ -760,12 +772,12 @@ anchor_left = 0.377
 anchor_top = 0.872
 anchor_right = 0.377
 anchor_bottom = 0.872
-offset_left = -20.023
-offset_top = -6.008
-offset_right = 19.977
-offset_bottom = 16.992
+offset_left = -20.036
+offset_top = -6.472
+offset_right = 82.964
+offset_bottom = 30.528
 theme_override_fonts/font = ExtResource("7_1cxlp")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 25
 text = "Game Speed"
 
 [node name="notificationMenu" type="MarginContainer" parent="."]
@@ -776,17 +788,17 @@ anchor_left = 0.414
 anchor_top = 0.208
 anchor_right = 0.414
 anchor_bottom = 0.208
-offset_left = -156.928
-offset_top = -49.784
-offset_right = 506.072
-offset_bottom = 366.216
+offset_left = -278.88
+offset_top = -49.64
+offset_right = 769.12
+offset_bottom = 666.36
 
 [node name="menuMargin" type="MarginContainer" parent="notificationMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="notificationBg" type="NinePatchRect" parent="notificationMenu/menuMargin"]
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
 texture = ExtResource("48_h8qsu")
 
@@ -797,10 +809,10 @@ anchor_left = 0.5
 anchor_top = 0.192
 anchor_right = 0.5
 anchor_bottom = 0.192
-offset_left = -98.0
-offset_top = -19.872
-offset_right = 99.0
-offset_bottom = 277.128
+offset_left = -177.0
+offset_top = -34.472
+offset_right = 177.0
+offset_bottom = 464.528
 
 [node name="notificationVBox" type="VBoxContainer" parent="notificationMenu/menuMargin/notificationBg/notificationList"]
 layout_mode = 2
@@ -808,7 +820,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="messageMargin" type="MarginContainer" parent="notificationMenu"]
-custom_minimum_size = Vector2(350, 350)
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -817,21 +829,24 @@ size_flags_vertical = 4
 layout_mode = 2
 
 [node name="inboxAlert" type="Button" parent="."]
-layout_mode = 0
-offset_left = 480.0
-offset_top = -1.0
-offset_right = 690.0
-offset_bottom = 21.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.436979
+anchor_top = 0.000925926
+anchor_right = 0.626042
+anchor_bottom = 0.0287037
+grow_horizontal = 2
 
 [node name="Label" type="Label" parent="inboxAlert"]
 layout_mode = 0
-offset_left = 5.0
+offset_left = 11.0
 offset_top = -7.0
-offset_right = 205.0
-offset_bottom = 30.0
+offset_right = 350.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "You have unread messages"
+horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("54_jjwi0")
@@ -839,12 +854,11 @@ volume_db = -33.712
 autoplay = true
 
 [node name="logMenu" type="NinePatchRect" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 484.0
+offset_left = 620.0
 offset_top = 63.0
-offset_right = 1024.0
-offset_bottom = 603.0
+offset_right = 1465.0
+offset_bottom = 1008.0
 texture = ExtResource("48_h8qsu")
 
 [node name="guildmasterLogs" type="Label" parent="logMenu"]
@@ -854,13 +868,13 @@ anchor_left = 0.5
 anchor_top = 0.158
 anchor_right = 0.5
 anchor_bottom = 0.158
-offset_left = -137.0
-offset_top = -35.32
-offset_right = 138.0
-offset_bottom = 22.68
+offset_left = -270.5
+offset_top = -55.31
+offset_right = 274.5
+offset_bottom = 17.69
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_juyng")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Guildmaster Logs"
 horizontal_alignment = 1
 
@@ -871,10 +885,10 @@ anchor_left = 0.5
 anchor_top = 0.292
 anchor_right = 0.5
 anchor_bottom = 0.292
-offset_left = -191.0
-offset_top = -56.68
-offset_right = 195.0
-offset_bottom = 299.32
+offset_left = -293.5
+offset_top = -118.94
+offset_right = 290.5
+offset_bottom = 543.06
 script = ExtResource("51_502x3")
 
 [node name="logVBox" type="VBoxContainer" parent="logMenu/logContainer"]

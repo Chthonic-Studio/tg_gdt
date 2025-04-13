@@ -10,13 +10,14 @@
 [sub_resource type="Theme" id="Theme_wr46g"]
 
 [node name="partyInfo" type="VBoxContainer"]
+custom_minimum_size = Vector2(495, 649)
 script = ExtResource("1_nufp8")
 
 [node name="partyName" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vwnyj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Party Name"
 horizontal_alignment = 1
 
@@ -28,42 +29,42 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3o0nv")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "   Missions Completed"
 horizontal_alignment = 1
 
 [node name="missionsNumber" type="Label" parent="HSplitContainer/missionsLabel"]
 layout_mode = 0
 offset_left = 56.0
-offset_top = 16.0
-offset_right = 101.0
-offset_bottom = 67.0
+offset_top = 31.0
+offset_right = 177.0
+offset_bottom = 89.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vwnyj")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "99"
 horizontal_alignment = 1
 
 [node name="guildEvaluationLabel" type="Label" parent="HSplitContainer/missionsLabel"]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 46.0
-offset_right = 90.0
-offset_bottom = 75.0
+offset_top = 81.0
+offset_right = 133.0
+offset_bottom = 121.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3o0nv")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 27
 text = "Guild Evaluation: "
 
 [node name="guildEvaluationValue" type="Label" parent="HSplitContainer/missionsLabel"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 48.0
-offset_right = 174.0
-offset_bottom = 75.0
+offset_left = 133.0
+offset_top = 82.0
+offset_right = 312.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_wcu2l")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 27
 text = "Murder Hobos"
 
 [node name="rankLabel" type="Label" parent="HSplitContainer"]
@@ -71,16 +72,16 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3o0nv")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Party Rank"
 horizontal_alignment = 1
 
 [node name="rankValue" type="Label" parent="HSplitContainer/rankLabel"]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 31.0
-offset_right = 146.0
-offset_bottom = 82.0
+offset_left = 26.0
+offset_top = 38.0
+offset_right = 242.0
+offset_bottom = 89.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vwnyj")
 theme_override_font_sizes/font_size = 35
@@ -88,27 +89,25 @@ text = "Adamantite"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 
 [node name="partyMembersLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3o0nv")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Party Members"
 horizontal_alignment = 1
 
 [node name="partyMembersList" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(300, 120)
+custom_minimum_size = Vector2(300, 180)
 layout_mode = 2
 theme = SubResource("Theme_wr46g")
 horizontal_scroll_mode = 0
 
 [node name="partyMembersContainer" type="VBoxContainer" parent="partyMembersList"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="charName" parent="partyMembersList/partyMembersContainer" instance=ExtResource("5_0cd3d")]
@@ -118,7 +117,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3o0nv")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Adventure Log"
 horizontal_alignment = 1
 

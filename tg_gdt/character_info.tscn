@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c63gpfukmkra5" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/2 Headers/2.png" id="8_rdnyu"]
 
 [node name="characterInfo" type="VBoxContainer"]
+offset_right = 495.0
+offset_bottom = 639.0
 script = ExtResource("1_00sj5")
 
 [node name="charMainInfo" type="HSplitContainer" parent="."]
@@ -17,7 +19,7 @@ layout_mode = 2
 split_offset = 40
 
 [node name="charAvatar" type="TextureRect" parent="charMainInfo"]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture = ExtResource("2_jm0f6")
 
@@ -25,37 +27,39 @@ texture = ExtResource("2_jm0f6")
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6o7uk")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Character Name"
 horizontal_alignment = 1
 
 [node name="charTitle" type="Label" parent="charMainInfo/charName"]
 layout_mode = 0
 offset_left = 52.0
-offset_top = 33.0
-offset_right = 163.0
-offset_bottom = 60.0
+offset_top = 52.0
+offset_right = 285.0
+offset_bottom = 91.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_q1iy2")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 30
 text = "Character Title"
 horizontal_alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-custom_minimum_size = Vector2(120, 35)
+custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 texture = ExtResource("5_q0j0v")
 region_rect = Rect2(15.8946, 24.7315, 416.134, 71.3252)
 
 [node name="charClass" type="Label" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 51.0
-offset_top = -4.0
-offset_right = 260.0
-offset_bottom = 33.0
-theme_override_constants/outline_size = 2
+offset_left = 85.0
+offset_top = -3.0
+offset_right = 419.0
+offset_bottom = 55.0
+theme_override_constants/line_spacing = -20
+theme_override_constants/paragraph_spacing = -20
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 40
 text = "Race + Class"
 horizontal_alignment = 1
 
@@ -67,86 +71,89 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 37
 text = "   Missions Completed"
 
 [node name="missionsNumber" type="Label" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 101.0
-offset_bottom = 67.0
+offset_left = 72.0
+offset_top = 29.0
+offset_right = 158.0
+offset_bottom = 109.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6o7uk")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 55
 text = "99"
 horizontal_alignment = 1
 
 [node name="guildEvaluationLabel" type="Label" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 46.0
-offset_right = 90.0
-offset_bottom = 75.0
+offset_left = 9.0
+offset_top = 92.0
+offset_right = 155.0
+offset_bottom = 138.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 28
 text = "Guild Evaluation: "
 
 [node name="guildEvaluationValue" type="Label" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 48.0
-offset_right = 174.0
-offset_bottom = 75.0
+offset_left = 147.0
+offset_top = 93.0
+offset_right = 295.0
+offset_bottom = 140.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_q1iy2")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 25
 text = "Analytic Villain"
 
 [node name="partyLabel" type="Label" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 58.0
-offset_right = 90.0
-offset_bottom = 87.0
+offset_left = 10.0
+offset_top = 116.0
+offset_right = 69.0
+offset_bottom = 157.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 28
 text = "Party: "
 
 [node name="partyValue" type="Label" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 61.0
-offset_right = 161.0
-offset_bottom = 88.0
+offset_left = 64.0
+offset_top = 116.0
+offset_right = 284.0
+offset_bottom = 158.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_q1iy2")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 28
 text = "Analytic Villain"
 
 [node name="partyInfoButton" type="Button" parent="adventurerDetails/missionsLabel"]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 63.0
-offset_right = 157.0
-offset_bottom = 79.0
+offset_left = 12.0
+offset_top = 126.0
+offset_right = 268.0
+offset_bottom = 146.0
 toggle_mode = true
 flat = true
 
 [node name="rankHolder" type="TextureRect" parent="adventurerDetails"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("7_6oq2u")
-stretch_mode = 2
 
 [node name="charRank" type="Label" parent="adventurerDetails/rankHolder"]
 layout_mode = 0
-offset_right = 81.0
-offset_bottom = 87.0
+offset_left = 29.0
+offset_top = -33.0
+offset_right = 120.0
+offset_bottom = 199.0
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_6o7uk")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 120
 text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -160,7 +167,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="statTableTitle" type="NinePatchRect" parent="stats_status/statTable"]
-custom_minimum_size = Vector2(120, 30)
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 2
@@ -170,12 +177,12 @@ region_rect = Rect2(32.0586, 2.73685, 416.228, 189.559)
 [node name="statTableLabel" type="Label" parent="stats_status/statTable/statTableTitle"]
 layout_mode = 0
 offset_left = 43.0
-offset_top = 3.0
-offset_right = 84.0
-offset_bottom = 30.0
+offset_top = 6.0
+offset_right = 151.0
+offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_q1iy2")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 28
 text = "Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -198,50 +205,55 @@ theme_override_constants/separation = -1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Level"
 
 [node name="strengthLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Strength"
 
 [node name="agilityLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Agility"
 
 [node name="constitutionLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Constitution"
 
 [node name="wisdomLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Wisdom"
 
 [node name="intelligenceLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Intelligence"
 
 [node name="charismaLabel" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 18
 text = "Charisma"
+
+[node name="MarginContainer2" type="MarginContainer" parent="stats_status/statTable/HBoxContainer"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="stats_status/statTable/HBoxContainer"]
 layout_mode = 2
@@ -251,44 +263,44 @@ theme_override_constants/separation = 0
 [node name="levelStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "18"
 
 [node name="strengthStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "15"
 
 [node name="agilityStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "12"
 
 [node name="constitutionStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "14"
 
 [node name="wisdomStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="intelligenceStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "9"
 
 [node name="charismaStat" type="Label" parent="stats_status/statTable/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 18
 text = "18"
 
 [node name="otherInfo" type="VBoxContainer" parent="stats_status"]
@@ -302,7 +314,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="otherInfoVbox" type="HBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+alignment = 1
 
 [node name="otherInfoLabels" type="VBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
 layout_mode = 2
@@ -311,49 +325,49 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Age: "
 
 [node name="genderLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Gender: "
 
 [node name="personalityLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Personality: "
 
 [node name="backstoryLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Backstory:"
 
 [node name="traitsLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Traits:"
 
 [node name="statusLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Status:"
 
 [node name="testLabel" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoLabels"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 text = "Placeholder:"
 
 [node name="otherInfoValues" type="VBoxContainer" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox"]
@@ -363,49 +377,49 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "25"
 
 [node name="genderValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Male"
 
 [node name="personalityValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="backstoryValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="traitsValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="statusValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="personalityValue7" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="MarginContainer" type="MarginContainer" parent="stats_status/otherInfo/VBoxContainer"]
@@ -439,6 +453,6 @@ offset_right = -19.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Manage"
 horizontal_alignment = 1

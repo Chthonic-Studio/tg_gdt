@@ -8,10 +8,12 @@
 [ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="5_ae08r"]
 
 [node name="guildInfo" type="VBoxContainer"]
+offset_right = 495.0
+offset_bottom = 649.0
 script = ExtResource("1_lqxla")
 
 [node name="guildInfoTitleImage" type="NinePatchRect" parent="."]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 texture = ExtResource("1_ll16a")
 
@@ -22,13 +24,13 @@ anchor_left = 0.487
 anchor_top = 0.5
 anchor_right = 0.487
 anchor_bottom = 0.5
-offset_left = -110.996
-offset_top = -16.0
-offset_right = 122.004
-offset_bottom = 21.0
+offset_left = -202.065
+offset_top = -23.0
+offset_right = 216.935
+offset_bottom = 28.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_lqxla")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Guild Buildings & Expenses"
 horizontal_alignment = 1
 
@@ -36,8 +38,9 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="tavern" type="NinePatchRect" parent="HSplitContainer"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="tavern" type="Label" parent="HSplitContainer/tavern"]
@@ -174,8 +177,9 @@ theme_override_font_sizes/font_size = 12
 text = "Hire people"
 
 [node name="trainingGrounds" type="NinePatchRect" parent="HSplitContainer"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="trainingGrounds" type="Label" parent="HSplitContainer/trainingGrounds"]
@@ -315,8 +319,9 @@ text = "Hire people"
 layout_mode = 2
 
 [node name="forge" type="NinePatchRect" parent="HSplitContainer2"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="forge" type="Label" parent="HSplitContainer2/forge"]
@@ -453,8 +458,9 @@ theme_override_font_sizes/font_size = 12
 text = "Hire people"
 
 [node name="apothecary" type="NinePatchRect" parent="HSplitContainer2"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="apothecary" type="Label" parent="HSplitContainer2/apothecary"]
@@ -594,8 +600,9 @@ text = "Hire people"
 layout_mode = 2
 
 [node name="cartography" type="NinePatchRect" parent="HSplitContainer3"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="cartography" type="Label" parent="HSplitContainer3/cartography"]
@@ -732,8 +739,9 @@ theme_override_font_sizes/font_size = 12
 text = "Hire people"
 
 [node name="enchantment" type="NinePatchRect" parent="HSplitContainer3"]
-custom_minimum_size = Vector2(140, 75)
+custom_minimum_size = Vector2(140, 90)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("3_uoatw")
 
 [node name="enchantment" type="Label" parent="HSplitContainer3/enchantment"]
@@ -869,11 +877,292 @@ theme_override_fonts/font = ExtResource("5_ae08r")
 theme_override_font_sizes/font_size = 12
 text = "Hire people"
 
+[node name="HSplitContainer4" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="cartography" type="NinePatchRect" parent="HSplitContainer4"]
+custom_minimum_size = Vector2(140, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_uoatw")
+
+[node name="cartography" type="Label" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -45.96
+offset_top = -5.025
+offset_right = 53.04
+offset_bottom = 16.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 15
+text = "Cartographer Table"
+horizontal_alignment = 1
+
+[node name="cartographyLevelLabel" type="Label" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -51.96
+offset_top = 5.975
+offset_right = -21.96
+offset_bottom = 25.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Level"
+horizontal_alignment = 1
+
+[node name="cartographyLevel" type="Label" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -24.96
+offset_top = 5.975
+offset_right = 59.04
+offset_bottom = 25.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Level"
+horizontal_alignment = 1
+
+[node name="cartographyStatusLabel" type="Label" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -51.96
+offset_top = 17.975
+offset_right = -21.96
+offset_bottom = 37.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Status"
+horizontal_alignment = 1
+
+[node name="cartographyStatus" type="Label" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -22.96
+offset_top = 16.975
+offset_right = 58.04
+offset_bottom = 36.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Status"
+horizontal_alignment = 1
+
+[node name="cartographyUpgrade" type="Button" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229
+anchor_top = 0.787
+anchor_right = 0.229
+anchor_bottom = 0.787
+offset_left = -5.06
+offset_top = -9.02501
+offset_right = 29.94
+offset_bottom = 0.974995
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 11
+
+[node name="Label" type="Label" parent="HSplitContainer4/cartography/cartographyUpgrade"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 43.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 12
+text = "Upgrade"
+
+[node name="cartographyHire" type="Button" parent="HSplitContainer4/cartography"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229
+anchor_top = 0.787
+anchor_right = 0.229
+anchor_bottom = 0.787
+offset_left = 37.94
+offset_top = -9.02501
+offset_right = 81.94
+offset_bottom = 0.974995
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 11
+
+[node name="Label" type="Label" parent="HSplitContainer4/cartography/cartographyHire"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 43.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 12
+text = "Hire people"
+
+[node name="enchantment" type="NinePatchRect" parent="HSplitContainer4"]
+custom_minimum_size = Vector2(140, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_uoatw")
+
+[node name="enchantment" type="Label" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -45.96
+offset_top = -5.025
+offset_right = 53.04
+offset_bottom = 16.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 15
+text = "Enchantment Store"
+horizontal_alignment = 1
+
+[node name="enchantmentLevelLabel" type="Label" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -51.96
+offset_top = 5.975
+offset_right = -21.96
+offset_bottom = 25.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Level"
+horizontal_alignment = 1
+
+[node name="enchantmentLevel" type="Label" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -24.96
+offset_top = 5.975
+offset_right = 59.04
+offset_bottom = 25.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Level"
+horizontal_alignment = 1
+
+[node name="enchantmentStatusLabel" type="Label" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -51.96
+offset_top = 17.975
+offset_right = -21.96
+offset_bottom = 37.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Status"
+horizontal_alignment = 1
+
+[node name="enchantmentStatus" type="Label" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.227
+anchor_right = 0.464
+anchor_bottom = 0.227
+offset_left = -22.96
+offset_top = 16.975
+offset_right = 58.04
+offset_bottom = 36.975
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_avnct")
+theme_override_font_sizes/font_size = 13
+text = "Status"
+horizontal_alignment = 1
+
+[node name="enchantmentUpgrade" type="Button" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229
+anchor_top = 0.787
+anchor_right = 0.229
+anchor_bottom = 0.787
+offset_left = -5.06
+offset_top = -9.02501
+offset_right = 29.94
+offset_bottom = 0.974995
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 11
+
+[node name="Label" type="Label" parent="HSplitContainer4/enchantment/enchantmentUpgrade"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 43.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 12
+text = "Upgrade"
+
+[node name="enchantmentHire" type="Button" parent="HSplitContainer4/enchantment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.229
+anchor_top = 0.787
+anchor_right = 0.229
+anchor_bottom = 0.787
+offset_left = 37.94
+offset_top = -9.02501
+offset_right = 81.94
+offset_bottom = 0.974995
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 11
+
+[node name="Label" type="Label" parent="HSplitContainer4/enchantment/enchantmentHire"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 43.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("5_ae08r")
+theme_override_font_sizes/font_size = 12
+text = "Hire people"
+
 [node name="economyReport" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 25
 text = "Economy Report"
 horizontal_alignment = 1
 
@@ -888,7 +1177,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Guild Tavern"
 horizontal_alignment = 1
 
@@ -896,7 +1185,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Guild Forge"
 horizontal_alignment = 1
 
@@ -904,7 +1193,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Cartographer Table"
 horizontal_alignment = 1
 
@@ -915,7 +1204,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
 
@@ -923,7 +1212,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
 
@@ -931,7 +1220,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
 
@@ -946,7 +1235,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Training Grounds"
 horizontal_alignment = 1
 
@@ -954,7 +1243,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Apothecary"
 horizontal_alignment = 1
 
@@ -962,7 +1251,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "Enchantment Table"
 horizontal_alignment = 1
 
@@ -973,7 +1262,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
 
@@ -981,7 +1270,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
 
@@ -989,6 +1278,6 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_avnct")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "+557"
 horizontal_alignment = 1
