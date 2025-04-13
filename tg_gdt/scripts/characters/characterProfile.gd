@@ -46,6 +46,12 @@ var relationships = {}
 # This will store the couple's character_id once a couple is formed.
 var couple = null
 
+# AI Variables
+enum AIState { IDLE, PERFORMING_ACTION, WAITING_FOR_MISSION }
+
+var ai_state: int = AIState.IDLE
+var isJoiningMission: bool = false
+
 # Character Main Stats
 var stats = {
 	"Health": 0,
@@ -429,3 +435,16 @@ func increase_relationship(other_id: String, amount: float) -> void:
 
 func decrease_relationship(other_id: String, amount: float) -> void:
 	adjust_relationship(other_id, -amount)
+
+
+######### AI Funcionalities #########
+
+func update_ai_after_action():
+	# Called when a character finishes an action
+	if isJoiningMission:
+		ai_state = AIState.WAITING_FOR_MISSION
+	else:
+		ai_state = AIState.IDLE
+		# (Recalculate daily chance for action)
+
+		

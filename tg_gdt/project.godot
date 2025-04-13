@@ -29,6 +29,7 @@ TimeManager="*res://scripts/timeManager.gd"
 CharBehavior="*res://scripts/characters/ai_behavior.gd"
 MissionController="*res://scripts/missionController.gd"
 LogManager="*res://scripts/logManager.gd"
+PartiesManager="*res://scripts/guild/parties/partyManager.gd"
 
 [display]
 
