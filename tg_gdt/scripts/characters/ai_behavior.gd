@@ -4,8 +4,9 @@ class_name AIBehavior
 
 var Message = preload("res://scripts/guild/message.gd")
 
-var last_action_day = 0  # Optional: used for debugging; per-character metadata is stored on the character.
+var last_action_day = 0  
 
+# CALL THIS FUNCTION FROM THE DAILY SIMULATION OR AFTER AN ACTION COMPLETES.
 func simulate_daily_action(character, current_day):
 	# Check if character is still a valid instance.
 	if character == null or not is_instance_valid(character):
@@ -34,7 +35,72 @@ func simulate_daily_action(character, current_day):
 	
 	# If the roll is successful or forced, update the last action day and perform an action.
 	character.set_meta("last_action_day", current_day)
-	perform_character_action(character)
+	select_and_perform_action(character)
+
+func select_and_perform_action(character):
+    # Build a list of available weighted actions for the character.
+    var weighted_actions = _build_dynamic_weighted_actions(character)
+    if weighted_actions.size() == 0:
+        print("No available actions for ", character.name)
+        return
+    var chosen_action = _choose_weighted_action(weighted_actions)
+    # Execute the chosen action.
+    match chosen_action:
+        "adjust_single_relationship":
+            _adjust_single_relationship(character, GameManager.characters)
+        "simulate_fight":
+            _simulate_fight(character, GameManager.characters)
+        "try_couple":
+            _try_couple(character, GameManager.characters)
+        "send_mission_solo_message":
+            _send_mission_solo_message(character)
+        "train_character":
+            _train_character(character)
+        "commit_crime":
+            _commit_crime(character)
+        "request_guild_support":
+            _request_guild_support(character)
+        "donate_to_guild":
+            _donate_to_guild(character)
+        "increase_rank":
+            _increase_rank(character)
+        _:
+            print("Unknown action: ", chosen_action)
+
+    # After the action is performed, update the AI state.
+    character.update_ai_after_action()
+
+
+func _build_dynamic_weighted_actions(character) -> Array:
+    var actions = [
+        "adjust_single_relationship",
+        "simulate_fight",
+        "try_couple",
+        "send_mission_solo_message",
+        "train_character",
+        "commit_crime",
+        "request_guild_support",
+        "donate_to_guild",
+        "increase_rank"
+    ]
+    var weighted_actions = []
+    for action in actions:
+        var weight = get_dynamic_weight(action, character)
+        if weight > 0:
+            weighted_actions.append({"action": action, "weight": weight})
+    return weighted_actions
+
+
+func _choose_weighted_action(weighted_actions: Array) -> String:
+    var total_weight = 0.0
+    for item in weighted_actions:
+        total_weight += item.weight
+    var rand_point = randf() * total_weight
+    for item in weighted_actions:
+        rand_point -= item.weight
+        if rand_point <= 0:
+            return item.action
+    return weighted_actions[weighted_actions.size() - 1].action
 
 func perform_character_action(character):
 	# Build a list of available weighted actions for the character.

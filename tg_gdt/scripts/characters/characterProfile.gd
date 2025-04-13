@@ -52,6 +52,16 @@ enum AIState { IDLE, PERFORMING_ACTION, WAITING_FOR_MISSION }
 var ai_state: int = AIState.IDLE
 var isJoiningMission: bool = false
 
+# AI Variables might be stored in the character. We add fatigue as a separate property.
+var ai_variables = {
+	"Stress": 0,
+	"Comfort": 0,
+	"Loneliness": 0,
+	"Fatigue": 0,
+	"Mood": 0,
+	"isHurt": false
+}
+
 # Character Main Stats
 var stats = {
 	"Health": 0,
@@ -439,12 +449,22 @@ func decrease_relationship(other_id: String, amount: float) -> void:
 
 ######### AI Funcionalities #########
 
+## Called when the character finishes an action
 func update_ai_after_action():
-	# Called when a character finishes an action
 	if isJoiningMission:
 		ai_state = AIState.WAITING_FOR_MISSION
 	else:
 		ai_state = AIState.IDLE
-		# (Recalculate daily chance for action)
+		# Optionally recalculate chance for new action here
 
-		
+
+# New routine to update fatigue daily regardless of actions.
+func update_fatigue_daily():
+	# Increase fatigue by 0.1 per day.
+	ai_variables["Fatigue"] += 0.1
+	ai_variables["Fatigue"] = clamp(ai_variables["Fatigue"], 0, 100)
+
+## Call this function when the character goes to sleep.
+func reset_fatigue_on_sleep():
+	ai_variables["Fatigue"] = 100
+

@@ -166,18 +166,19 @@ func init_starter_game():
 			
 	emit_signal("update_character_list", characters)
 	
-	# Now create your starter parties
-	var partyName1 = create_party("Starter Party 1")
+	## Now create your starter parties using PartyManager.
+	var partyName1 = PartyManager.create_party("Starter Party 1").party_name
 	if partyName1 != "":
-		var party1 = get_party_by_name(partyName1)
+		## Retrieve party from PartyManager if needed.
+		var party1 = PartyManager.get_party_by_name(partyName1)
 		if party1:
 			party1.party_rank = "D"
 			party1.missions_completed = 6
 			_assign_characters_to_party(partyName1, 3)
-	var partyName2 = create_party("Starter Party 2")
+	var partyName2 = PartyManager.create_party("Starter Party 2").party_name
 	if partyName2 != "":
 		_assign_characters_to_party(partyName2, 3)
-		
+
 func _assign_characters_to_party(party_name: String, count: int):
 	# Find characters without a party.
 	var unassigned = []

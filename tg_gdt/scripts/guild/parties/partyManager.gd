@@ -6,7 +6,6 @@ var parties = []
 var party_scene = preload("res://scripts/guild/parties/partyProfile.gd")
 
 func create_party(party_name: String) -> Node:
-	# Creates a new party node
 	var new_party = party_scene.instance()
 	new_party.party_name = party_name
 	parties.append(new_party)
@@ -22,12 +21,16 @@ func remove_character_from_party(character, party):
 		party.remove_member(character.character_id)
 		character.party = "No Party"
 
+func get_party_by_name(party_name: String) -> Node:
+	for party in parties:
+		if party.party_name == party_name:
+			return party
+	return null
+
 func all_ready_for_mission():
-	# Check if every party (or each character flagged to join) is in the waiting state
 	for party in parties:
 		for character_id in party.members:
 			var character = GameManager.get_character_by_id(character_id)
-			# Make sure you check the state on the character
 			if character and character.ai_state != character.AIState.WAITING_FOR_MISSION:
 				return false
 	return true
