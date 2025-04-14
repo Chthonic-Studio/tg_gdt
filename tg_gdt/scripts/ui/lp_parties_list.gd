@@ -33,6 +33,6 @@ func populate_party_list(parties):
 		# Add the party_list_item to the VBoxContainer
 		party_list_vbox.add_child(party_list_item)
 
-# Connect to the GameManager's update_party_list signal
+# Connect to the PartiesManager's update_party_list signal
 func _ready():
-	GameManager.connect("update_party_list", Callable(self, "populate_party_list"))
+	PartiesManager.connect("update_party_list", Callable(self, "populate_party_list"))

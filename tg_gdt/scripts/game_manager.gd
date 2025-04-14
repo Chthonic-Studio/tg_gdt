@@ -79,7 +79,6 @@ var unread_messages = []
 # Define signals
 signal stat_modified # Signals a player's stat was modified
 signal update_character_list # Signals there was an update in the character list
-signal update_party_list # Signals there was an update in the party list
 signal update_guild_worker_list # Signals there was an update in the guild worker list
 signal gold_spent
 signal update_mission_list
@@ -166,28 +165,30 @@ func init_starter_game():
 			
 	emit_signal("update_character_list", characters)
 	
-	## Now create your starter parties using PartyManager.
-	var partyName1 = PartyManager.create_party("Starter Party 1").party_name
-	if partyName1 != "":
-		## Retrieve party from PartyManager if needed.
-		var party1 = PartyManager.get_party_by_name(partyName1)
-		if party1:
-			party1.party_rank = "D"
-			party1.missions_completed = 6
-			_assign_characters_to_party(partyName1, 3)
-	var partyName2 = PartyManager.create_party("Starter Party 2").party_name
-	if partyName2 != "":
-		_assign_characters_to_party(partyName2, 3)
+	emit_signal("update_character_list", characters)
+	
+	# Create two starter parties using PartyManager.
+	var party1 = PartiesManager.create_party("Starter Party 1")
+	if party1:
+		party1.party_rank = "D"
+		party1.missions_completed = 6
+		# Use PartyManager to assign characters.
+		_assign_characters_to_party(party1.party_name, 3)
+		
+	var party2 = PartiesManager.create_party("Starter Party 2")
+	if party2:
+		_assign_characters_to_party(party2.party_name, 3)
 
 func _assign_characters_to_party(party_name: String, count: int):
-	# Find characters without a party.
+	# Find characters that are not yet assigned to any party.
 	var unassigned = []
 	for char in characters:
 		if is_instance_valid(char) and char.party == "No Party":
 			unassigned.append(char)
 	for i in range(min(count, unassigned.size())):
 		var rand_index = randi() % unassigned.size()
-		add_character_to_party(unassigned[rand_index].character_id, party_name)
+		# Call PartyManager function for adding characters.
+		PartiesManager.add_character_to_party(unassigned[rand_index], PartiesManager.get_party_by_name(party_name))
 		unassigned.remove_at(rand_index)
 		
 # Autonomous daily update called from TimeManager passing the global day.
@@ -208,13 +209,13 @@ func autonomous_daily_update(global_day: int) -> void:
 					unassigned.append(char)
 			if unassigned.size() > 5:
 				var party_name = "Auto Party " + str(parties.size() + 1)
-				var created = create_party(party_name)
+				var created = PartiesManager.create_party(party_name)
 				if created != "":
 					# Randomly assign 3 to 5 characters.
 					var assign_count = min(unassigned.size(), (randi() % 3) + 3)
 					for i in range(assign_count):
 						var index = randi() % unassigned.size()
-						add_character_to_party(unassigned[index].character_id, party_name)
+						PartiesManager.add_character_to_party(unassigned[index].character_id, party_name)
 						unassigned.remove(index)
 						
 	# Every 10 days, with 50% chance, generate a mission.
@@ -590,89 +591,6 @@ func get_stat(stat_name: String) -> int:
 		_:
 			print("Stat '" + stat_name + "' does not exist.")
 			return -1
-
-# PARTY VARIABLES
-# Function to create a new party
-func create_party(party_name: String) -> String:
-	var unique_party_name = party_name
-	var counter = 1
-	while get_party_by_name(unique_party_name) != null:
-		unique_party_name = party_name + " " + str(counter)
-		counter += 1
-	print("Creating party: ", unique_party_name)
-	var new_party = PartyGenerator.generate_party(unique_party_name)
-	if new_party:
-		parties.append(new_party)
-		print("Party created: ", new_party.party_name)
-		emit_signal("update_party_list", parties)
-		LogManager.add_log("A new party has been formed! " + new_party.party_name + "will now take missions as a group")
-		return new_party.party_name
-	else:
-		print("Failed to create party")
-		return ""
-
-func add_character_to_party(character_id: String, party_name: String):
-	print("Adding character with ID:", character_id, "to party:", party_name)
-	for party in parties:
-		print("Checking party: ", party.party_name)
-		if party.party_name == party_name:
-			print("Party found: ", party.party_name)
-			party.add_member(character_id)
-			var character = get_character_by_id(character_id)
-			if character:
-				character.party = party_name
-			print("Character with ID:", character_id, "added to party:", party.party_name)
-			emit_signal("update_party_list", parties)
-			return
-	print("Party not found: ", party_name)
-
-func remove_character_from_party(character_id: String, party_name: String):
-	print("Removing character with ID:", character_id, "from party:", party_name)
-	for party in parties:
-		print("Checking party: ", party.party_name)
-		if party.party_name == party_name:
-			print("Party found: ", party.party_name)
-			party.remove_member(character_id)
-			var character = get_character_by_id(character_id)
-			if character:
-				character.party = "No Party"
-			print("Character with ID:", character_id, "removed from party:", party.party_name)
-			emit_signal("update_party_list", parties)
-			return
-	print("Party not found: ", party_name)
-
-func get_party_by_name(party_name: String):
-	for party in parties:
-		if party.party_name == party_name:
-			return party
-	return null
-
-func test_party_creation():
-	print("Debug Create Party Function Started")
-	if characters.size() < 3:
-		print("Not enough characters to form a party")
-		return
-	var random_characters = []
-	while random_characters.size() < 3:
-		var random_index = randi() % characters.size()
-		var random_character = characters[random_index]
-		if random_character not in random_characters:
-			random_characters.append(random_character)
-			random_character.set_character_id()
-	var party_name = "Test Party"
-	party_name = create_party(party_name)
-	if party_name == "":
-		print("Failed to create party")
-		return
-	for character in random_characters:
-		add_character_to_party(character.character_id, party_name)
-	print("Test party created with characters: ", random_characters)
-	for character in random_characters:
-		if character.party:
-			print("Character in party:", character.character_fullName, " -> ", character.party)
-		else:
-			print("Character in party:", character.character_fullName, " is not assigned to any party")
-
 
 # ECONOMY VARIABLES
 # Function to buy an item

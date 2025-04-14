@@ -62,6 +62,8 @@ var ai_variables = {
 	"isHurt": false
 }
 
+var faithClass: bool = true
+
 # Character Main Stats
 var stats = {
 	"Health": 0,
@@ -447,7 +449,17 @@ func decrease_relationship(other_id: String, amount: float) -> void:
 	adjust_relationship(other_id, -amount)
 
 
-######### AI Funcionalities #########
+######### AI Functionalities #########
+
+
+## Update AI Behavior Variables
+
+func update_ai_variables():
+	ai_variables["Stress"] = clamp(ai_variables["Fatigue"] * 0.4 - ai_variables["Mood"] * 0.1 + ai_variables["Loneliness"] * 0.1, 0, 100)
+	ai_variables["Comfort"] = clamp(30 - ai_variables["Stress"] * 0.3 + ai_variables["Mood"] * 0.1, 0, 100)
+	ai_variables["Loneliness"] = clamp(ai_variables["Sociability"] * 0.2 - ai_variables["Mood"] * 0.1 + randi() % 15 + 1, 0, 100)
+	ai_variables["Mood"] = clamp(ai_variables["Morale"] * 0.3 + randi() % 15 + 1, 0, 100)
+	return
 
 ## Called when the character finishes an action
 func update_ai_after_action():
@@ -468,3 +480,8 @@ func update_fatigue_daily():
 func reset_fatigue_on_sleep():
 	ai_variables["Fatigue"] = 100
 
+func toggle_isHurt():
+	if (ai_variables["isHurt"] == true):
+		ai_variables["isHurt"] = false
+	else:
+		ai_variables["isHurt"] = true

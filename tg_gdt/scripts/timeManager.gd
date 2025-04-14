@@ -47,6 +47,7 @@ func advance_day():
 	
 	for character in GameManager.characters:
 		CharBehavior.simulate_daily_action(character, current_date["day"])
+		character.update_fatigue_daily()
 	
 	var global_day = convert_date_to_global_day(current_date)
 	MissionController.simulate_daily_missions(global_day)
