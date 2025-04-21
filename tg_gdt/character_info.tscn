@@ -402,18 +402,24 @@ theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="traitsValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
 theme_override_fonts/font = ExtResource("6_ktswq")
 theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
+autowrap_mode = 3
 
 [node name="statusValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
 theme_override_fonts/font = ExtResource("6_ktswq")
 theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
+autowrap_mode = 3
 
 [node name="personalityValue7" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
 layout_mode = 2
@@ -432,15 +438,12 @@ theme_override_fonts/font = ExtResource("6_ktswq")
 theme_override_font_sizes/font_size = 15
 button_pressed = true
 item_count = 3
-popup/item_0/text = "See Full Stats"
+popup/item_0/text = "See Full Info"
 popup/item_0/id = 0
-popup/item_0/separator = true
 popup/item_1/text = "Talk"
 popup/item_1/id = 1
-popup/item_1/separator = true
 popup/item_2/text = "Banish"
 popup/item_2/id = 2
-popup/item_2/separator = true
 
 [node name="Label" type="Label" parent="stats_status/otherInfo/VBoxContainer/MarginContainer/OptionButton"]
 layout_mode = 1

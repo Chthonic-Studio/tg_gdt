@@ -11,6 +11,7 @@ signal toggle_guildList
 signal toggle_missionList
 signal toggle_dungeonList
 signal toggle_logList
+signal toggle_characterFullInfo
 # Signal to notify when en element is selected
 signal character_selected(character)
 signal party_selected(party)
@@ -54,6 +55,9 @@ func dungeonList_toggle():
 	
 func logList_toggle():
 	emit_signal ("toggle_logList")
+	
+func characterFullInfo_toggle():
+	emit_signal ("toggle_characterFullInfo")
 	
 # Function to update all item quantities
 func update_all_quantities():

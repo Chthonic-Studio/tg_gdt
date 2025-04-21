@@ -1,0 +1,1140 @@
+[gd_scene load_steps=10 format=3 uid="uid://hsb7go52pyir"]
+
+[ext_resource type="Texture2D" uid="uid://cn1r8f855ugea" path="res://assets/PNG 27_4_5 Game UI Kit/027.png" id="1_yfq0g"]
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="2_lgsfr"]
+[ext_resource type="Script" uid="uid://xju2oxvn75yn" path="res://scripts/ui/character_full_info.gd" id="2_wcjwi"]
+[ext_resource type="Texture2D" uid="uid://bcd0lix7p5hkc" path="res://assets/avatars/test_humanavatar.png" id="3_3tagd"]
+[ext_resource type="FontFile" uid="uid://bnrewgykekfig" path="res://fonts/Dongle-Regular.ttf" id="4_wcjwi"]
+[ext_resource type="Texture2D" uid="uid://bkt55j4e5vfw6" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/3 Item Holder/1.png" id="5_nra4n"]
+[ext_resource type="FontFile" uid="uid://crbmmdfeivhy5" path="res://fonts/Dongle-Light.ttf" id="6_lgsfr"]
+[ext_resource type="Texture2D" uid="uid://d05psi53qt3if" path="res://assets/PNG 27_4_5 Game UI Kit/129.png" id="7_3tagd"]
+[ext_resource type="Script" uid="uid://d1b42c7gr6vm8" path="res://scripts/ui/close_button_characterFullInfo.gd" id="9_nra4n"]
+
+[node name="characterFullStats" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -660.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yfq0g")
+script = ExtResource("2_wcjwi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0373016
+anchor_top = 0.0425
+anchor_right = 0.959779
+anchor_bottom = 0.958162
+offset_left = -127.0
+offset_right = 103.679
+offset_bottom = -3.52942
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="characterName" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -50
+theme_override_constants/paragraph_spacing = -50
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 50
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="characterAvatar" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+texture = ExtResource("3_3tagd")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+
+[node name="statsLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 35
+text = "Character Stats"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="strengthLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Strength"
+horizontal_alignment = 2
+
+[node name="agilityLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Agility"
+horizontal_alignment = 2
+
+[node name="constitutionLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Constitution"
+horizontal_alignment = 2
+
+[node name="intelligenceLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Intelligence"
+horizontal_alignment = 2
+
+[node name="wisdomLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Wisdom"
+horizontal_alignment = 2
+
+[node name="charismaLabel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 30
+text = "Charisma"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="strengthValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="agilityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="constitutionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="intelligenceValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="wisdomValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="charismaValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VSplitContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "15"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 35
+text = "Character Stats"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Adaptability"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Aggression"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Ambition"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Bravery"
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Confidence"
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Creativity"
+horizontal_alignment = 2
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Cunning"
+horizontal_alignment = 2
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Curiosity"
+horizontal_alignment = 2
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Deception"
+horizontal_alignment = 2
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Diplomacy"
+horizontal_alignment = 2
+
+[node name="Label11" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Discipline"
+horizontal_alignment = 2
+
+[node name="Label12" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Empathy"
+horizontal_alignment = 2
+
+[node name="Label13" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Evil"
+horizontal_alignment = 2
+
+[node name="Label14" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Good"
+horizontal_alignment = 2
+
+[node name="Label15" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Honesty"
+horizontal_alignment = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="adaptabilityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="aggressionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="ambitionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="braveryValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="confidenceValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="creativityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="cunningValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="curiosityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="deceptionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="diplomacyValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="disciplineValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="empathyValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="evilValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="goodValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="honestyValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Label16" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Humility"
+horizontal_alignment = 2
+
+[node name="Label17" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Humor"
+horizontal_alignment = 2
+
+[node name="Label18" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Integrity"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Intimidation"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Leadership"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Loyalty"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Luck"
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Morale"
+horizontal_alignment = 2
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Patience"
+horizontal_alignment = 2
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Perception"
+horizontal_alignment = 2
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Persuasion"
+horizontal_alignment = 2
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Resourcefulness"
+horizontal_alignment = 2
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Sociability"
+horizontal_alignment = 2
+
+[node name="Label11" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Tenacity"
+horizontal_alignment = 2
+
+[node name="Label12" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Willpower"
+horizontal_alignment = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="humilityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="humorValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="integrityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="intimidationValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="leadershipValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="loyaltyValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="luckValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="moraleValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="patienceValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="perceptionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="persuasionValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="resourcefulnessValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "25"
+horizontal_alignment = 1
+
+[node name="sociabilityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="tenacityValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="willpowerValue" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "30"
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 35
+text = "Relationships"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(360, 60)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="NinePatchRect5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="NinePatchRect6" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(360, 60)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_nra4n")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = -18.84
+offset_top = -17.48
+offset_right = 187.16
+offset_bottom = 22.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 24
+text = "Relationship Character Name"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.508
+anchor_right = 0.118
+anchor_bottom = 0.508
+offset_left = 186.16
+offset_top = -17.48
+offset_right = 263.16
+offset_bottom = 15.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Best Friend"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer/ScrollContainer/VBoxContainer/NinePatchRect6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.55
+anchor_right = 0.895
+anchor_bottom = 0.55
+offset_left = -26.1
+offset_top = -23.0
+offset_right = 25.9
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 27
+text = "+75"
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="characterLog" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 35
+text = "Character Log"
+horizontal_alignment = 1
+
+[node name="logVbox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="logScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2/logVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="logScrollVbox" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2/logVbox/logScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="characterLogItem" type="NinePatchRect" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2/logVbox/logScrollContainer/logScrollVbox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("5_nra4n")
+
+[node name="characterLogText" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer3/VSplitContainer/VBoxContainer2/logVbox/logScrollContainer/logScrollVbox/characterLogItem"]
+layout_mode = 2
+anchor_left = 0.526
+anchor_top = 0.558
+anchor_right = 0.526
+anchor_bottom = 0.558
+offset_left = -178.88
+offset_top = -21.48
+offset_right = 161.12
+offset_bottom = 13.52
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_constants/paragraph_spacing = -20
+theme_override_fonts/font = ExtResource("6_lgsfr")
+theme_override_font_sizes/font_size = 18
+text = "Lorem Ipsum Dolor Sit Amet"
+
+[node name="closeButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1176.0
+offset_right = 1264.0
+offset_bottom = 88.0
+icon = ExtResource("7_3tagd")
+flat = true
+script = ExtResource("9_nra4n")
+
+[connection signal="pressed" from="closeButton" to="closeButton" method="_on_pressed"]

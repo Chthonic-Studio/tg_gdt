@@ -2,8 +2,10 @@ extends Node
 
 class_name AIBehavior
 
+# Preload external scripts:
 var Message = preload("res://scripts/guild/message.gd")
-var actionCalculations = preload("res://scripts/characters/AI/actionCalculations.gd")
+var actionCalculations = preload("res://scripts/characters/AI/actionCalculations.gd").new()
+var AI_Utilities = preload("res://scripts/characters/AI/ai_utilities.gd").new()
 
 var last_action_day = 0  
 
@@ -12,7 +14,7 @@ func simulate_daily_action(character, current_day):
 	# Check if character is still a valid instance.
 	if character == null or not is_instance_valid(character):
 		return
-	
+
 	var totalDays = 30
 	var last_day = 0
 	if character.has_meta("last_action_day"):
@@ -31,10 +33,10 @@ func simulate_daily_action(character, current_day):
 		if randi() % 10 != 0:
 			return  # Chance failed, do nothing.
 	else:
-		# If 30 or more days have passed, force an immediate roll (i.e. bypass chance check).
+		# If 30 or more days have passed, force an immediate roll.
 		pass
-	
-	# If the roll is successful or forced, update the last action day and perform an action.
+
+	# Update meta data for last action day and execute an action.
 	character.set_meta("last_action_day", current_day)
 	select_and_perform_action(character)
 
@@ -45,6 +47,7 @@ func select_and_perform_action(character):
 		print("No available actions for ", character.name)
 		return
 	var chosen_action = _choose_weighted_action(weighted_actions)
+	
 	# Execute the chosen action.
 	match chosen_action:
 		"adjust_single_relationship":
@@ -68,9 +71,7 @@ func select_and_perform_action(character):
 		_:
 			print("Unknown action: ", chosen_action)
 
-	# After the action is performed, update the AI state.
-	character.update_ai_after_action()
-
+	character.update_ai_after_action()  
 
 func _build_dynamic_weighted_actions(character) -> Array:
 	var actions = [
@@ -86,55 +87,33 @@ func _build_dynamic_weighted_actions(character) -> Array:
 	]
 	var weighted_actions = []
 	for action in actions:
-		var weight = get_dynamic_weight(action, character)
+		# Use a new helper function that uses utility calculation from actionCalculations
+		var weight = _calculate_action_weight(action, character)
 		if weight > 0:
 			weighted_actions.append({"action": action, "weight": weight})
 	return weighted_actions
 
-
-func _choose_weighted_action(weighted_actions: Array) -> String:
-	var total_weight = 0.0
-	for item in weighted_actions:
-		total_weight += item.weight
-	var rand_point = randf() * total_weight
-	for item in weighted_actions:
-		rand_point -= item.weight
-		if rand_point <= 0:
-			return item.action
-	return weighted_actions[weighted_actions.size() - 1].action
-
-func perform_character_action(character):
-	# Build a list of available weighted actions for the character.
-	var weighted_actions = _build_dynamic_weighted_actions(character)
-	if weighted_actions.size() == 0:
-		print("No available actions for ", character.name)
-		return
-	# Choose one action from the weighted list.
-	var chosen_action = _choose_weighted_action(weighted_actions)
+# New helper function: calculates weight using action utilities.
+func _calculate_action_weight(action: String, character) -> float:
+	var base_weight = 1.0   # default multiplier if no specific calculation
 	
-	# Execute the chosen action.
-	match chosen_action:
-		"adjust_single_relationship":
-			_adjust_single_relationship(character, GameManager.characters)
-		"simulate_fight":
-			_simulate_fight(character, GameManager.characters)
-		"try_couple":
-			_try_couple(character, GameManager.characters)
-		"send_mission_solo_message":
-			_send_mission_solo_message(character)
+	match action:
 		"train_character":
-			_train_character(character)
+			# Call training utility from actionCalculations and scale appropriately.
+			var utility = actionCalculations.training_calculateUtility(character.stats, character.ai_variables)
+			base_weight = 15.0 * clamp(utility / 100.0, 0.5, 2.0)
 		"commit_crime":
-			_commit_crime(character)
-		"request_guild_support":
-			_request_guild_support(character)
-		"donate_to_guild":
-			_donate_to_guild(character)
-		"increase_rank":
-			_increase_rank(character)
+			var utility = actionCalculations.commit_crime_calculateUtility(character.stats, character.ai_variables) if actionCalculations.has_method("commit_crime_calculateUtility") else 0
+			base_weight = 10.0 * clamp(utility / 100.0, 0.5, 2.0) if utility > 0 else 0
+		"adjust_single_relationship":
+			var utility = actionCalculations.creativity_calculateUtility(character.stats, character.ai_variables)
+			base_weight = 20.0 * clamp(utility / 100.0, 0.5, 2.0)
+		# For other actions, fallback to the original simplistic weight function.
 		_:
-			print("Unknown action: ", chosen_action)
+			base_weight = get_dynamic_weight(action, character)
+	return base_weight
 
+# Fallback (original) dynamic weight calculation for actions without specific utility functions.
 func get_dynamic_weight(action: String, character) -> float:
 	var empathy = character.stats.get("Empathy", 50)
 	var aggression = character.stats.get("Aggression", 30)
@@ -168,6 +147,19 @@ func get_dynamic_weight(action: String, character) -> float:
 		_:
 			return 0
 
+func _choose_weighted_action(weighted_actions: Array) -> String:
+	var total_weight = 0.0
+	for item in weighted_actions:
+		total_weight += item.weight
+	var rand_point = randf() * total_weight
+	for item in weighted_actions:
+		rand_point -= item.weight
+		if rand_point <= 0:
+			return item.action
+	return weighted_actions[weighted_actions.size() - 1].action
+
+### ACTION IMPLEMENTATIONS ###
+
 func _adjust_single_relationship(character, active_characters):
 	if active_characters.size() <= 1:
 		return
@@ -198,24 +190,21 @@ func _simulate_fight(character, active_characters):
 			character.adjust_relationship(opponent.character_id, -5)
 			opponent.adjust_relationship(character.character_id, 5)
 		print(character.name, "fought with", opponent.name)
-		LogManager.add_log("We received news that " + character.character_fullName + " had a fight with " + opponent.character_fullName + ", this will sour their relationship")
-
+		LogManager.add_log("News: " + character.character_fullName + " had a fight with " + opponent.character_fullName)
+		
 func _try_couple(character, active_characters):
-	# Assuming a "couple" property exists and is set to null if single.
 	if character.couple == null:
 		for other in active_characters:
 			if other == character:
 				continue
-			# Check if other character is already coupled.
 			if other.couple != null:
 				continue
 			var rel = character.relationships.get(other.character_id, 0)
 			if rel > 70:
-				# Form a couple.
 				character.couple = other.character_id
 				other.couple = character.character_id
 				print(character.name, "and", other.name, "became a couple!")
-				LogManager.add_log("Someone told us that " + character.character_fullName + " and " + other.character_fullName + "are now a couple. Let's wish them the best!")
+				LogManager.add_log("News: " + character.character_fullName + " and " + other.character_fullName + " are now a couple!")
 				break
 
 func _send_mission_solo_message(character):
@@ -228,42 +217,35 @@ func _train_character(character):
 		var improvement = randf_range(0.1, 0.5)
 		character.stats[chosen_stat] += improvement
 		print(character.name, "improved", chosen_stat, "by", improvement)
-		LogManager.add_log("We have seen that " + character.character_fullName + " has been training really hard recently")
+		LogManager.add_log("News: " + character.character_fullName + " has been training hard and improved " + chosen_stat)
 
 func _commit_crime(character):
 	print(character.name, "committed a crime in secret!")
 	character.stats["Evil"] = character.stats.get("Evil", 0) - randf_range(1, 3)
 
 func _request_guild_support(character):
-	# Randomly choose a type of support: "item", "gold", or "guild_building".
 	var support_types = ["item", "gold", "guild_building"]
 	var chosen_type = support_types[randi() % support_types.size()]
 	var details = ""
-	
-	# If the support type is "item", check the character's inventory.
 	if chosen_type == "item":
 		var inventory = character.get_inventory_items()
 		if inventory.size() > 0:
 			var random_item = inventory[randi() % inventory.size()]
 			details = "Item: " + random_item.name
 		else:
-			chosen_type = support_types[randi() % 2 + 1]  # picks index 1 or 2
-	
+			chosen_type = support_types[randi() % 2 + 1]
 	if chosen_type == "gold":
-		var gold_amount = -randi() % 51 - 50  # amount between -50 and -100.
+		var gold_amount = -randi() % 51 - 50
 		details = "Gold: " + str(gold_amount) + " gold"
-	
 	if chosen_type == "guild_building":
 		var buildings = ["tavern", "training_grounds", "forge", "apothecary", "cartography", "enchantment"]
 		var building = buildings[randi() % buildings.size()]
-		var cost_modifier = randi() % 31 + 20  # cost modifier between 20 and 50.
+		var cost_modifier = randi() % 31 + 20
 		details = "Guild building: " + building + " with cost reduction of " + str(cost_modifier) + " for 3 months"
-	
 	var extra_info = {
 		"requested_item": details,
 		"adventurer_name": character.character_fullName
 	}
-	# Send the support request using Adventurer Support message type
 	GameManager.add_message(Message.MessageType.ADVENTURER_SUPPORT, extra_info)
 	
 func _donate_to_guild(character):
@@ -273,13 +255,12 @@ func _donate_to_guild(character):
 		character.gold -= donation
 		GameManager.modify_gold(donation)
 		print(character.name, "donated", donation, "gold.")
-		LogManager.add_log("We just received a donation from " + character.character_fullName + " of " + str(donation) + " gold!")
+		LogManager.add_log("News: " + character.character_fullName + " donated " + str(donation) + " gold to the guild!")
 
 func _increase_rank(character):
-	# Assuming a "rank" property exists.
 	if character.rank != null:
 		character.rank += "+"
 	else:
 		character.rank = "E+"
 	print(character.name, "increased their rank!")
-	LogManager.add_log("We are happy to announce that " + character.character_fullName + " has been promoted to rank " + character.rank + "!")
+	LogManager.add_log("News: " + character.character_fullName + " has been promoted to rank " + character.rank + "!")

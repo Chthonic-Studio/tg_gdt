@@ -23,6 +23,12 @@ extends VBoxContainer
 @onready var show_traits = $stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues/traitsValue
 @onready var status = $stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues/statusValue
 
+# Full Info Variables
+@onready var option_button = $stats_status/otherInfo/VBoxContainer/MarginContainer/OptionButton
+@onready var fullInfoScene = $"../../../../../../../../../characterInfoContainer/characterFullStats"
+
+# Variable to store current character data; note the different name
+var current_character_data = {}
 
 # Function to populate character info
 func populate_character_info(character):
@@ -58,6 +64,39 @@ func populate_character_info(character):
 		status_names.append(status_item["name"])
 	status.text = ", ".join(status_names) if status_names.size() > 0 else "No active status"
 
+	# Save the character data for later use
+	current_character_data = character
 
 func _ready():
 	UIManager.connect("character_selected", Callable (self, "populate_character_info"))
+	# Connect the OptionButton signal
+	option_button.connect("item_selected", Callable (self, "_on_option_button_item_selected"))
+
+func _on_option_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			print("See Full Stats option selected.")
+			_send_character_data_to_fullinfo(current_character_data)
+			UIManager.characterFullInfo_toggle()
+		1:
+			print("Talk option selected.")
+			pass
+		2:
+			print("Banish option selected.")
+			pass
+		_:
+			pass
+
+### FULL STATS PAGE ###
+
+func _send_character_data_to_fullinfo(character):
+	print("Sending character data to Full Info Scene")
+	fullInfoScene.populate_full_info(character)
+
+func _start_dialogue():
+	# Implement your dialogue start logic here.
+	print("Starting dialogue...")
+
+func _banish_character():
+	# Implement the banish logic here.
+	print("Banish the character...")

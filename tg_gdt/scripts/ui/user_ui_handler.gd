@@ -38,6 +38,10 @@ var Message = preload("res://scripts/guild/message.gd")
 
 var current_message = null
 
+# Character menus variables
+@onready var characterFullInfo = $characterInfoContainer
+
+
 signal scene_loaded
 
 func _ready():
@@ -56,6 +60,9 @@ func _ready():
 	GameManager.connect("new_message_received", Callable(self, "_on_new_message_received"))
 	GameManager.connect("new_message_received", Callable(self, "_update_inbox_notification"))
 	GameManager.connect("unread_message_count_changed", Callable(self, "_update_inbox_notification"))
+	
+	# Character Menus connections
+	UIManager.connect("toggle_characterFullInfo", Callable(self, "toggle_characterFullInfo"))
 	
 	# Button connections 
 	accept_button.connect("pressed", Callable(self, "_on_accept_button_pressed"))
@@ -265,3 +272,11 @@ func _update_inbox_notification(unread_message_count = 0) -> void:
 	else:
 		inboxNotificationValue.text = "Your desk is clear"
 		inboxAlert.visible = false
+
+### Character Menus ###
+
+func toggle_characterFullInfo() -> void:
+	if characterFullInfo.visible: 
+		characterFullInfo.visible = false
+	else:
+		characterFullInfo.visible = true

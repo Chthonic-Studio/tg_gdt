@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://hwn1hgpjlqm5"]
+[gd_scene load_steps=55 format=3 uid="uid://hwn1hgpjlqm5"]
 
 [ext_resource type="Script" uid="uid://ctv3lle3off0l" path="res://scripts/ui/user_ui_handler.gd" id="1_t15fl"]
 [ext_resource type="Texture2D" uid="uid://d1vhriy1ou7qh" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Folding & Cutout/10 Calander/1.png" id="1_ux461"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://beae8clkfjjw8" path="res://assets/lightbrownbook/Paper UI Pack/Paper UI/Plain/8 Shop/1.png" id="48_h8qsu"]
 [ext_resource type="PackedScene" uid="uid://dksxkcntc76j6" path="res://message.tscn" id="50_ke5x6"]
 [ext_resource type="Script" uid="uid://c1cdbpnme1uw8" path="res://scripts/log_menu.gd" id="51_502x3"]
+[ext_resource type="PackedScene" uid="uid://hsb7go52pyir" path="res://character_full_info.tscn" id="53_h8qsu"]
 [ext_resource type="AudioStream" uid="uid://dr38pd2uheasw" path="res://audio/Battle Theme [Casual].wav" id="54_jjwi0"]
 
 [sub_resource type="Theme" id="Theme_oc1mj"]
@@ -348,7 +349,6 @@ text = "Message"
 script = ExtResource("13_vd2i2")
 
 [node name="bookMenu" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.286458
@@ -405,7 +405,6 @@ offset_right = 523.0
 offset_bottom = 665.0
 
 [node name="lp_characterList" type="ScrollContainer" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/leftPage/lp_vbox/lp_title/lp_content"]
-visible = false
 layout_mode = 2
 theme = SubResource("Theme_oc1mj")
 horizontal_scroll_mode = 0
@@ -535,7 +534,6 @@ grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="characterInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("13_xxcwy")]
-visible = false
 layout_mode = 2
 
 [node name="partyInfo" parent="bookMenu/bookMenuVBox/bookMenuBase/book9PatchRect/rightPage/rp_vbox/rp_title/rp_content" instance=ExtResource("18_xycxu")]
@@ -848,11 +846,6 @@ theme_override_font_sizes/font_size = 30
 text = "You have unread messages"
 horizontal_alignment = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("54_jjwi0")
-volume_db = -33.712
-autoplay = true
-
 [node name="logMenu" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 1
@@ -897,6 +890,22 @@ script = ExtResource("51_502x3")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("54_jjwi0")
+volume_db = -33.712
+autoplay = true
+
+[node name="characterInfoContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 527.0
+offset_top = 123.0
+offset_right = 1788.0
+offset_bottom = 946.0
+
+[node name="characterFullStats" parent="characterInfoContainer" instance=ExtResource("53_h8qsu")]
+layout_mode = 2
 
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_spawnCharacter" method="_on_pressed"]
 [connection signal="pressed" from="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" to="leftMenu/VBoxContainer/baseLeftMenu/NinePatchRect/MarginContainer/VBoxContainer/DebugButtonContainer/debug_add10Char" method="_on_pressed"]

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bbf7iwn3bgpgp"]
+
+[ext_resource type="FontFile" uid="uid://dkq1tgin5o4n2" path="res://fonts/Dongle-Bold.ttf" id="1_y7c8x"]
+
+[resource]
+font = ExtResource("1_y7c8x")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
