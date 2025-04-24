@@ -22,6 +22,7 @@ texture = ExtResource("1_yfq0g")
 script = ExtResource("2_wcjwi")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0373016
@@ -697,6 +698,25 @@ theme_override_font_sizes/font_size = 22
 text = "30"
 horizontal_alignment = 1
 
+[node name="CharInfoButtons" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/CharInfoButtons"]
+layout_mode = 2
+text = "AI Debug"
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/CharInfoButtons"]
+layout_mode = 2
+text = "Equipment"
+
+[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/CharInfoButtons"]
+layout_mode = 2
+text = "Skills"
+
+[node name="Button4" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/CharInfoButtons"]
+layout_mode = 2
+text = "Achievements"
+
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
@@ -1136,5 +1156,851 @@ offset_bottom = 88.0
 icon = ExtResource("7_3tagd")
 flat = true
 script = ExtResource("9_nra4n")
+
+[node name="ai_debug" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 49.0
+offset_right = 1210.0
+offset_bottom = 752.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ai_debug"]
+layout_mode = 2
+
+[node name="1stVbox" type="VBoxContainer" parent="ai_debug/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "Character AI Utility Values"
+uppercase = true
+
+[node name="creativityTitle" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Creativity"
+horizontal_alignment = 1
+
+[node name="creativity" type="HBoxContainer" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/creativity"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Creativity Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Creativity Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Creativity Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/creativity"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="creativityDesire" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="creativityNeed" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="creativityUtility" type="Label" parent="ai_debug/HBoxContainer/1stVbox/creativity/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="explorationTitle" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Exploration"
+horizontal_alignment = 1
+
+[node name="exploration" type="HBoxContainer" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/exploration"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Exploration Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Exploration Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Exploration Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/exploration"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="explorationDesire" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="explorationNeed" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="explorationUtility" type="Label" parent="ai_debug/HBoxContainer/1stVbox/exploration/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="helpingTitle" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Helping"
+horizontal_alignment = 1
+
+[node name="helping" type="HBoxContainer" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/helping"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Helping Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Helping Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Helping Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/helping"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="helpingDesire" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="helpingNeed" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="helpingUtility" type="Label" parent="ai_debug/HBoxContainer/1stVbox/helping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="relaxationTitle" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Relaxation"
+horizontal_alignment = 1
+
+[node name="relaxation" type="HBoxContainer" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/relaxation"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Relaxation Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Relaxation Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Relaxation Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/relaxation"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="relaxationDesire" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="relaxationNeed" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="relaxationUtility" type="Label" parent="ai_debug/HBoxContainer/1stVbox/relaxation/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="restTitle" type="Label" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Rest"
+horizontal_alignment = 1
+
+[node name="rest" type="HBoxContainer" parent="ai_debug/HBoxContainer/1stVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/rest"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Rest Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Rest Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Rest Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/1stVbox/rest"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="restDesire" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="restNeed" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="restUtility" type="Label" parent="ai_debug/HBoxContainer/1stVbox/rest/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="2ndVbox" type="VBoxContainer" parent="ai_debug/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+
+[node name="shoppingTitle" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Shopping"
+horizontal_alignment = 1
+
+[node name="shopping" type="HBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/shopping"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Shopping Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Shopping Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Shopping Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/shopping"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="shoppingDesire" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="shoppingNeed" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="shoppingUtility" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/shopping/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="trainingTitle" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Training"
+horizontal_alignment = 1
+
+[node name="training" type="HBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/training"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Training Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Training Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Training Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/training"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="trainingDesire" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="trainingNeed" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="trainingUtility" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/training/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="socializationTitle" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Socialization"
+horizontal_alignment = 1
+
+[node name="socialization" type="HBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/socialization"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Socialization Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Socialization Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Socialization Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/socialization"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="socializationDesire" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="socializationNeed" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="socializationUtility" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/socialization/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="spiritualityTitle" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Spirituality"
+horizontal_alignment = 1
+
+[node name="spirituality" type="HBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/spirituality"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Spirituality Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Spirituality Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Spirituality Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/spirituality"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="spiritualityDesire" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="spiritualityNeed" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="spiritualityUtility" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/spirituality/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="entertainmentTitle" type="Label" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Entertainment"
+horizontal_alignment = 1
+
+[node name="entertainment" type="HBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/entertainment"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Entertainment Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Entertainment Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Entertainment Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/2ndVbox/entertainment"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="entertainmentDesire" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="entertainmentNeed" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="entertainmentUtility" type="Label" parent="ai_debug/HBoxContainer/2ndVbox/entertainment/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="3rdVbox" type="VBoxContainer" parent="ai_debug/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/3rdVbox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+
+[node name="studyingTitle" type="Label" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Studying"
+horizontal_alignment = 1
+
+[node name="studying" type="HBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/studying"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Studying Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Studying Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Studying Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/studying"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="studyingDesire" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="studyingNeed" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="studyingUtility" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/studying/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="villainyTitle" type="Label" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Villainy"
+horizontal_alignment = 1
+
+[node name="villainy" type="HBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/villainy"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Villainy Desire"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Villainy Need"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Villainy Utility"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/villainy"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="villainyDesire" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="villainyNeed" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="villainyUtility" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/villainy/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="utilityVariablesTitle" type="Label" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Utility Variables"
+horizontal_alignment = 1
+
+[node name="utilityVariables" type="HBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Stress"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Comfort"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Loneliness"
+
+[node name="Label4" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Fatigue"
+
+[node name="Label5" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Mood"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="stressValue" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="comfortValue" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="lonelinessValue" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="fatigueValue" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="moodValue" type="Label" parent="ai_debug/HBoxContainer/3rdVbox/utilityVariables/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "15"
+
+[node name="4thVbox" type="VBoxContainer" parent="ai_debug/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/4thVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lgsfr")
+theme_override_font_sizes/font_size = 30
+text = "Action Selection"
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ai_debug/HBoxContainer/4thVbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Current Action Category"
+
+[node name="Label2" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Current Action Performed"
+
+[node name="Label3" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Previous Action Performed"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer"]
+layout_mode = 2
+
+[node name="currentActionCategory" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Action Selection"
+autowrap_mode = 3
+
+[node name="currentActionPerformed" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Action Selection"
+autowrap_mode = 3
+
+[node name="previousActionPerformed" type="Label" parent="ai_debug/HBoxContainer/4thVbox/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("4_wcjwi")
+theme_override_font_sizes/font_size = 22
+text = "Action Selection"
+autowrap_mode = 3
 
 [connection signal="pressed" from="closeButton" to="closeButton" method="_on_pressed"]
