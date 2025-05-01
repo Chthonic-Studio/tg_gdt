@@ -42,7 +42,7 @@ var gold : int = 0
 
 # Character relationships
 var relationships = {}
-# New property to track if the character is coupled.
+
 # This will store the couple's character_id once a couple is formed.
 var couple = null
 
@@ -52,7 +52,6 @@ enum AIState { IDLE, PERFORMING_ACTION, WAITING_FOR_MISSION }
 var ai_state: int = AIState.IDLE
 var isJoiningMission: bool = false
 
-# AI Variables might be stored in the character. We add fatigue as a separate property.
 var ai_variables = {
 	"Stress": 0,
 	"Comfort": 0,

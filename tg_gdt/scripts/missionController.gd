@@ -182,7 +182,11 @@ func _mission_success(mission) -> void:
 		# Each reward is a dictionary with "item_id" and "quantity" keys.
 		Inventory.add_item(reward["item_id"], reward["quantity"])
 	print("DEBUG: Rewards added to inventory: ", mission.item_rewards)
-	LogManager.add_log(participant + " has returned successful! They cleared the mission '" + mission.title + "'")
+	if participant in GameManager.characters:
+		LogManager.add_log(participant.character_fullName + " has returned successful! They cleared the mission '" + mission.title + "'")
+	else:
+		LogManager.add_log(participant.party_name + " has returned successful! They cleared the mission '" + mission.title + "'")
+	
 
 # Process mission failure: each participant rolls a 50% chance of dying.
 func _mission_failure(mission) -> void:
