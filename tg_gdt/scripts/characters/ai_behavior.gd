@@ -15,6 +15,9 @@ func simulate_daily_action(character, current_day):
 	if character == null or not is_instance_valid(character):
 		return
 
+	# Update daily AI utility values
+	update_daily_utilities(character)
+	
 	var totalDays = 30
 	var last_day = 0
 	if character.has_meta("last_action_day"):
@@ -39,6 +42,61 @@ func simulate_daily_action(character, current_day):
 	# Update meta data for last action day and execute an action.
 	character.set_meta("last_action_day", current_day)
 	select_and_perform_action(character)
+
+# New helper function that computes and stores the daily utility values.
+func update_daily_utilities(character):
+	# Create a dictionary (or update an existing one) to store the utilities.
+	var utilities = {}
+
+	utilities["creativityNeed"] = actionCalculations.creativity_calculateNeed(character.stats, character.ai_variables)
+	utilities["creativityDesire"] = actionCalculations.creativity_calculateDesire(character.stats, character.ai_variables)
+	utilities["creativityUtility"] = actionCalculations.creativity_calculateUtility(character.stats, character.ai_variables)
+	
+	utilities["explorationNeed"] = actionCalculations.exploration_calculateNeed(character.stats, character.ai_variables)
+	utilities["explorationDesire"] = actionCalculations.exploration_calculateDesire(character.stats, character.ai_variables)
+	utilities["explorationUtility"] = actionCalculations.exploration_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["helpingNeed"] = actionCalculations.helping_calculateNeed(character.stats, character.ai_variables)
+	utilities["helpingDesire"] = actionCalculations.helping_calculateDesire(character.stats, character.ai_variables)
+	utilities["helpingUtility"] = actionCalculations.helping_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["relaxationNeed"] = actionCalculations.relaxation_calculateNeed(character.stats, character.ai_variables)
+	utilities["relaxationDesire"] = actionCalculations.relaxation_calculateDesire(character.stats, character.ai_variables)
+	utilities["relaxationUtility"] = actionCalculations.relaxation_calculateUtility(character.stats, character.ai_variables)
+
+	#utilities["restNeed"] = actionCalculations.rest_calculateNeed(character.stats, character.ai_variables)
+	#utilities["restDesire"] = actionCalculations.rest_calculateDesire(character.stats, character.ai_variables)
+	utilities["restingUtility"] = actionCalculations.rest_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["shoppingNeed"] = actionCalculations.shopping_calculateNeed(character.stats, character.ai_variables)
+	utilities["shoppingDesire"] = actionCalculations.shopping_calculateDesire(character.stats, character.ai_variables)
+	utilities["shoppingUtility"] = actionCalculations.shopping_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["trainingNeed"] = actionCalculations.training_calculateNeed(character.stats, character.ai_variables)
+	utilities["trainingDesire"] = actionCalculations.training_calculateDesire(character.stats, character.ai_variables)
+	utilities["trainingUtility"] = actionCalculations.training_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["socializationNeed"] = actionCalculations.socialization_calculateNeed(character.stats, character.ai_variables)
+	utilities["socializationDesire"] = actionCalculations.socialization_calculateDesire(character.stats, character.ai_variables)
+	utilities["socializationUtility"] = actionCalculations.socialization_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["spiritualityNeed"] = actionCalculations.spirituality_calculateNeed(character.stats, character.ai_variables)
+	utilities["spiritualityDesire"] = actionCalculations.spirituality_calculateDesire(character.stats, character.ai_variables)
+	utilities["spiritualityUtility"] = actionCalculations.spirituality_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["entertainmentNeed"] = actionCalculations.entertainment_calculateNeed(character.stats, character.ai_variables)
+	utilities["entertainmentDesire"] = actionCalculations.entertainment_calculateDesire(character.stats, character.ai_variables)
+	utilities["entertainmentUtility"] = actionCalculations.entertainment_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["studyingNeed"] = actionCalculations.studying_calculateNeed(character.stats, character.ai_variables)
+	utilities["studyingDesire"] = actionCalculations.studying_calculateDesire(character.stats, character.ai_variables)
+	utilities["studyingUtility"] = actionCalculations.studying_calculateUtility(character.stats, character.ai_variables)
+
+	utilities["villainyNeed"] = actionCalculations.villainy_calculateNeed(character.stats, character.ai_variables)
+	utilities["villainyDesire"] = actionCalculations.villainy_calculateDesire(character.stats, character.ai_variables)
+	utilities["villainyUtility"] = actionCalculations.villainy_calculateUtility(character.stats, character.ai_variables)
+
+	character.set_meta("current_utilities", utilities)
 
 func select_and_perform_action(character):
 	# Build a list of available weighted actions for the character.

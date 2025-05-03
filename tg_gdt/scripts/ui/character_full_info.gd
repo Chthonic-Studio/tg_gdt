@@ -147,108 +147,61 @@ func update_ai_debug_info():
 	if not ai_debug_container.visible or current_character == null:
 		return
 
-	# Print debug messages to check current stats and AIVariables.
-	print("Updating AI debug info...")
-	print("Current AI Variables:", current_character.ai_variables)
-	print("Current Stats:", current_character.stats)
+	if current_character.has_meta("current_utilities"):
+		var utilities = current_character.get_meta("current_utilities")
 
-	# Creativity
-	var creativityNeed = calculations.creativity_calculateNeed(current_character.stats, current_character.ai_variables)
-	var creativityDesire = calculations.creativity_calculateDesire(current_character.stats, current_character.ai_variables)
-	var creativityUtility = calculations.creativity_calculateUtility(current_character.stats, current_character.ai_variables)
-	creativityNeedLabel.text = str("%.2f" % creativityNeed)
-	creativityDesireLabel.text = str("%.2f" % creativityDesire)
-	creativityUtilityLabel.text = str("%.2f" % creativityUtility)
+		creativityNeedLabel.text = str("%.2f" % utilities["creativityNeed"])
+		creativityDesireLabel.text = str("%.2f" % utilities["creativityDesire"])
+		creativityUtilityLabel.text = str("%.2f" % utilities["creativityUtility"])
+
+		explorationNeedLabel.text = str("%.2f" % utilities["explorationNeed"])
+		explorationDesireLabel.text = str("%.2f" % utilities["explorationDesire"])
+		explorationUtilityLabel.text = str("%.2f" % utilities["explorationUtility"])
+
+		helpingNeedLabel.text = str("%.2f" % utilities["helpingNeed"])
+		helpingDesireLabel.text = str("%.2f" % utilities["helpingDesire"])
+		helpingUtilityLabel.text = str("%.2f" % utilities["helpingUtility"])
+
+		relaxationNeedLabel.text = str("%.2f" % utilities["relaxationNeed"])
+		relaxationDesireLabel.text = str("%.2f" % utilities["relaxationDesire"])
+		relaxationUtilityLabel.text = str("%.2f" % utilities["relaxationUtility"])
+
+		#restingNeedLabel.text = str("%.2f" % utilities["restingNeed"])
+		#restingDesireLabel.text = str("%.2f" % utilities["restingDesire"])
+		restingUtilityLabel.text = str("%.2f" % utilities["restingUtility"])
+
+		shoppingNeedLabel.text = str("%.2f" % utilities["shoppingNeed"])
+		shoppingDesireLabel.text = str("%.2f" % utilities["shoppingDesire"])
+		shoppingUtilityLabel.text = str("%.2f" % utilities["shoppingUtility"])
+
+		trainingNeedLabel.text = str("%.2f" % utilities["trainingNeed"])
+		trainingDesireLabel.text = str("%.2f" % utilities["trainingDesire"])
+		trainingUtilityLabel.text = str("%.2f" % utilities["trainingUtility"])
+
+		socializationNeedLabel.text = str("%.2f" % utilities["socializationNeed"])
+		socializationDesireLabel.text = str("%.2f" % utilities["socializationDesire"])
+		socializationUtilityLabel.text = str("%.2f" % utilities["socializationUtility"])
+
+		spiritualityNeedLabel.text = str("%.2f" % utilities["spiritualityNeed"])
+		spiritualityDesireLabel.text = str("%.2f" % utilities["spiritualityDesire"])
+		spiritualityUtilityLabel.text = str("%.2f" % utilities["spiritualityUtility"])
+
+		entertainmentNeedLabel.text = str("%.2f" % utilities["entertainmentNeed"])
+		entertainmentDesireLabel.text = str("%.2f" % utilities["entertainmentDesire"])
+		entertainmentUtilityLabel.text = str("%.2f" % utilities["entertainmentUtility"])
+
+		studyingNeedLabel.text = str("%.2f" % utilities["studyingNeed"])
+		studyingDesireLabel.text = str("%.2f" % utilities["studyingDesire"])
+		studyingUtilityLabel.text = str("%.2f" % utilities["studyingUtility"])
+
+		villainyNeedLabel.text = str("%.2f" % utilities["villainyNeed"])
+		villainyDesireLabel.text = str("%.2f" % utilities["villainyDesire"])
+		villainyUtilityLabel.text = str("%.2f" % utilities["villainyUtility"])
+
+	else:
+		print("Warning: Utility values not yet calculated for", current_character.character_fullName)
 	
-	# Exploration
-	var explorationNeed = calculations.exploration_calculateNeed(current_character.stats, current_character.ai_variables)
-	var explorationDesire = calculations.exploration_calculateDesire(current_character.stats, current_character.ai_variables)
-	var explorationUtility = calculations.exploration_calculateUtility(current_character.stats, current_character.ai_variables)
-	explorationNeedLabel.text = str("%.2f" % explorationNeed)
-	explorationDesireLabel.text = str("%.2f" % explorationDesire)
-	explorationUtilityLabel.text = str("%.2f" % explorationUtility)
-	
-	# Helping
-	var helpingNeed = calculations.helping_calculateNeed(current_character.stats, current_character.ai_variables)
-	var helpingDesire = calculations.helping_calculateDesire(current_character.stats, current_character.ai_variables)
-	var helpingUtility = calculations.helping_calculateUtility(current_character.stats, current_character.ai_variables)
-	helpingNeedLabel.text = str("%.2f" % helpingNeed)
-	helpingDesireLabel.text = str("%.2f" % helpingDesire)
-	helpingUtilityLabel.text = str("%.2f" % helpingUtility)
-	
-	# Relaxation
-	var relaxationNeed = calculations.relax_calculateNeed(current_character.stats, current_character.ai_variables)
-	var relaxationDesire = calculations.relax_calculateDesire(current_character.stats, current_character.ai_variables)
-	var relaxationUtility = calculations.relax_calculateUtility(current_character.stats, current_character.ai_variables)
-	relaxationNeedLabel.text = str("%.2f" % relaxationNeed)
-	relaxationDesireLabel.text = str("%.2f" % relaxationDesire)
-	relaxationUtilityLabel.text = str("%.2f" % relaxationUtility)
-	
-	# Resting
-	# var restingNeed = calculations.resting_calculateNeed(current_character.stats, current_character.ai_variables)
-	# var restingDesire = calculations.resting_calculateDesire(current_character.stats, current_character.ai_variables)
-	var restingUtility = calculations.rest_calculateUtility(current_character.stats, current_character.ai_variables)
-	# restingNeedLabel.text = str("%.2f" % restingNeed)
-	# restingDesireLabel.text = str("%.2f" % restingDesire)
-	restingUtilityLabel.text = str("%.2f" % restingUtility)
-	
-	# Shopping
-	var shoppingNeed = calculations.shopping_calculateNeed(current_character.stats, current_character.ai_variables)
-	var shoppingDesire = calculations.shopping_calculateDesire(current_character.stats, current_character.ai_variables)
-	var shoppingUtility = calculations.shopping_calculateUtility(current_character.stats, current_character.ai_variables)
-	shoppingNeedLabel.text = str("%.2f" % shoppingNeed)
-	shoppingDesireLabel.text = str("%.2f" % shoppingDesire)
-	shoppingUtilityLabel.text = str("%.2f" % shoppingUtility)
-	
-	# Training
-	var trainingNeed = calculations.training_calculateNeed(current_character.stats, current_character.ai_variables)
-	var trainingDesire = calculations.training_calculateDesire(current_character.stats, current_character.ai_variables)
-	var trainingUtility = calculations.training_calculateUtility(current_character.stats, current_character.ai_variables)
-	trainingNeedLabel.text = str("%.2f" % trainingNeed)
-	trainingDesireLabel.text = str("%.2f" % trainingDesire)
-	trainingUtilityLabel.text = str("%.2f" % trainingUtility)
-	
-	# Socialization
-	var socializationNeed = calculations.socialization_calculateNeed(current_character.stats, current_character.ai_variables)
-	var socializationDesire = calculations.socialization_calculateDesire(current_character.stats, current_character.ai_variables)
-	var socializationUtility = calculations.socialization_calculateUtility(current_character.stats, current_character.ai_variables)
-	socializationNeedLabel.text = str("%.2f" % socializationNeed)
-	socializationDesireLabel.text = str("%.2f" % socializationDesire)
-	socializationUtilityLabel.text = str("%.2f" % socializationUtility)
-	
-	# Spirituality
-	var spiritualityNeed = calculations.spirituality_calculateNeed(current_character.stats, current_character.ai_variables)
-	var spiritualityDesire = calculations.spirituality_calculateDesire(current_character.stats, current_character.ai_variables)
-	var spiritualityUtility = calculations.spirituality_calculateUtility(current_character.stats, current_character.ai_variables)
-	spiritualityNeedLabel.text = str("%.2f" % spiritualityNeed)
-	spiritualityDesireLabel.text = str("%.2f" % spiritualityDesire)
-	spiritualityUtilityLabel.text = str("%.2f" % spiritualityUtility)
-	
-	# Entertainment
-	var entertainmentNeed = calculations.entertainment_calculateNeed(current_character.stats, current_character.ai_variables)
-	var entertainmentDesire = calculations.entertainment_calculateDesire(current_character.stats, current_character.ai_variables)
-	var entertainmentUtility = calculations.entertainment_calculateUtility(current_character.stats, current_character.ai_variables)
-	entertainmentNeedLabel.text = str("%.2f" % entertainmentNeed)
-	entertainmentDesireLabel.text = str("%.2f" % entertainmentDesire)
-	entertainmentUtilityLabel.text = str("%.2f" % entertainmentUtility)
-	
-	# Studying
-	var studyingNeed = calculations.studying_calculateNeed(current_character.stats, current_character.ai_variables)
-	var studyingDesire = calculations.studying_calculateDesire(current_character.stats, current_character.ai_variables)
-	var studyingUtility = calculations.studying_calculateUtility(current_character.stats, current_character.ai_variables)
-	studyingNeedLabel.text = str("%.2f" % studyingNeed)
-	studyingDesireLabel.text = str("%.2f" % studyingDesire)
-	studyingUtilityLabel.text = str("%.2f" % studyingUtility)
-	
-	# Villainy
-	var villainyNeed = calculations.villainy_calculateNeed(current_character.stats, current_character.ai_variables)
-	var villainyDesire = calculations.villainy_calculateDesire(current_character.stats, current_character.ai_variables)
-	var villainyUtility = calculations.villainy_calculateUtility(current_character.stats, current_character.ai_variables)
-	villainyNeedLabel.text = str("%.2f" % villainyNeed)
-	villainyDesireLabel.text = str("%.2f" % villainyDesire)
-	villainyUtilityLabel.text = str("%.2f" % villainyUtility)
-	
-	# Update action information (ensure your AI system updates the following props elsewhere).
+	# Update action information
 	if current_character.has_method("get_current_action"):
 		currentActionLabel.text = str(current_character.get_current_action())
 	else:
@@ -263,5 +216,5 @@ func update_ai_debug_info():
 		lastActionLabel.text = "None"
 
 func _process(delta):
-	if ai_debug_container.visible and current_character:
+	if current_character:
 		update_ai_debug_info()

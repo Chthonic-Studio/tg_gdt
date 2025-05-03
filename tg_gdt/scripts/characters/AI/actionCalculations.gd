@@ -48,14 +48,14 @@ func helping_calculateUtility(character_stats, ai_variables) -> float:
 
 ### RELAX ###
 
-func relax_calculateDesire(character_stats, ai_variables) -> float:
+func relaxation_calculateDesire(character_stats, ai_variables) -> float:
 	return (ai_variables["Stress"] * 0.8) + (ai_variables["Fatigue"] * 0.6) - (character_stats["Morale"] * 0.2) - (ai_variables["Comfort"] * 0.2) - (character_stats["Discipline"] * 0.2)
 
-func relax_calculateNeed(character_stats, ai_variables) -> float:
+func relaxation_calculateNeed(character_stats, ai_variables) -> float:
 	return (ai_variables["Stress"] * 0.8) + (ai_variables["Comfort"] * 0.1) - (character_stats["Ambition"] * 0.2) + (ai_variables["Fatigue"] * 0.3) - (character_stats["Tenacity"] * 0.2)
 
-func relax_calculateUtility(character_stats, ai_variables) -> float:
-	return (relax_calculateDesire(character_stats, ai_variables) + relax_calculateNeed(character_stats, ai_variables) * 0.7 + randi_range (0, 15))
+func relaxation_calculateUtility(character_stats, ai_variables) -> float:
+	return (relaxation_calculateDesire(character_stats, ai_variables) + relaxation_calculateNeed(character_stats, ai_variables) * 0.7 + randi_range (0, 15))
 
 ### REST ###
 
