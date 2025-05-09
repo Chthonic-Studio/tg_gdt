@@ -9,6 +9,21 @@ var AI_Utilities = preload("res://scripts/characters/AI/ai_utilities.gd").new()
 
 var last_action_day = 0  
 
+# Action Scripts
+var actionSelector = preload("res://scripts/characters/AI/actionSelector.gd").new()
+var creativityActions = preload("res://scripts/characters/AI/actionCategories/creativityActions.gd").new()
+var explorationActions = preload("res://scripts/characters/AI/actionCategories/explorationActions.gd").new()
+var helpingActions = preload("res://scripts/characters/AI/actionCategories/helpingActions.gd").new()
+var relaxationActions = preload("res://scripts/characters/AI/actionCategories/relaxationActions.gd").new()
+var restActions = preload("res://scripts/characters/AI/actionCategories/restActions.gd").new()
+var trainingActions = preload("res://scripts/characters/AI/actionCategories/trainingActions.gd").new()
+var socializationActions = preload("res://scripts/characters/AI/actionCategories/socializationActions.gd").new()
+var shoppingActions = preload("res://scripts/characters/AI/actionCategories/shoppingActions.gd").new()
+var spiritualityActions = preload("res://scripts/characters/AI/actionCategories/spiritualityActions.gd").new()
+var entertainmentActions = preload("res://scripts/characters/AI/actionCategories/entertainmentActions.gd").new()
+var studyingActions = preload("res://scripts/characters/AI/actionCategories/studyingActions.gd").new()
+var villainyActions = preload("res://scripts/characters/AI/actionCategories/villainyActions.gd").new()
+
 # CALL THIS FUNCTION FROM THE DAILY SIMULATION OR AFTER AN ACTION COMPLETES.
 func simulate_daily_action(character, current_day):
 	# Check if character is still a valid instance.
@@ -99,37 +114,213 @@ func update_daily_utilities(character):
 	character.set_meta("current_utilities", utilities)
 
 func select_and_perform_action(character):
-	# Build a list of available weighted actions for the character.
-	var weighted_actions = _build_dynamic_weighted_actions(character)
-	if weighted_actions.size() == 0:
-		print("No available actions for ", character.name)
+	var chosen = actionSelector.choose_action(character)
+	if chosen.size() == 0:
+		print("No action available for ", character.character_fullName)
 		return
-	var chosen_action = _choose_weighted_action(weighted_actions)
-	
-	# Execute the chosen action.
-	match chosen_action:
-		"adjust_single_relationship":
-			_adjust_single_relationship(character, GameManager.characters)
-		"simulate_fight":
-			_simulate_fight(character, GameManager.characters)
-		"try_couple":
-			_try_couple(character, GameManager.characters)
-		"send_mission_solo_message":
-			_send_mission_solo_message(character)
-		"train_character":
-			_train_character(character)
-		"commit_crime":
-			_commit_crime(character)
-		"request_guild_support":
-			_request_guild_support(character)
-		"donate_to_guild":
-			_donate_to_guild(character)
-		"increase_rank":
-			_increase_rank(character)
-		_:
-			print("Unknown action: ", chosen_action)
 
-	character.update_ai_after_action()  
+	# Based on the selected category and sub-action, perform the action.
+	match chosen.category:
+		"creativity":
+			match chosen.subaction:
+				"craft_items":
+					creativityActions.craft_items(character)
+				"crowd_performing":
+					creativityActions.crowd_performing(character)
+				"sculpting":
+					creativityActions.sculpting(character)
+				"singing":
+					creativityActions.singing(character)
+				"poetry":
+					creativityActions.poetry(character)
+				"playwriting":
+					creativityActions.playwriting(character)
+				"gardening":
+					creativityActions.gardening(character)
+				"cooking":
+					creativityActions.cooking(character)
+				"composing":
+					creativityActions.composing(character)				
+				_:
+					print("Undefined creativity sub-action")
+		"exploration":
+			match chosen.subaction:
+				"visit_landmarks":
+					explorationActions.visit_landmarks(character)
+				"go_out_of_town":
+					explorationActions.go_out_of_town(character)
+				"treasure_hunt":
+					explorationActions.treasure_hunt(character)
+				"go_to_local_festival":
+					explorationActions.go_to_local_festival(character)
+				"tomb_raiding":
+					explorationActions.tomb_raiding(character)
+				"map_environment":
+					explorationActions.map_environment(character)
+				_:
+					print("Undefined creativity sub-action")		
+		"helping":
+			match chosen.subaction:
+				"help_homeless":
+					helpingActions.help_homeless(character)
+				"charity_work":
+					helpingActions.charity_work(character)
+				"help_townsfolk":
+					helpingActions.help_townsfolk(character)
+				"volunteer_work":
+					helpingActions.volunteer_work(character)
+				"attend_town_council":
+					helpingActions.attend_town_council(character)
+				"donate_to_church":
+					helpingActions.donate_to_church(character)
+				"donate_to_guild":
+					helpingActions.donate_to_guild(character)
+				"mentor_young":
+					helpingActions.mentor_young(character)			
+				_:
+					print("Undefined creativity sub-action")
+		"relaxation":
+			match chosen.subaction:
+				"go_to_bathhouse":
+					relaxationActions.go_to_bathhouse(character)
+				"birdwatching":
+					relaxationActions.birdwatching(character)
+				"fishing":
+					relaxationActions.fishing(character)
+				"meditation":
+					relaxationActions.meditation(character)
+				"go_to_whorehouse":
+					relaxationActions.go_to_whorehouse(character)
+				"get_drunk":
+					relaxationActions.get_drunk(character)
+				_:
+					print("Undefined creativity sub-action")	
+		"rest":
+			match chosen.subaction:
+				"sleep":
+					restActions.sleep(character)
+				"nap":
+					restActions.nap(character)
+				"take_a_break":
+					restActions.take_a_break(character)
+				"vacation":
+					restActions.vacation(character)
+				_:
+					print("Undefined creativity sub-action")	
+		"training":
+			match chosen.subaction:
+				"sparring":
+					trainingActions.sparring(character)
+				"attend_workshop":
+					trainingActions.attend_workshop(character)
+				"practice_skill":
+					trainingActions.practice_skill(character)
+				"train_with_mentor":
+					trainingActions.train_with_mentor(character)
+				"lifting":
+					trainingActions.lifting(character)
+				"climbing":
+					trainingActions.climbing(character)
+				"running":
+					trainingActions.running(character)
+				"swimming":
+					trainingActions.swimming(character)
+				"mental_training":
+					trainingActions.mental_training(character)				
+				_:
+					print("Undefined creativity sub-action")
+		"socialization":
+			match chosen.subaction:
+				"go_to_guild_meeting":
+					socializationActions.go_to_guild_meeting(character)
+				"talk_with_collegue":
+					socializationActions.talk_with_collegue(character)
+				"talk_with_townsfolk":
+					socializationActions.talk_with_townsfolk(character)
+				"go_to_club":
+					socializationActions.go_to_club(character)
+				"try_for_romance":
+					socializationActions.try_for_romance(character)
+				"talk_with_soulmate":
+					socializationActions.talk_with_soulmate(character)
+				_:
+					print("Undefined creativity sub-action")		
+		"shopping":
+			match chosen.subaction:
+				"buy_items":
+					shoppingActions.buy_items(character)
+				"sell_items":
+					shoppingActions.sell_items(character)
+				"barter":
+					shoppingActions.barter(character)
+				"comission_item":
+					shoppingActions.comission_item(character)
+				"buy_gift":
+					shoppingActions.buy_gift(character)
+				_:
+					print("Undefined creativity sub-action")	
+		"spirituality":
+			match chosen.subaction:
+				"go_to_church":
+					spiritualityActions.go_to_church(character)
+				"pray":
+					spiritualityActions.pray(character)
+				"spiritual_guidance":
+					spiritualityActions.spiritual_guidance(character)
+				"read_religious_texts":
+					spiritualityActions.read_religious_texts(character)
+				"inner_reflection":
+					spiritualityActions.inner_reflection(character)
+				_:
+					print("Undefined creativity sub-action")	
+		"studying":
+			match chosen.subaction:
+				"go_to_library":
+					studyingActions.go_to_library(character)
+				"read_book":
+					studyingActions.read_book(character)
+				"read_skill_book":
+					studyingActions.read_skill_book(character)
+				"attend_lecture":
+					studyingActions.attend_lecture(character)
+				"read_history":
+					studyingActions.read_history(character)
+				"read_research_paper":
+					studyingActions.read_research_paper(character)
+				_:
+					print("Undefined creativity sub-action")	
+		"villainy":
+			match chosen.subaction:
+				"pickpocket":
+					villainyActions.pickpocket(character)
+				"rob_house":
+					villainyActions.rob_house(character)
+				"spy":
+					villainyActions.spy(character)
+				"gang_work":
+					villainyActions.gang_work(character)
+				"assasination":
+					villainyActions.assasination(character)
+				"match_fixing":
+					villainyActions.match_fixing(character)
+				"blackmail":
+					villainyActions.blackmail(character)
+				"slander":
+					villainyActions.slander(character)			
+				_:
+					print("Undefined creativity sub-action")
+		_:
+			print("Action category", chosen.category, "is not handled yet")
+	
+	character.update_ai_after_action()
+	
+
+
+
+
+
+### Old Functions
+	# Need to revisit these at a later point as they are probably irrelevant now.
 
 func _build_dynamic_weighted_actions(character) -> Array:
 	var actions = [
