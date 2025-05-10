@@ -36,8 +36,11 @@ var character_statuses = []
 # Character Party
 var party : String = "No Party"
 
-# Character Inventory
-var character_inventory = []
+# Character relationships dictionary: The key is the other character's ID.
+# The value is a dictionary: {"value": float, "title": String}
+var relationships = {}
+
+
 var gold : int = 0
 
 # Character relationships
@@ -432,20 +435,41 @@ func _on_year_passed(new_year: int):
 
 # RELATIONSHIP FUNCTIONS 
 
-# Call this function to adjust (increase or decrease) the relationship with another character.
+# Adjust the numeric relationship value with another character.
 func adjust_relationship(other_id: String, delta: float) -> void:
-	# If a relationship already exists, update it. Otherwise, initialize it with the delta.
 	if relationships.has(other_id):
-		relationships[other_id] = clamp(relationships[other_id] + delta, -100, 100)
+		relationships[other_id]["value"] = clamp( relationships[other_id]["value"] + delta, -100, 100)
 	else:
-		relationships[other_id] = clamp(delta, -100, 100)
+		# Initialize with the given delta and a default title (for instance, "Acquaintance")
+		relationships[other_id] = {"value": clamp(delta, -100, 100), "title": "Acquaintance"}
 
-# Optionally, you can also create specific methods
+# Increase relationship value.
 func increase_relationship(other_id: String, amount: float) -> void:
 	adjust_relationship(other_id, amount)
 
+# Decrease relationship value.
 func decrease_relationship(other_id: String, amount: float) -> void:
 	adjust_relationship(other_id, -amount)
+
+# Set the relationship title for this character with another character.
+# Note: This function only updates the title for the current character.
+func set_relationship_title(other_id: String, new_title: String) -> void:
+	if relationships.has(other_id):
+		relationships[other_id]["title"] = new_title
+	else:
+		# If no relationship yet, initialize it with a default numeric value of 0.
+		relationships[other_id] = {"value": 0, "title": new_title}
+
+# Optional: a getter function to retrieve a relationship record.
+func get_relationship(other_id: String) -> Dictionary:
+	if relationships.has(other_id):
+		return relationships[other_id]
+	return {}
+
+# For debugging, prints all relationships.
+func print_relationships() -> void:
+	for other_id in relationships.keys():
+		print("Relationship with ", other_id, ": ", relationships[other_id])
 
 
 ######### AI Functionalities #########

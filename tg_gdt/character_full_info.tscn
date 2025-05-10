@@ -22,7 +22,6 @@ texture = ExtResource("1_yfq0g")
 script = ExtResource("2_wcjwi")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0373016
@@ -775,10 +774,10 @@ anchor_left = 0.118
 anchor_top = 0.508
 anchor_right = 0.118
 anchor_bottom = 0.508
-offset_left = 186.16
-offset_top = -17.48
-offset_right = 263.16
-offset_bottom = 15.52
+offset_left = 185.52
+offset_top = -15.48
+offset_right = 262.52
+offset_bottom = 17.52
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -20
 theme_override_fonts/font = ExtResource("4_wcjwi")
@@ -793,10 +792,10 @@ anchor_left = 0.895
 anchor_top = 0.55
 anchor_right = 0.895
 anchor_bottom = 0.55
-offset_left = -26.1
+offset_left = -16.2
 offset_top = -23.0
-offset_right = 25.9
-offset_bottom = 23.0
+offset_right = 20.8
+offset_bottom = 17.0
 theme_override_colors/font_color = Color(0, 0.458824, 0, 1)
 theme_override_constants/line_spacing = -20
 theme_override_fonts/font = ExtResource("2_lgsfr")
@@ -1158,6 +1157,7 @@ flat = true
 script = ExtResource("9_nra4n")
 
 [node name="ai_debug" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 52.0
 offset_top = 49.0

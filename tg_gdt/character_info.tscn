@@ -402,12 +402,12 @@ theme_override_font_sizes/font_size = 19
 text = "Valiant Leader"
 
 [node name="traitsValue" type="Label" parent="stats_status/otherInfo/VBoxContainer/otherInfoContainer/otherInfoVbox/otherInfoValues"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(170, 30)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -20
+theme_override_constants/line_spacing = -18
 theme_override_fonts/font = ExtResource("6_ktswq")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 17
 text = "Valiant Leader"
 autowrap_mode = 3
 

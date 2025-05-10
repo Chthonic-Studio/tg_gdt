@@ -315,7 +315,94 @@ func select_and_perform_action(character):
 	character.update_ai_after_action()
 	
 
+### Utility Functions for Character Selection ###
 
+# Helper: Get a full list of "active" characters.
+func get_all_characters() -> Array:
+	var chars: Array = GameManager.characters
+	return chars
+
+# Generic function to select a random character from a list,
+# excluding one if needed, and optionally using a criteria function.
+# The criteria parameter is untyped and defaults to null.
+func select_random_character(exclude = null, criteria = null) -> Object:
+	var pool: Array = []
+	for character in get_all_characters():
+		if not is_instance_valid(character):
+			continue
+		# Exclude the provided character (for example, the current character)
+		if exclude and character == exclude:
+			continue
+		# If a criteria function is provided, only add if the function returns true.
+		if criteria and not criteria.call(character):
+			continue
+		pool.append(character)
+	if pool.size() == 0:
+		return null
+	return pool[randi() % pool.size()]
+
+# Select a random character from the same party as the current character.
+func select_random_party_member(current_character) -> Object:
+	if current_character.party == "No Party":
+		return null
+	var pool: Array = []
+	for character in get_all_characters():
+		if character == current_character:
+			continue
+		if character.party == current_character.party:
+			pool.append(character)
+	if pool.size() > 0:
+		return pool[randi() % pool.size()]
+	return null
+
+# Select a random character who has the same backstory as the current character.
+func select_random_same_backstory(current_character) -> Object:
+	var pool: Array = []
+	for character in get_all_characters():
+		if character == current_character:
+			continue
+		# Assuming selected_backstory can be compared directly.
+		if character.selected_backstory == current_character.selected_backstory:
+			pool.append(character)
+	if pool.size() > 0:
+		return pool[randi() % pool.size()]
+	return null
+
+# Select a character by ID.
+func select_character_by_id(character_id: String) -> Object:
+	for character in get_all_characters():
+		if character.character_id == character_id:
+			return character
+	return null
+
+# Select the character with the highest (most friendly) relationship value relative to the current character.
+func select_friendly_character(current_character) -> Object:
+	var best: Object = null
+	var best_val: float = -101.0
+	for character in get_all_characters():
+		if character == current_character:
+			continue
+		var rel_val: float = 0.0
+		if current_character.relationships.has(character.character_id):
+			rel_val = current_character.relationships[character.character_id]
+		if rel_val > best_val:
+			best_val = rel_val
+			best = character
+	return best
+
+# (Optional) Select the character that has the highest value for a chosen stat.
+func select_highest_stat_character(stat: String) -> Object:
+	var best: Object = null
+	var best_val: float = -INF
+	for character in get_all_characters():
+		if not is_instance_valid(character):
+			continue
+		if character.stats.has(stat):
+			var value: float = character.stats[stat]
+			if value > best_val:
+				best_val = value
+				best = character
+	return best
 
 
 

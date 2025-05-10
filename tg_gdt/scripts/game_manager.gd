@@ -656,7 +656,7 @@ func remove_mission(mission_id: String):
 			return
 
 # DUNGEON FUNCTIONS
-
+#region Dungeon
 # Function to generate and activate a random dungeon
 func activate_random_dungeon():
 	var dungeon = DungeonManager.activate_random_dungeon()
@@ -667,10 +667,10 @@ func activate_random_dungeon():
 func update_dungeon_status(dungeon_id: String, new_status: int):
 	DungeonManager.update_dungeon_status(dungeon_id, new_status)
 	emit_signal("update_dungeon_list", DungeonManager.get_active_dungeons())
-
+#enregion
 
 # MESSAGE FUNCTIONS
-
+#region Messages
 # Function to generate and add a new message
 func add_message(messageType, extra_info = {}):
 	var message = MessageGenerator.generate_message(messageType, extra_info)
@@ -763,37 +763,65 @@ func generate_random_notification():
 	emit_signal("new_message_received", message)
 	emit_signal("unread_message_count_changed", unread_messages.size())
 
-# NEW: Function to update relationships at the end of each in-game month
-func monthly_update_relationships() -> void:
-	# Loop over every unique pair of active characters.
-	for i in range(characters.size()):
-		var char_a = characters[i]
-		for j in range(i + 1, characters.size()):
-			var char_b = characters[j]
-			
-			# Get the current relationship value (default is 0 if not set)
-			var current_rel = 0.0
-			if char_a.relationships.has(char_b.character_id):
-				current_rel = char_a.relationships[char_b.character_id]
-			
-			# Base random change each month: random float between -5 and 5.
-			var change = randf_range(-5, 5)
-			
-			# If the relationship is above 50, add an extra bonus [0, 1]
-			if current_rel > 50:
-				change += randf_range(0, 1)
-			# If the relationship is below -50, subtract an extra value in [0, 1]
-			elif current_rel < -50:
-				change += randf_range(-1, 0)
-			
-			# If both characters are in a party together, add additional bonus [1, 3]
-			# (Assuming the party String is not "No Party" and is the same for both)
-			if char_a.party != "No Party" and char_a.party == char_b.party:
-				change += randf_range(1, 3)
-			
-			# Update relationship symmetrically for both characters.
-			char_a.adjust_relationship(char_b.character_id, change)
-			char_b.adjust_relationship(char_a.character_id, change)
-			
-			# Optionally, print the updated relationship for debugging.
-			#print("Updated relationship between ", char_a.character_id, " and ", char_b.character_id, ": ", char_a.relationships[char_b.character_id])
+#endregion
+
+### RELATIONSHIP FUNCTIONS ###
+#region Relationships
+
+# Function to update the relationship title between two characters.
+func update_relationship_title(character_id_a: String, character_id_b: String, new_title: String) -> void:
+	var char_a = get_character_by_id(character_id_a)
+	var char_b = get_character_by_id(character_id_b)
+	if char_a and char_b:
+		# Update relationship title for both characters.
+		char_a.set_relationship_title(character_id_b, new_title)
+		char_b.set_relationship_title(character_id_a, new_title)
+		print("Updated relationship title between ", char_a.character_fullName, " and ", char_b.character_fullName, " to ", new_title)
+		emit_signal("update_character_list", characters)
+	else:
+		print("One or both characters not found for relationship title update.")
+
+# Function to spawn a new character with a defined family relationship relative
+# relationship_type is a String (for example "Father", "Mother", "Brother", "Sister", "Cousin", etc.)
+func spawn_family_member(existing_id: String, relationship_type: String) -> void:
+	var existing_char = get_character_by_id(existing_id)
+	if existing_char == null:
+		print("Existing character not found.")
+		return
+	
+	# Generate a new character normally.
+	var new_character = CharacterGenerator.generate_character()
+	if new_character:
+		# Optionally, adjust the new character's age based on the family relation.
+		# For example, if relationship_type is "Father" or "Mother", the new character's age must be at least 20 less than existing_char.
+		# This is left as an exercise to check against your game design.
+		# Add the new character to your characters list.
+		characters.append(new_character)
+		get_tree().current_scene.add_child(new_character)
+		
+		# Set the relationship in both characters.
+		# For the new character, record that they are, say, the "Father" of the existing one,
+		# and for the existing character record the reciprocal relation.
+		# You can decide the reciprocal relationship in your design.
+		# For example, if new_character is set as "Father" then for existing_char, the reciprocal relation might be "Child".
+		var reciprocal_relation: String = "Child"  # Simple placeholder; update based on your design.
+		# For Non-Binary, if relationship_type is "Father" or "Mother", choose randomly between the two.
+		if (relationship_type == "Father" or relationship_type == "Mother") and new_character.character_gender == "Non-Binary":
+			if randi() % 2 == 0:
+				relationship_type = "Father"
+			else:
+				relationship_type = "Mother"
+		
+		# Update both characters' relationship records.
+		new_character.set_relationship_title(existing_char.character_id, relationship_type)
+		# For existing character, we assume a reciprocal relationship.
+		existing_char.set_relationship_title(new_character.character_id, reciprocal_relation)
+		
+		# Optionally, initialize numeric values (for example, family relationships might begin with a high positive value).
+		new_character.adjust_relationship(existing_char.character_id, 70)
+		existing_char.adjust_relationship(new_character.character_id, 70)
+		
+		print("Spawned new family member ", new_character.character_fullName, " as ", relationship_type, " of ", existing_char.character_fullName)
+	else:
+		print("Failed to generate family member character.")
+#endregion

@@ -3,6 +3,7 @@ extends Node
 class_name CreativityActions
 
 func craft_items(character):
+    # Need to rework the item system and create the equipment system first
     print(character.character_fullName, "is crafting an item")
     
 func crowd_performing(character):
